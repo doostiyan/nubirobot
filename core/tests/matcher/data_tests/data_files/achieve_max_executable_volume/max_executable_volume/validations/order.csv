@@ -1,0 +1,14 @@
+test,operation,obj_name,attribute,result
+1,Equal,buy_0,status,Order.STATUS.active
+2,Equal,sell_1,status,Order.STATUS.active
+3,Equal,sell_2,status,Order.STATUS.active
+4,Equal,sell_3,status,Order.STATUS.done
+5,Equal,buy_1,status,Order.STATUS.done
+6,Equal,buy_2,status,Order.STATUS.done
+7,Equal,buy_3,status,Order.STATUS.done
+8,Equal,buy_4,status,Order.STATUS.done
+9,Equal,buy_1,unmatched_amount,Decimal(0)
+10,Equal,buy_2,unmatched_amount,Decimal(0)
+11,Equal,buy_3,unmatched_amount,Decimal(0)
+12,Equal,buy_4,unmatched_amount,Decimal(0)
+13,Equal,sell_3,unmatched_amount,Decimal(0)

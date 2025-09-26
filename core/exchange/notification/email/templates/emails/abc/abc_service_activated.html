@@ -1,0 +1,22 @@
+{% extends 'email_base.html' %}
+{% block content %}
+  <div class="header">
+    <strong class="email-title">
+      تائید فعالسازی سرویس
+    </strong>
+  </div>
+  <div style="margin-top: 20px; margin-bottom: 50px">
+    <p class="content">
+      کاربر گرامی!
+      <br/>
+      <br/>
+      سرویس {{ financial_service }} برای شما در نوبیتکس فعال شد.
+      <br/>
+      <br/>
+      در صورتی که بدهی نداشته باشید، می‌توانید سرویس موردنظر خود را هر زمان که خواستید غیرفعال کنید.
+      <br/>
+      <br/>
+      برای ادامه‌ی فرایند به حساب کاربری خود بروید یا روی لینک <a href="{{ help_link }}">راهنما</a> کلیک کنید.
+    </p>
+  </div>
+{% endblock %}

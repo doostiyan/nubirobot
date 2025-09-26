@@ -1,0 +1,12 @@
+name: "|----- TEMPLATES------|"
+
+on:
+  workflow_call:
+
+
+jobs:
+  dummy:
+    steps:
+      - name: dummy
+        run: 'dummy command'
+

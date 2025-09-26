@@ -1,0 +1,13 @@
+# use add, change, delete and view to define permissions
+
+- codename: add_user_api_key
+  name:  اضافه کردن کلید API کاربر
+  display_name: اضافه کردن کلید API کاربر
+  description: مجور اضافه کردن کلید API کاربر
+  model: UserAPIKey
+  views:
+  category:
+  sensitive: true
+
+
+

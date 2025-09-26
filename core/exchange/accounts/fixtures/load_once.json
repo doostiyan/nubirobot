@@ -1,0 +1,21 @@
+[{
+    "model": "accounts.user",
+    "pk": 993,
+    "fields": {
+        "username": "system-staking-rewards",
+        "first_name": "System",
+        "last_name": "Staking Reward Collector",
+        "email": "system-staking-rewards@internal.com",
+        "user_type": 100
+    }
+}, {
+    "model": "accounts.user",
+    "pk": 995,
+    "fields": {
+        "username": "system-staking",
+        "first_name": "System",
+        "last_name": "Staking",
+        "email": "system-staking@internal.com",
+        "user_type": 100
+    }
+}]

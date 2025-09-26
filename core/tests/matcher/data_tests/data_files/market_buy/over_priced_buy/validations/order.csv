@@ -1,0 +1,10 @@
+test,operation,obj_name,attribute,result
+1,Equal,market_buy,status,Order.STATUS.done
+2,Equal,buy,status,Order.STATUS.done
+3,Equal,buy_old_1,status,Order.STATUS.active
+4,Equal,buy_old_1,matched_amount,1
+5,Equal,sell_1,status,Order.STATUS.done
+6,Equal,sell_2,status,Order.STATUS.done
+7,Equal,sell_3,status,Order.STATUS.done
+8,Equal,sell_old_1,status,Order.STATUS.active
+9,Equal,sell_old_1,matched_amount,0

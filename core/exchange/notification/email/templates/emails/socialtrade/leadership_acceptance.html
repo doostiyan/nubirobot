@@ -1,0 +1,15 @@
+{% extends 'email_base.html' %} {% load nobitex %} {% block content %}
+<div class="header">
+  <strong class="email-title"> {{email_title}} </strong>
+</div>
+<div style="margin-top: 20px; margin-bottom: 50px">
+  <p class="content">
+    کاربر گرامی،
+    <br />
+    کاربر گرامی، درخواست شما برای عضویت به عنوان تریدر سوشال ترید تایید شده و از
+    تاریخ {{subscription_acceptance_date}} امکان دریافت اشتراک را خواهید داشت.
+    <br />
+    <br />
+  </p>
+</div>
+{% endblock %}

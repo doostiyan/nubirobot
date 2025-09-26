@@ -1,0 +1,2 @@
+class ParseMarketError(Exception):
+    pass

@@ -1,0 +1,3 @@
+LOAD base-asks-only
+25 BUY 10 MARKET
+CHECK

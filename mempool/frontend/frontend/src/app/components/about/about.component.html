@@ -1,0 +1,79 @@
+<div class="container-xl about-page">
+
+  <div class="intro">
+    <span style="margin-left: auto; margin-right: -20px; margin-bottom: -20px">&trade;</span>
+    <img class="logo" src="./resources/mempool-logo-bigger.png" />
+    <div class="version">
+      v{{ packetJsonVersion }} [{{ frontendGitCommitHash }}]
+    </div>
+  </div>
+
+  <div class="about-text" *ngIf="stateService.env.BASE_MODULE === 'mempool'; else marginBox">
+    <h2><ng-container i18n="about.about-the-project">The Mempool Open Source Project</ng-container><ng-template [ngIf]="locale.substr(0, 2) === 'en'"> &trade;</ng-template></h2>
+    <h4 class="text-justify" style="line-height: 1.5" i18n>Building a mempool and blockchain explorer for the Bitcoin community, focusing on the transaction fee market and multi-layer ecosystem, without any advertising, altcoins, or third-party trackers.</h4>
+    <h4 class="text-justify" style="line-height: 1.5"><ng-container i18n>one way to identify the Region of the decentralized network users is to analyze the explorers traffic and tag their users IP addresses.
+      In order to reduse this risk for iranian users, nobitex has launched an internal explorer.This explorer is hosted on Nobitex servers and uses Mempol open source project.</ng-container></h4>
+  </div>
+
+  <ng-template #marginBox>
+    <div class="no-about-margin"></div>
+  </ng-template>
+
+  <div class="footer-links">
+    <div class="terms-of-service">
+      <a href="/3rdpartylicenses.txt">Third-party Licenses</a>
+<!--      |-->
+<!--      <a [routerLink]="['/terms-of-service']" i18n="shared.terms-of-service|Terms of Service">Terms of Service</a>-->
+<!--      |-->
+<!--      <a [routerLink]="['/privacy-policy']" i18n="shared.privacy-policy|Privacy Policy">Privacy Policy</a>-->
+    </div>
+  </div>
+
+  <div class="footer-version" *ngIf="officialMempoolSpace">
+    {{ (backendInfo$ | async)?.hostname }} (v{{ (backendInfo$ | async )?.version }}) [{{ (backendInfo$ | async )?.gitCommit | slice:0:8 }}]
+  </div>
+
+</div>
+
+<ng-template #loadingSponsors>
+  <br>
+  <div class="spinner-border text-light"></div>
+</ng-template>
+
+
+
+<!--<div class="container-xl about-page">-->
+<!--  <div class="row">-->
+<!--    <div class="col-12 pb-3">-->
+<!--      <div class="intro">-->
+<!--        <span style="margin-left: auto; margin-right: -20px; margin-bottom: -20px">&trade;</span>-->
+<!--        <img class="logo" src="./resources/mempool-logo-bigger.png" />-->
+<!--        <div class="version" style="text-align: right">-->
+<!--          v{{ packetJsonVersion }} [{{ frontendGitCommitHash }}]-->
+<!--        </div>-->
+<!--      </div>-->
+<!--    </div>-->
+<!--    <div class="col-6 px-5">-->
+<!--      <div class="about-text" *ngIf="stateService.env.BASE_MODULE === 'mempool'; else marginBox">-->
+<!--        <h2><ng-container i18n="about.about-the-project">The Mempool Open Source Project</ng-container><ng-template [ngIf]="locale.substr(0, 2) === 'en'"> &trade;</ng-template></h2>-->
+<!--        <h4 style="line-height: 1.5" i18n class="text-justify">Building a mempool and blockchain explorer for the Bitcoin community, focusing on the transaction fee market and multi-layer ecosystem, without any advertising, altcoins, or third-party trackers.</h4>-->
+<!--      </div>-->
+<!--    </div>-->
+<!--    <div class="col-6 px-5">-->
+<!--      <div class="about-text" *ngIf="stateService.env.BASE_MODULE === 'mempool'; else marginBox">-->
+<!--        <h4 style="line-height: 1.5;" class="text-justify" i18n>one way to identify the Region of the decentralized network users is to analyze the explorers traffic and tag their users IP addresses.-->
+<!--          In order to reduse this risk for iranian users, nobitex has launched an internal explorer.This explorer is hosted on Nobitex servers and uses Mempol open source project</h4>-->
+<!--      </div>-->
+<!--    </div>-->
+<!--    <ng-template #marginBox>-->
+<!--      <div class="no-about-margin"></div>-->
+<!--    </ng-template>-->
+<!--    <div class="col-12">-->
+<!--      <div class="footer-links">-->
+<!--        <div class="terms-of-service">-->
+<!--          <a href="/3rdpartylicenses.txt">Third-party Licenses</a>-->
+<!--        </div>-->
+<!--      </div>-->
+<!--    </div>-->
+<!--  </div>-->
+<!--</div>-->

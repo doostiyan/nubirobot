@@ -1,0 +1,4 @@
+LOAD base-full
+25 SELL 10 101
+26 SELL 10 100
+CHECK

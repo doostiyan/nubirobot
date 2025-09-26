@@ -1,0 +1,18 @@
+{% extends 'email_base.html' %}
+{% load static %}
+{% block content %}
+<div class="header">
+  <strong class="email-title"> {{email_title}} </strong>
+</div>
+<div style="margin-top: 20px; margin-bottom: 50px">
+  <p class="content">
+    کاربر گرامی,
+    <br />
+    <br />
+قرارداد واریز مستقیم {{bank_name}} شما حذف شد.
+    <br />
+    در صورت تمایل، می‌توانید دوباره قرارداد واریز مستقیم این بانک را با مشخصات جدید ایجاد کنید.
+    <br />
+  </p>
+</div>
+{% endblock %}

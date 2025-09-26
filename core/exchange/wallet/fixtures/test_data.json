@@ -1,0 +1,71 @@
+[
+  {
+    "model": "wallet.wallet",
+    "pk": 1,
+    "fields": {
+      "user": 201,
+      "currency": 2,
+      "type": 2
+    }
+  },
+  {
+    "model": "wallet.wallet",
+    "pk": 2,
+    "fields": {
+      "user": 201,
+      "currency": 13,
+      "type": 2
+    }
+  },
+  {
+    "model": "wallet.availabledepositaddress",
+    "pk": 100010,
+    "fields": {
+      "currency": 10,
+      "address": "1Bm9ziyd4UmQpFiGD86ufHSniPtuq7paZh"
+    }
+  },
+  {
+    "model": "wallet.availabledepositaddress",
+    "pk": 100011,
+    "fields": {
+      "currency": 10,
+      "address": "bc1q7cyrfmck2ffu2ud3rn5l5a8yv6f0chkp0zpemf",
+      "type": 2
+    }
+  },
+  {
+    "model": "wallet.availabledepositaddress",
+    "pk": 100012,
+    "fields": {
+      "currency": 12,
+      "address": "LNetpsov49MFJqHg6JH6nUJGWYpZZ24BTz"
+    }
+  },
+  {
+    "model": "wallet.availabledepositaddress",
+    "pk": 100016,
+    "fields": {
+      "currency": 16,
+      "address": "bnb18ajcdmv3c6w08sk8ayv75ks87y2w4hghntcxvd"
+    }
+  },
+  {
+    "model": "wallet.availabledepositaddress",
+    "pk": 100017,
+    "fields": {
+      "currency": 11,
+      "address": "0xb26653a22de444f95cbf584a0cec39b19b75f65d",
+      "type": 4
+    }
+  },
+  {
+    "model": "wallet.availabledepositaddress",
+    "pk": 100018,
+    "fields": {
+      "currency": 11,
+      "address": "0x4838b106fce9647bdf1e7877bf73ce8b0bad5f97",
+      "type": 5
+    }
+  }
+]

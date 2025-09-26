@@ -1,0 +1,285 @@
+[
+{
+  "model": "market.market",
+  "pk": 1,
+  "fields": {
+    "src_currency": 10,
+    "dst_currency": 2,
+    "is_active": true,
+    "allow_margin": true,
+    "max_leverage": "5"
+  }
+},
+{
+  "model": "market.market",
+  "pk": 2,
+  "fields": {
+    "src_currency": 11,
+    "dst_currency": 2,
+    "is_active": true,
+    "allow_margin": true,
+    "max_leverage": "4"
+  }
+},
+{
+  "model": "market.market",
+  "pk": 3,
+  "fields": {
+    "src_currency": 12,
+    "dst_currency": 2,
+    "is_active": true,
+    "allow_margin": true
+  }
+},
+{
+  "model": "market.market",
+  "pk": 4,
+  "fields": {
+    "src_currency": 13,
+    "dst_currency": 2,
+    "is_active": true,
+    "allow_margin": true,
+    "max_leverage": "3"
+  }
+},
+{
+  "model": "market.market",
+  "pk": 5,
+  "fields": {
+    "src_currency": 14,
+    "dst_currency": 2,
+    "is_active": true
+  }
+},
+{
+  "model": "market.market",
+  "pk": 6,
+  "fields": {
+    "src_currency": 15,
+    "dst_currency": 2,
+    "is_active": true
+  }
+},
+{
+  "model": "market.market",
+  "pk": 7,
+  "fields": {
+    "src_currency": 10,
+    "dst_currency": 13,
+    "is_active": true,
+    "allow_margin": true,
+    "max_leverage": "5"
+  }
+},
+{
+  "model": "market.market",
+  "pk": 8,
+  "fields": {
+    "src_currency": 11,
+    "dst_currency": 13,
+    "is_active": true,
+    "allow_margin": true,
+    "max_leverage": "4"
+  }
+},
+{
+  "model": "market.market",
+  "pk": 9,
+  "fields": {
+    "src_currency": 14,
+    "dst_currency": 13,
+    "is_active": true
+  }
+},
+{
+  "model": "market.market",
+  "pk": 10,
+  "fields": {
+    "src_currency": 12,
+    "dst_currency": 13,
+    "is_active": true,
+    "allow_margin": true,
+    "max_leverage": "2"
+  }
+},
+{
+  "model": "market.market",
+  "pk": 11,
+  "fields": {
+    "src_currency": 15,
+    "dst_currency": 13,
+    "is_active": true
+  }
+},
+{
+  "model": "market.market",
+  "pk": 12,
+  "fields": {
+    "src_currency": 16,
+    "dst_currency": 2,
+    "is_active": true
+  }
+},
+{
+  "model": "market.market",
+  "pk": 13,
+  "fields": {
+    "src_currency": 16,
+    "dst_currency": 13,
+    "is_active": true
+  }
+},
+{
+  "model": "market.market",
+  "pk": 20,
+  "fields": {
+    "src_currency": 20,
+    "dst_currency": 2,
+    "is_active": true
+  }
+},
+{
+  "model": "market.market",
+  "pk": 21,
+  "fields": {
+    "src_currency": 20,
+    "dst_currency": 13,
+    "is_active": true
+  }
+},
+{
+  "model": "market.market",
+  "pk": 22,
+  "fields": {
+    "src_currency": 31,
+    "dst_currency": 13,
+    "is_active": true
+  }
+},
+{
+  "model": "market.market",
+  "pk": 23,
+  "fields": {
+    "src_currency": 18,
+    "dst_currency": 2,
+    "is_active": true
+  }
+},
+{
+  "model": "market.market",
+  "pk": 24,
+  "fields": {
+    "src_currency": 18,
+    "dst_currency": 13,
+    "is_active": true
+  }
+},
+{
+  "model": "market.market",
+  "pk": 25,
+  "fields": {
+    "src_currency": 35,
+    "dst_currency": 2,
+    "is_active": true
+  }
+},
+{
+  "model": "market.market",
+  "pk": 26,
+  "fields": {
+    "src_currency": 35,
+    "dst_currency": 13,
+    "is_active": true
+  }
+},
+{
+  "model": "market.market",
+  "pk": 27,
+  "fields": {
+    "src_currency": 33,
+    "dst_currency": 2,
+    "is_active": true
+  }
+},
+{
+  "model": "market.market",
+  "pk": 28,
+  "fields": {
+    "src_currency": 33,
+    "dst_currency": 13,
+    "is_active": true
+  }
+},
+{
+  "model": "market.market",
+  "pk": 29,
+  "fields": {
+    "src_currency": 32,
+    "dst_currency": 2,
+    "is_active": true
+  }
+},
+{
+  "model": "market.market",
+  "pk": 30,
+  "fields": {
+    "src_currency": 32,
+    "dst_currency": 13,
+    "is_active": true
+  }
+},
+{
+  "model": "market.market",
+  "pk": 31,
+  "fields": {
+    "src_currency": 34,
+    "dst_currency": 2,
+    "is_active": true
+  }
+},
+{
+  "model": "market.market",
+  "pk": 32,
+  "fields": {
+    "src_currency": 34,
+    "dst_currency": 13,
+    "is_active": true
+  }
+},
+{
+  "model": "market.market",
+  "pk": 33,
+  "fields": {
+    "src_currency": 42,
+    "dst_currency": 13,
+    "is_active": true
+  }
+},
+{
+  "model": "market.market",
+  "pk": 34,
+  "fields": {
+    "src_currency": 42,
+    "dst_currency": 2,
+    "is_active": true
+  }
+},
+{
+  "model": "market.market",
+  "pk": 35,
+  "fields": {
+    "src_currency": 37,
+    "dst_currency": 13,
+    "is_active": true
+  }
+},
+{
+  "model": "market.market",
+  "pk": 36,
+  "fields": {
+    "src_currency": 37,
+    "dst_currency": 2,
+    "is_active": true
+  }
+}
+]

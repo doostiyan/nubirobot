@@ -1,0 +1,4 @@
+LOAD base-full
+25 BUY 10 99
+26 BUY 10 100
+CHECK

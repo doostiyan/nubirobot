@@ -1,0 +1,37 @@
+name: Run ansible playbook with vault
+description: Run given ansible playbook and run across inventory using vault password
+inputs:
+  ansible_dir:
+    description: 'ansible directory'
+    required: false
+    default: ansible
+
+  playbook:
+    description: 'playbook file'
+    required: false
+    default: playbook.yml
+
+  inventory:
+    description: 'inventory file'
+    required: false
+    default: hosts
+
+  hosts:
+    description: 'hosts from inventory'
+    required: false
+    default: all
+
+  vault_pass:
+    description: 'vault password to decrypt vault file'
+    required: True
+
+
+runs:
+  using: 'composite'
+  steps:
+    - run: |
+        cd ${{ inputs.ansible_dir }}
+        echo ${{ inputs.vault_pass }} > pass
+        ansible-playbook -i ${{ inputs.inventory }} ${{ inputs.playbook }} --vault-pass-file pass -e "{ 'hosts': '${{ inputs.hosts }}' }"
+        rm pass
+      shell: bash

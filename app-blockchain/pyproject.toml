@@ -1,0 +1,115 @@
+[tool.ruff]
+target-version = "py38"
+include = [
+    "api/sol/**",
+    "api/flow/**",
+    "api/filecoin/**",
+    "api/general/**",
+    "api/commons/**",
+    "tests/api/commons/*.py",
+    "api/ton/**",
+    "api/trx/**",
+    "api/ada/**",
+    "api/sui/**",
+    "api/near/**",
+    "tests/api/sui/**",
+    "apis_conf.py",
+    "utils.py",
+    "models.py",
+    "api/avax/avax_explorer_interface.py",
+    "api/avax/avax_scan.py",
+    "tests/api/avax/test_avax_scan_api_call.py",
+    "api/bsc/bsc_explorer_interface.py",
+    "api/bsc/bsc_web3_new.py",
+    "tests/api/bsc/test_bsc_staking.py",
+    "tests/api/bsc/test_bsc_oklink_api_call.py",
+    "tests/api/bsc/test_bsc_oklink_explorer_interface.py",
+    "tests/fixtures/bsc_oklink_fixtures.py",
+    "tests/blockchain/test_metrics.py",
+    "api/xmr/monero_new.py",
+    "tests/api/bsc/conftest.py",
+    "api/algorand/algorand_tatum.py",
+    "api/algorand/algorand_algoexplorer.py",
+    "api/elrond/gateway_elrond.py",
+    "api/filecoin/filecoin_filfox.py",
+    "api/etc/etc_blockscout.py",
+    "api/filecoin/filecoin_filscan_rpc.py",
+    "api/ftm/ftm_graphql.py",
+    "tests/staking/test_ftm_staking.py",
+    "tests/api/ftm/test_ftm_graphql.py",
+    "api/ltc/ltc_space.py",
+    "tests/api/ltc/test_ltc_space.py",
+    "tests/api/sol/test_rpc_sol_validator.py",
+    "api/eth/eth_blockbook_new.py",
+    "api/eth/eth_explorer_interface.py",
+    "tests/api/eth/eth_blockbook_fixtures.py",
+    "tests/api/eth/test_eth_blockbook_api_call.py",
+    "tests/api/eth/test_eth_blockbook_explorer_interface.py",
+    "tests/api/general_test/base_test_case.py",
+    "tests/api/general_test/test_api_call_utils.py",
+]
+exclude = ["**/__init__.py"]
+line-length = 120
+
+
+[tool.ruff.lint]
+select = ["ALL"]
+extend-select = ["I"]
+ignore = [
+    "RUF012", # Mutable class attributes should be annotated with typing.ClassVar
+    "COM819", # Trailing comma prohibited
+    "COM812", # Trailing comma missing
+    "D", # All pydocstyle rules
+    "EM101", # Exception must not use a string literal, assign to variable first
+    "TD", # All flake8-todos rules
+    "FIX002", # Line contains TOD0, consider resolving the issue
+    "INP001", # File {filename} is part of an implicit namespace package. Add an __init__.py.
+    "FA100", # Add from __future__ import annotations to simplify {name}
+    "S311", # Standard pseudo-random generators are not suitable for cryptographic purposes
+    "PLR0911", # Too many return statements ({returns} > {max_returns})
+    "C901", # {name} is too complex ({complexity} > {max_complexity})
+    "EM102", # Exception must not use an f-string literal, assign to variable first
+    "TRY003", # Avoid specifying long messages outside the exception class
+    "PERF401", # Use {message_str} to create a transformed list
+    "PLR0912", # Too many branches ({branches} > {max_branches})
+    "PLR0913", # Too many arguments in function definition ({c_args} > {max_args})
+    "FBT001", # Boolean-typed positional argument in function definition
+    "FBT002", # Boolean default positional argument in function definition
+    "RUF015", # Prefer next({iterable}) over single element slice
+    "DTZ005", # datetime.datetime.now() called without a tz argument
+    "SIM103", # Return the condition {condition} directly
+    "BLE001", # Do not catch blind exception: `Exception`
+    "TRY300", # Consider moving this statement to an `else` block
+    "N811", # Checks for constant imports that are aliased to non-constant-style names.
+    "PLR0915", # Too many statements
+    "TRY002", # Create your own exception
+    "DTZ003", # `datetime.datetime.utcnow()` used
+    "DTZ006", # `datetime.datetime.fromtimestamp()` called without a `tz` argument
+    "DTZ007", # Naive datetime constructed using `datetime.datetime.strptime()` without %z
+    "TRY301", # Abstract `raise` to an inner function
+    "S110", # `try`-`except`-`pass` detected, consider logging the exception
+    "ANN401", # Dynamically typed expressions (typing.Any) are disallowed
+    "ARG003", #  Unused function argument. Consider removing it if not needed.
+]
+
+[tool.ruff.lint.per-file-ignores]
+"api/general/general.py" = ["ARG003"]
+"tests/**/*.py" = [
+    "S101", # Allow asserts in tests
+    "ANN001", # Allow missing type annotations in function arguments
+    "ANN201", # Allow missing return type annotations in functions
+    "F811", # Redefinition of a function or variable. This occurs when a function or variable is defined multiple times in the same scope.
+    "F401", # Unused import
+    "E501", # Line too long
+    "N802", # Function name should be lowercase
+    "SLF001", # Private member accessed
+    "PT011", # Error is too broad
+    "PLR2004", # Magic value used
+]
+
+[tool.ruff.lint.flake8-quotes]
+inline-quotes = "single"
+
+[tool.ruff.lint.isort]
+known-first-party = ["exchange"]
+known-third-party = ["django"]

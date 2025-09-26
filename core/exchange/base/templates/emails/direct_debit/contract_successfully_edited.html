@@ -1,0 +1,16 @@
+{% extends 'email_base.html' %}
+{% load static %}
+{% block content %}
+<div class="header">
+  <strong class="email-title"> {{email_title}} </strong>
+</div>
+<div style="margin-top: 20px; margin-bottom: 50px">
+  <p class="content">
+    کاربر گرامی,
+    <br />
+    <br />
+    {{ edited_fields }} سرویس واریز مستقیم {{ bank_name }} شما ویرایش و به‌روزرسانی شد.
+    <br />
+  </p>
+</div>
+{% endblock %}

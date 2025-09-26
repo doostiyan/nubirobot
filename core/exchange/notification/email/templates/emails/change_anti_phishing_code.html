@@ -1,0 +1,19 @@
+{% extends 'email_base.html' %}
+{% load static %}
+{% block content %}
+<div class="header">
+  <div>
+    <img id="success-image" src="https://cdn.nobitex.ir/email/tick-icon.png"/>
+  </div>
+  <strong class="email-title"> تغییر کد آنتی فیشینگ </strong>
+</div>
+<div dir="auto" style="margin: 20px; margin-bottom: 100px" class="content">
+  کاربر گرامی!
+  <br/>
+  <br/>
+  شما عبارت «<span dir="auto">{{ anti_phishing_code }}</span>» را به عنوان کد آنتی فیشینگ انتخاب کرده‌اید. بنابراین از این به بعد تمامی
+  ایمیل‌های نوبیتکس به شما شامل این عبارت نیز خواهد بود.
+  <br/>
+  <br/>
+</div>
+{% endblock %}

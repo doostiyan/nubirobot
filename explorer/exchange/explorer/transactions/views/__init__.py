@@ -1,0 +1,2 @@
+from .batch_details import BatchTransactionDetailsView
+from .details import TransactionDetailsView, ConfirmedTransactionDetailsView

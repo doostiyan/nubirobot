@@ -1,0 +1,201 @@
+{% extends 'ebase.html' %}
+{% load nobitex %}
+
+{% block content %}
+<style>
+.wallets-section {min-height: 300px; position: relative; margin-top: 3rem;}
+.wallets-section h5 {position: absolute; top: 8px; right: 1px;}
+</style>
+
+<div class="jumbotron text-center">
+  <h1>کیف پول‌ها</h1>
+</div>
+
+<h5 class="text-right">مجموع موجودی‌ها</h5>
+<table class="table table-striped table-sm text-right rtl-div">
+    <thead class="thead-dark">
+        <tr>
+            <th>نوع کیف پول</th>
+            {% for c in currencies %}
+            <th>{{ c }}</th>
+            {% endfor %}
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td><span class="badge badge-pill badge-danger">گرم</span></td>
+            {% for balance in hot_balances %}
+            <td>{{ balance|floatformat:4 }}</td>
+            {% endfor %}
+            <td>
+              <form action="/bitex/wallets/update-balance" method="POST">
+                <input type="hidden" name="action" value="update-hot">
+                <input type="hidden" name="wallet" value="0">
+                <button type="submit" class="btn btn-info btn-sm">↺</button>
+              </form>
+            </td>
+        </tr>
+        <tr>
+            <td><span class="badge badge-pill badge-info">سرد</span></td>
+            {% for balance in cold_balances %}
+            <td>{{ balance|floatformat:4 }}</td>
+            {% endfor %}
+            <td>
+              <form action="/bitex/wallets/update-balance" method="POST">
+                <input type="hidden" name="action" value="update-cold">
+                <input type="hidden" name="wallet" value="0">
+                <button type="submit" class="btn btn-info btn-sm">↺</button>
+              </form>
+            </td>
+        </tr>
+        <tr>
+            <td><span class="badge badge-pill badge-info">سرد سیستمی</span></td>
+            {% for balance in system_cold_balances %}
+            <td>{{ balance|floatformat:4 }}</td>
+            {% endfor %}
+            <td>
+              <form action="/bitex/wallets/update-balance" method="POST">
+                <input type="hidden" name="action" value="update-cold-system">
+                <input type="hidden" name="wallet" value="0">
+                <button type="submit" class="btn btn-info btn-sm">↺</button>
+              </form>
+            </td>
+        </tr>
+        <tr>
+            <td><span class="badge badge-pill badge-dark">مجموع</span></td>
+            {% for balance in sum_balances %}
+            <td>{{ balance|floatformat:4 }}</td>
+            {% endfor %}
+        </tr>
+    </tbody>
+</table>
+
+<h5 class="mt-5 text-right"><span class="badge badge-pill badge-danger">گرم</span> کیف پول‌های</h5>
+<table class="table table-striped table-sm text-right rtl-div">
+    <thead class="thead-dark">
+        <tr>
+            <th>ردیف</th>
+            <th>آدرس</th>
+            <th>رمزارز</th>
+            <th>موجودی</th>
+            <th>ارزش</th>
+            <th>به‌روزرسانی</th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for wallet in hot_wallets %}
+        <tr>
+            <th>{{ forloop.counter }}</th>
+            <td>{{ wallet.address }}</td>
+            <td>{{ wallet.currency_display }}</td>
+            <td>{{ wallet.current_balance|moneyformat:wallet.currency }}</td>
+            <td>${{ wallet.balance_value|moneyformat:13 }}</td>
+            <td>{{ wallet.last_update_check }}</td>
+            <td>
+              <form action="/bitex/wallets/update-balance" method="POST">
+                <input type="hidden" name="action" value="update-hot">
+                <input type="hidden" name="wallet" value="{{ wallet.pk }}">
+                <button type="submit" class="btn btn-info btn-sm">↺</button>
+              </form>
+            </td>
+        </tr>
+        {% empty %}
+        <tr>
+          <td class="text-center" colspan="6">کیف پولی ثبت نشده است</td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+
+<h5 class="mt-5 text-right"><span class="badge badge-pill badge-info">سرد سیستمی</span> کیف پول‌های</h5>
+<table class="table table-striped table-sm text-right rtl-div">
+    <thead class="thead-dark">
+        <tr>
+            <th>شناسه</th>
+            <th>آدرس</th>
+            <th>رمزارز</th>
+            <th>موجودی</th>
+            <th>به‌روزرسانی</th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for address in system_cold_addresses %}
+        <tr>
+            <th>{{ address.pk }}</th>
+            <td>{{ address.address }}</td>
+            <td>{{ address.currency_display }}</td>
+            <td>{{ address.current_balance|moneyformat:address.currency }}</td>
+            <td>{{ address.last_update_check }}</td>
+            <td>
+              <form action="/bitex/wallets/update-balance" method="POST">
+                <input type="hidden" name="action" value="update-cold-system">
+                <input type="hidden" name="wallet" value="{{ address.pk }}">
+                <button type="submit" class="btn btn-info btn-sm">↺</button>
+              </form>
+            </td>
+        </tr>
+        {% empty %}
+        <tr>
+          <td class="text-center" colspan="6">کیف پولی ثبت نشده است</td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+
+<div class="wallets-section">
+<h5 class="text-right"><span class="badge badge-pill badge-info">سرد</span> کیف پول‌های</h5>
+<ul class="nav nav-tabs" id="cold-wallets-currency" role="tablist">
+  {% for c in currencies %}
+  <li class="nav-item">
+    <a class="nav-link {% if forloop.first %}active{% endif %}" id="cold-wallets-currency-{{ c }}" data-toggle="pill" href="#cold-wallets-{{ forloop.counter }}" role="tab" aria-controls="pills-home" aria-selected="true">{{ c }}</a>
+  </li>
+  {% endfor %}
+</ul>
+<div class="tab-content" id="cold-wallets-tabs">
+  {% for wallets in cold_wallets %}
+  <div class="tab-pane fade show {% if forloop.first %}active{% endif %}" id="cold-wallets-{{ forloop.counter }}" role="tabpanel" aria-labelledby="pills-home-tab">
+    <table class="table table-striped table-sm text-right rtl-div">
+      <thead class="thead-dark">
+          <tr>
+              <th>شناسه</th>
+              <th>آدرس</th>
+              <th>کاربر</th>
+              <th>رمزارز</th>
+              <th>موجودی</th>
+              <th>به‌روزرسانی</th>
+              <th></th>
+          </tr>
+      </thead>
+      <tbody>
+          {% for wallet in wallets %}
+          <tr>
+              <th>{{ wallet.pk }}</th>
+              <td>{{ wallet.address }}</td>
+              <td>{{ wallet.wallet.user }}</td>
+              <td>{{ wallet.wallet.get_currency_display }}</td>
+              <td>{{ wallet.current_balance|moneyformat:wallet.wallet.currency }}</td>
+              <td>{{ wallet.last_update_check }}</td>
+              <td>
+                <form action="/bitex/wallets/update-balance" method="POST">
+                  <input type="hidden" name="action" value="update-cold">
+                  <input type="hidden" name="wallet" value="{{ wallet.pk }}">
+                  <button type="submit" class="btn btn-info btn-sm">↺</button>
+                </form>
+              </td>
+          </tr>
+          {% empty %}
+          <tr>
+            <td class="text-center" colspan="7">کیف پولی ثبت نشده است</td>
+          </tr>
+          {% endfor %}
+      </tbody>
+    </table>
+  </div>
+  {% endfor %}
+</div>
+</div>
+
+{% endblock %}

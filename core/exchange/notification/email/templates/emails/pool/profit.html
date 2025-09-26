@@ -1,0 +1,23 @@
+{% extends 'email_base.html' %}
+{% load nobitex %}
+{% block content %}
+<div class="header">
+  <strong class="email-title">
+    واریز سود مشارکت
+  </strong>
+</div>
+<div style="margin-top: 20px; margin-bottom: 50px">
+  <p class="content">
+    کاربر گرامی:
+    <br/>
+    <br/>
+    سود مشارکت در استخر
+    {{ currency|currencyformat:True }}
+    به میزان
+    {{ amount }}
+    در تاریخ
+    {{ date|shamsidateformat}}
+    به کیف پول شما در نوبیتکس واریز شد. جهت کسب اطلاعات بیشتر لطفا به پنل کاربری خود در نوبیتکس و بخش استخر مشارکت مراجعه فرمایید.
+  </p>
+</div>
+{% endblock %}

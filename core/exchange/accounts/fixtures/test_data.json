@@ -1,0 +1,218 @@
+[
+  {
+    "model": "accounts.user",
+    "pk": 201,
+    "fields": {
+      "password": "!",
+      "last_login": null,
+      "is_superuser": false,
+      "username": "user1@example.com",
+      "first_name": "User",
+      "last_name": "One",
+      "email": "user1@example.com",
+      "base_fee": null,
+      "is_staff": false,
+      "is_active": true,
+      "date_joined": "2017-01-01T00:00:00Z",
+      "groups": [],
+      "user_permissions": [],
+      "user_type": 40
+    }
+  },
+  {
+    "model": "accounts.user",
+    "pk": 202,
+    "fields": {
+      "password": "!",
+      "last_login": null,
+      "is_superuser": false,
+      "username": "user2@example.com",
+      "first_name": "User",
+      "last_name": "Two",
+      "email": "user2@example.com",
+      "base_fee": null,
+      "is_staff": false,
+      "is_active": true,
+      "date_joined": "2017-01-01T00:00:00Z",
+      "groups": [],
+      "user_permissions": []
+    }
+  },
+  {
+    "model": "accounts.user",
+    "pk": 203,
+    "fields": {
+      "password": "!",
+      "last_login": null,
+      "is_superuser": false,
+      "username": "user3@example.com",
+      "first_name": "User",
+      "last_name": "Three",
+      "email": "user3@example.com",
+      "base_fee": null,
+      "is_staff": false,
+      "is_active": true,
+      "date_joined": "2017-01-01T00:00:00Z",
+      "groups": [],
+      "user_permissions": []
+    }
+  },
+  {
+    "model": "accounts.user",
+    "pk": 204,
+    "fields": {
+      "password": "!",
+      "last_login": null,
+      "is_superuser": false,
+      "username": "bot@nobitex.ir",
+      "first_name": "bot",
+      "last_name": "4",
+      "email": "bot@nobitex.ir",
+      "base_fee": null,
+      "is_staff": false,
+      "is_active": true,
+      "date_joined": "2017-01-01T00:00:00Z",
+      "groups": [],
+      "user_permissions": []
+    }
+  },
+  {
+    "model": "accounts.user",
+    "pk": 205,
+    "fields": {
+      "password": "!",
+      "last_login": null,
+      "is_superuser": false,
+      "username": "user5@nobitex.ir",
+      "first_name": "User",
+      "last_name": "Five",
+      "email": "user5@nobitex.ir",
+      "base_fee": null,
+      "is_staff": false,
+      "is_active": true,
+      "date_joined": "2017-01-01T00:00:00Z",
+      "groups": [],
+      "user_permissions": []
+    }
+  },
+  {
+    "model": "accounts.user",
+    "pk": 206,
+    "fields": {
+      "password": "!",
+      "last_login": null,
+      "is_superuser": false,
+      "username": "user6@nobitex.ir",
+      "first_name": "User",
+      "last_name": "Six",
+      "email": "user6@nobitex.ir",
+      "base_fee": null,
+      "is_staff": false,
+      "is_active": true,
+      "date_joined": "2017-01-01T00:00:00Z",
+      "groups": [],
+      "user_permissions": []
+    }
+  },
+  {
+    "model": "authtoken.token",
+    "pk": 201,
+    "fields": {
+      "user_id": 201,
+      "key": "user201token",
+      "created": "2021-11-01T00:00:00Z"
+    }
+  },
+  {
+    "model": "authtoken.token",
+    "pk": 202,
+    "fields": {
+      "user_id": 202,
+      "key": "user202token",
+      "created": "2021-11-01T00:00:00Z"
+    }
+  },
+  {
+      "model": "accounts.user",
+      "pk": 402,
+      "fields": {
+        "username": "system-rls-pool",
+        "first_name": "System",
+        "last_name": "Rial Pool Manager",
+        "email": "system-rls-pool@internal.com",
+        "base_fee": "0",
+        "user_type": 100
+      }
+    },
+    {
+      "model": "accounts.user",
+      "pk": 410,
+      "fields": {
+        "username": "system-btc-pool",
+        "first_name": "System",
+        "last_name": "Bitcoin Pool Manager",
+        "email": "system-btc-pool@internal.com",
+        "base_fee": "0",
+        "user_type": 100
+      }
+    },
+    {
+      "model": "accounts.user",
+      "pk": 411,
+      "fields": {
+        "username": "system-eth-pool",
+        "first_name": "System",
+        "last_name": "Ethereum Pool Manager",
+        "email": "system-eth-pool@internal.com",
+        "base_fee": "0",
+        "user_type": 100
+      }
+    },
+    {
+      "model": "accounts.user",
+      "pk": 412,
+      "fields": {
+        "username": "system-ltc-pool",
+        "first_name": "System",
+        "last_name": "Litecoin Pool Manager",
+        "email": "system-ltc-pool@internal.com",
+        "base_fee": "0",
+        "user_type": 100
+      }
+    },
+    {
+      "model": "accounts.user",
+      "pk": 413,
+      "fields": {
+        "username": "system-usdt-pool",
+        "first_name": "System",
+        "last_name": "Tether Pool Manager",
+        "email": "system-usdt-pool@internal.com",
+        "base_fee": "0",
+        "user_type": 100
+      }
+    },
+    {
+      "model": "accounts.user",
+      "pk": 437,
+      "fields": {
+        "username": "system-sol-pool",
+        "first_name": "System",
+        "last_name": "Solana Pool Manager",
+        "email": "system-sol-pool@internal.com",
+        "base_fee": "0",
+        "user_type": 100
+      }
+    },
+  {
+    "model": "accounts.user",
+    "pk": 600,
+    "fields": {
+      "username": "system-hmstr-pool",
+      "first_name": "System",
+      "last_name": "HamsterKombat Pool Manager",
+      "email": "system-hmstr-pool@internal.com",
+      "user_type": 100
+    }
+  }
+]

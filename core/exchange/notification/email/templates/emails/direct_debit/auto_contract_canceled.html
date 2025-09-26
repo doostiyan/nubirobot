@@ -1,0 +1,16 @@
+{% extends 'email_base.html' %}
+{% load static %}
+{% block content %}
+<div class="header">
+  <strong class="email-title"> {{email_title}} </strong>
+</div>
+<div style="margin-top: 20px; margin-bottom: 50px">
+  <p class="content">
+    کاربر گرامی,
+    <br />
+    <br />
+قرارداد واریز مستقیم {{ bank_name }} شما به‌دلیل تکرار ناکافی بودن موجودی، به‌طور خودکار لغو شد.
+    <br />
+  </p>
+</div>
+{% endblock %}

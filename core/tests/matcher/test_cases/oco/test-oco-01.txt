@@ -1,0 +1,10 @@
+# sell oco - limit partially matched
+LOAD base-full
+25 SELL 10 100 | 26 98 STOP 98.5
+CHECK
+27 SELL 10 MARKET
+MATCH 27 <= 9 10 99
+CHECK
+28 BUY 5 MARKET
+MATCH 28 <= 25 5 100
+CHECK

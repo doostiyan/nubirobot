@@ -1,0 +1,27 @@
+{
+    "bulkId": "4pk1xihiy4rln2f1g2se",
+    "messages": [
+        {
+            "to": "john.smith@somecompany.com",
+            "messageId": "tu5k6tdo7df1bpgk7ggs",
+            "status": {
+                "groupId": 1,
+                "groupName": "PENDING",
+                "id": 26,
+                "name": "PENDING_ACCEPTED",
+                "description": "Message accepted, pending for delivery.",
+            }
+        },
+        {
+            "to": "jane.doe@somecompany.com",
+            "messageId": "e7zzb1v9yirml2se9zo4",
+            "status": {
+                "groupId": 1,
+                "groupName": "PENDING",
+                "id": 26,
+                "name": "PENDING_ACCEPTED",
+                "description": "Message accepted, pending for delivery.",
+            }
+        }
+    ]
+}

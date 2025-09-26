@@ -1,0 +1,308 @@
+openapi: 3.0.0
+info:
+  title: Collateral API
+  description: API for collateral operations
+  version: 1.3.0
+paths:
+  /collateral/v1/eligibility:
+    post:
+      summary: Check user's collateral eligibility
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                nationalCode:
+                  type: string
+                amount:
+                  type: integer
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              example:
+                status: ok
+        '422':
+          description: Unprocessable Content
+          content:
+            application/json:
+              example:
+                status: failed
+                code: EligibilityError
+                message: The user has not enough collateral
+        '404':
+          description: Not Found
+          content:
+            application/json:
+              example:
+                status: failed
+                code: UserNotFound
+                message: User not found!
+        '429':
+          description: Too Many Requests
+          content:
+            application/json:
+              example:
+                status: failed
+                code: TooManyRequest
+                message: Too many request
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              example:
+                status: failed
+                code: AuthorizationError
+                message: The signature is not valid!
+        '403':
+          description: Forbidden
+          content:
+            application/json:
+              example:
+                status: failed
+                code: ValidationError
+                message: Your IP is unknown!
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              example:
+                status: failed
+                code: ValidationError
+                message: The NationalCode is not valid! It should be a 10-character string.
+
+  /collateral/v1/lock:
+    post:
+      summary: Lock a specific amount from user's collateral
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                trackId:
+                  type: string
+                planType:
+                  type: string
+                  enum: [credit, loan, debit]
+                nationalCode:
+                  type: string
+                amount:
+                  type: integer
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              example:
+                status: ok
+        '402':
+          description: Payment Required
+          content:
+            application/json:
+              example:
+                status: failed
+                code: InsufficientBalance
+                message: Amount cannot exceed active balance
+        '404':
+          description: Not Found
+          content:
+            application/json:
+              example:
+                status: failed
+                code: UserNotFound
+                message: User not found!
+        '409':
+          description: Conflict
+          content:
+            application/json:
+              example:
+                status: failed
+                code: DuplicateRequestError
+                message: The request is duplicated!
+        '429':
+          description: Too Many Requests
+          content:
+            application/json:
+              example:
+                status: failed
+                code: TooManyRequest
+                message: Too many request
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              example:
+                status: failed
+                code: AuthorizationError
+                message: The signature is not valid!
+        '403':
+          description: Forbidden
+          content:
+            application/json:
+              example:
+                status: failed
+                code: ValidationError
+                message: Your IP is unknown!
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              example:
+                status: failed
+                code: ValidationError
+                message: The NationalCode is not valid! It should be a 10-character string.
+
+  /collateral/v1/unlock:
+    post:
+      summary: Unlock a specific amount from user's locked collateral
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                trackId:
+                  type: string
+                planType:
+                  type: string
+                  enum: [credit, loan, debit]
+                nationalCode:
+                  type: string
+                amount:
+                  type: integer
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              example:
+                status: ok
+        '422':
+          description: Unprocessable Content
+          content:
+            application/json:
+              example:
+                status: failed
+                code: InappropriateAmount
+                message: The user has more debt that the amount!
+        '404':
+          description: Not Found
+          content:
+            application/json:
+              example:
+                status: failed
+                code: UserNotFound
+                message: User not found!
+        '409':
+          description: Conflict
+          content:
+            application/json:
+              example:
+                status: failed
+                code: DuplicateRequestError
+                message: The request is duplicated!
+        '429':
+          description: Too Many Requests
+          content:
+            application/json:
+              example:
+                status: failed
+                code: TooManyRequest
+                message: Too many request
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              example:
+                status: failed
+                code: AuthorizationError
+                message: The signature is not valid!
+        '403':
+          description: Forbidden
+          content:
+            application/json:
+              example:
+                status: failed
+                code: ValidationError
+                message: Your IP is unknown!
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              example:
+                status: failed
+                code: ValidationError
+                message: The NationalCode is not valid! It should be a 10-character string.
+
+  /collateral/v1/settle:
+    post:
+      summary: Settle a specific amount from user's collateral
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                planType:
+                  type: string
+                  enum: [credit, loan, debit]
+                nationalCode:
+                  type: string
+                amount:
+                  type: integer
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              example:
+                status: ok
+        '422':
+          description: Unprocessable Content
+          content:
+            application/json:
+              example:
+                status: failed
+                code: InappropriateAmount
+                message: The user has more debt than the amount!
+        '404':
+          description: Not Found
+          content:
+            application/json:
+              example:
+                status: failed
+                code: UserNotFound
+                message: User not found!
+        '409':
+          description: Conflict
+          content:
+            application/json:
+              example:
+                status: failed
+                code: DuplicateRequestError
+                message: The request is duplicated!
+        '423':
+          description: Locked
+          content:
+            application/json:
+              example:
+                status: failed
+                code: SettlementError
+                message: Another settlement process is running!
+        '429':
+          description: Too Many Requests
+          content:
+            application/json:
+              example:
+                status: failed
+                code: TooManyRequest
+                message: Too many request
+        '401':
+          description: Unauthorized

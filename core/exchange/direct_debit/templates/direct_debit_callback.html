@@ -1,0 +1,289 @@
+<!DOCTYPE html>
+<html lang="fa">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <link rel="icon" href="https://nobitex.ir/nobitex-cdn/images/small-logo.svg"/>
+  <title>نوبـیتـکــس | {{ page_title }}</title>
+  <style>
+    @font-face {
+      font-family: 'Vazir';
+      src: url('https://cdn.nobitex.ir/fonts/Vazir/Vazir.woff2') format('woff2'),
+      url('https://cdn.nobitex.ir/fonts/Vazir/Vazir.woff') format('woff');
+      font-weight: 400;
+      font-style: normal;
+      font-display: swap;
+    }
+
+    @font-face {
+      font-family: 'Vazir-Bold';
+      src: url('https://cdn.nobitex.ir/fonts/Vazir/Vazir-Medium.woff2') format('woff2'),
+      url('https://cdn.nobitex.ir/fonts/Vazir/Vazir-Medium.woff') format('woff');
+      font-weight: 500;
+      font-style: normal;
+      font-display: swap;
+    }
+
+    *,
+    *::after,
+    *::before {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    html {
+      /* 10px / 16px (default) = 0.625 */
+      background: black;
+      font-size: 62.5%;
+      font-family: 'Vazir', serif;
+    }
+
+    @media only screen and (max-width: 75em) {
+      html {
+        font-size: 56.25%;
+      }
+    }
+
+    @media only screen and (max-width: 56.25em) {
+      html {
+        font-size: 50%;
+      }
+    }
+
+    @media only screen and (min-width: 112.5em) {
+      html {
+        font-size: 75%;
+      }
+    }
+
+    header {
+      display: flex;
+      width: 100%;
+      height: 64px;
+      padding: 0 24px;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      background: #1A1E23;
+      box-shadow: 0 2px 20px 0 rgba(0, 0, 0, 0.07);
+    }
+
+    .body-container {
+      background: black;
+      width: 100%;
+      height: 100vh;
+      text-align: -webkit-center;
+      text-align: -moz-center;
+
+      @media only screen and (max-width: 510px) {
+        height: 100vh;
+        width: 100vw;
+        border-radius: 0;
+        background: transparent;
+        background-size: cover;
+      }
+    }
+
+    .main-container {
+      background-size: 1440px 849px;
+      height: calc(100vh - 64px);
+      width: 100%;
+      display: flex;
+      align-items: center;
+      place-content: center;
+
+      @media only screen and (max-width: 510px) {
+        height: 100vh;
+        background: black;
+        background-size: cover;
+      }
+    }
+
+    .payment {
+      max-width: 550px;
+      width: 100%;
+      border-radius: 12px;
+      padding: 1px;
+
+      @media only screen and (max-width: 510px) {
+        height: 100vh;
+        background: black;
+        background-size: cover;
+      }
+    }
+
+    .payment-container {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: flex-start;
+      padding: 24px;
+      border-radius: 12px;
+
+      @media only screen and (max-width: 510px) {
+        height: 100vh;
+        width: 100vw;
+        border-radius: 0;
+        background: black;
+        background-size: cover;
+        padding: 24px 16px;
+      }
+    }
+
+    .payment-container__headers {
+      width: 100%;
+      gap: 32px;
+      display: flex;
+      flex-direction: column;
+
+      @media only screen and (max-width: 510px) {
+        margin-bottom: 24px;
+      }
+    }
+
+    .image-container {
+      width: 200px;
+      height: 200px;
+      position: relative;
+    }
+
+    .payment-container__icon {
+      width: 200px;
+      height: 200px;
+      align-self: center;
+      display: flex;
+      align-items: center;
+    }
+
+    .payment-container__state {
+      width: 100%;
+      gap: 16px;
+      display: flex;
+      padding: 0;
+      flex-direction: column;
+      align-self: stretch;
+      align-items: center;
+    }
+
+    .payment-container__state span {
+      color: white;
+      text-align: center;
+      font-size: 24px;
+      font-style: normal;
+      font-weight: 700;
+      line-height: 40px;
+    }
+
+    .payment-container__state--description {
+      color: white;
+      text-align: center;
+      font-size: 14px;
+      font-style: normal;
+      font-weight: 700;
+      line-height: 20px;
+    }
+
+    .payment-container__info div {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      align-self: stretch;
+      width: 100%;
+      padding: 0;
+    }
+
+    .payment-container__button {
+      display: flex;
+      flex-direction: row;
+      width: 100%;
+      gap: 16px;
+      margin-top: 32px;
+    }
+
+    .payment-container__button__back-to-deposit {
+      display: flex;
+      padding: 12px 8px;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      flex: 1 0 0;
+      border-radius: 6px;
+      background: #966BED;
+      gap: 8px;
+      color: white;
+      text-align: center;
+      font-size: 14px;
+      font-style: normal;
+      font-weight: 500;
+      line-height: 16px;
+      text-decoration: none;
+
+      &:hover {
+        background: #A27BEF;
+      }
+    }
+
+    .payment-container__button__back-to-setting {
+      display: flex;
+      padding: 12px 8px;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      flex: 1 0 0;
+      border-radius: 6px;
+      background: transparent;
+      border: 1px solid rgba(97, 117, 138, 0.72);
+      gap: 8px;
+      color: white;
+      text-align: center;
+      font-size: 14px;
+      font-style: normal;
+      font-weight: 500;
+      line-height: 16px;
+      text-decoration: none;
+
+      &:hover {
+        background: rgba(97, 117, 138, 0.32);
+      }
+    }
+  </style>
+</head>
+<body dir="rtl" class="body-container">
+<header>
+  <img src="https://nobitex.ir/nobitex-cdn/images/logo.svg" alt="logo"/>
+</header>
+<main class="main-container">
+  <div class="payment">
+    <div class="image-container">
+      {% if status == 'success' %}
+        <img src="https://nobitex.ir/nobitex-cdn/images/successful.png" class="payment-container__icon"
+             alt="successful icon">
+      {% else %}
+        <img src="https://nobitex.ir/nobitex-cdn/images/fail.png" class="payment-container__icon" alt="fail icon">
+      {% endif %}
+    </div>
+    <div class="payment-container">
+      <div class="payment-container__headers">
+        <div class="payment-container__state">
+          <span>{{ title }}</span>
+          {% if message %}
+            <div class="payment-container__state--description">
+              {{ message }}
+            </div>
+          {% endif %}
+        </div>
+      </div>
+      <div class="payment-container__button">
+        <a class="payment-container__button__back-to-setting" href="{{ setting_button_url }}">مدیریت قراردادها</a>
+        {% if button_url %}
+          <a class="payment-container__button__back-to-deposit"
+             href="{{ button_url }}">{{ button_text }}</a>
+        {% endif %}
+      </div>
+    </div>
+  </div>
+</main>
+</body>
+</html>
+

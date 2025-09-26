@@ -1,0 +1,36 @@
+{% extends 'ebase.html' %}
+{% load static %}
+{% block content %}
+{% if request.user.is_staff %}
+    <table class="table table-sm mt-4">
+        <tr>
+            <th></th>
+            {% for usage_stat in wallet_usage %}
+            <th>{{ usage_stat.name }}</th>
+            {% endfor %}
+        </tr>
+        <tr>
+            <th>Wallets</th>
+            {% for usage_stat in wallet_usage %}
+            <td>{{ usage_stat.used }} / {{ usage_stat.total }}</td>
+            {% endfor %}
+        </tr>
+    </table>
+
+    <script>
+        var input = document.getElementById("user_email");
+        input.addEventListener("keyup", function(e){
+            e.preventDefault();
+            if (e.which == 13)
+                redirect_to_report();
+        });
+        function redirect_to_report() {
+            var email = $("#user_email").val();
+            var index = email.indexOf("(");
+            if (index > 0)
+                email = email.substring(0, index);
+            window.location.href = '/bitex/report/users/' + email + '/';
+        }
+    </script>
+{% endif %}
+{% endblock %}

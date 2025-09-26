@@ -1,0 +1,67 @@
+[tool.ruff]
+extend = "exchange/blockchain/pyproject.toml"
+
+# Alphabetically Sorted. Please Keep The Order
+include = [
+    "**/test_transaction_detail_view_with_dynamic_provider.py",
+    "conftest.py",
+    "exchange/explorer/accounts/views/*.py",
+    "exchange/explorer/basis/tests/fixtures/logging_middleware_fixtures.py",
+#    "exchange/explorer/basis/tests/test_logging_middleware.py",
+    "exchange/explorer/blocks/tasks.py",
+    "exchange/explorer/blocks/tests/fixtures/**",
+    "exchange/explorer/blocks/tests/test_get_block_head_view.py",
+    "exchange/explorer/blocks/tests/test_get_block_info_view.py",
+    "exchange/explorer/blocks/views.py",
+    "exchange/explorer/networkproviders/services/check_network_provider_service.py",
+    "exchange/explorer/networkproviders/tests/**",
+    "exchange/explorer/staking/**",
+    "exchange/explorer/transactions/crons/*.py",
+    "exchange/explorer/transactions/serializers/details.py",
+    "exchange/explorer/transactions/services.py",
+    "exchange/explorer/transactions/tests/fixtures/request_fixtures.py",
+    "exchange/explorer/transactions/tests/fixtures/transfer_fixtures.py",
+    "exchange/explorer/transactions/tests/fixtures/view_fixtures.py",
+    "exchange/explorer/transactions/tests/test_batch_transaction_details_view.py",
+    "exchange/explorer/transactions/tests/test_confirmed_transaction_details_view.py",
+    "exchange/explorer/transactions/tests/test_service.py",
+    "exchange/explorer/transactions/tests/test_views.py",
+    "exchange/explorer/utils/tests/**",
+    "exchange/explorer/wallets/tests/fixtures/transfer_fixtures.py",
+    "exchange/explorer/wallets/tests/test_services.py",
+    "exchange/explorer/wallets/tests/test_transactions_view.py",
+    "exchange/settings/api_keys/debug/common.py",
+    "exchange/settings/cron.py",
+    "exchange/settings/logging.py",
+    "exchange/settings/main.py",
+    "exchange/urls.py",
+]
+exclude = ["**/__init__.py", "exchange/blockchain"]
+
+[tool.ruff.lint]
+ignore = [
+    "DJ008", # Model does not define `__str__` method
+    "PTH118", # `os.path.join()` should be replaced by `Path` with `/` operator
+]
+
+
+
+[tool.ruff.lint.per-file-ignores]
+"test_*.py" = [
+    "S101", # Allow asserts in tests
+    "ANN001", # Allow missing type annotations in function arguments
+    "ANN201", # Allow missing return type annotations in functions
+    "F811", # Redefinition of a function or variable. This occurs when a function or variable is defined multiple times in the same scope.
+    "F401", # Unused import
+    "ARG001",
+    "E501",
+]
+"**/tests/**" = [
+    "S106", # Possible hardcoded password
+]
+"exchange/settings/logging.py" = [
+    "A005",
+]
+
+[tool.ruff.lint.flake8-quotes]
+inline-quotes = "single"

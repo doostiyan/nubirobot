@@ -1,0 +1,16 @@
+name: Setup Python and install pre requirements
+description: Setup Python to the defined version and install requirements/pre.txt
+
+runs:
+  using: 'composite'
+  steps:
+    - name: Set up Python
+      uses: actions/setup-python@v4
+      with:
+        python-version: "3.8.10"
+    - name: Pre install requirements
+      run: |
+        pip install -r requirements/pre.txt --upgrade --force-reinstall --no-cache-dir
+      shell: bash
+
+#

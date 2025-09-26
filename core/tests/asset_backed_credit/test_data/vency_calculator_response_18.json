@@ -1,0 +1,215 @@
+[
+  {
+    "durations": [
+      {
+        "termMonth": 1,
+        "installments": [
+          {
+            "type": "OPERATION_FEE",
+            "dueDate": "2025-05-14",
+            "emiRials": 5400000
+          },
+          {
+            "row": 1,
+            "type": "INSTALLMENT",
+            "dueDate": "2025-06-13",
+            "emiRials": 183460000,
+            "installmentRials": 183460000
+          }
+        ],
+        "operationFee": {
+          "totalFeeRials": 5400000,
+          "totalFeePercent": 3.0
+        },
+        "paymentRials": 183460000,
+        "installmentRials": 183460000,
+        "collaboratorLoanPlanId": "f3b2d1bc-0763-4193-9427-f4ba4e49734c",
+        "loanPrincipalSupplyPlanId": "41e24c5a-7c32-4ce8-b923-129bbbc06b28"
+      },
+      {
+        "termMonth": 3,
+        "installments": [
+          {
+            "type": "OPERATION_FEE",
+            "dueDate": "2025-05-14",
+            "emiRials": 10800000
+          },
+          {
+            "row": 1,
+            "type": "INSTALLMENT",
+            "dueDate": "2025-06-13",
+            "emiRials": 62320000,
+            "installmentRials": 62320000
+          },
+          {
+            "row": 2,
+            "type": "INSTALLMENT",
+            "dueDate": "2025-07-13",
+            "emiRials": 62320000,
+            "installmentRials": 62320000
+          },
+          {
+            "row": 3,
+            "type": "INSTALLMENT",
+            "dueDate": "2025-08-12",
+            "emiRials": 62320000,
+            "installmentRials": 62320000
+          }
+        ],
+        "operationFee": {
+          "totalFeeRials": 10800000,
+          "totalFeePercent": 6.0
+        },
+        "paymentRials": 186960000,
+        "installmentRials": 62320000,
+        "collaboratorLoanPlanId": "a7212f8a-3a72-44c6-b5ba-e1581807ec8a",
+        "loanPrincipalSupplyPlanId": "f2b056b8-1213-464c-a72f-bad59997a209"
+      },
+      {
+        "termMonth": 6,
+        "installments": [
+          {
+            "type": "OPERATION_FEE",
+            "dueDate": "2025-05-14",
+            "emiRials": 18000000
+          },
+          {
+            "row": 1,
+            "type": "INSTALLMENT",
+            "dueDate": "2025-06-13",
+            "emiRials": 32050000,
+            "installmentRials": 32050000
+          },
+          {
+            "row": 2,
+            "type": "INSTALLMENT",
+            "dueDate": "2025-07-13",
+            "emiRials": 32050000,
+            "installmentRials": 32050000
+          },
+          {
+            "row": 3,
+            "type": "INSTALLMENT",
+            "dueDate": "2025-08-12",
+            "emiRials": 32050000,
+            "installmentRials": 32050000
+          },
+          {
+            "row": 4,
+            "type": "INSTALLMENT",
+            "dueDate": "2025-09-11",
+            "emiRials": 32050000,
+            "installmentRials": 32050000
+          },
+          {
+            "row": 5,
+            "type": "INSTALLMENT",
+            "dueDate": "2025-10-11",
+            "emiRials": 32050000,
+            "installmentRials": 32050000
+          },
+          {
+            "row": 6,
+            "type": "INSTALLMENT",
+            "dueDate": "2025-11-10",
+            "emiRials": 32050000,
+            "installmentRials": 32050000
+          }
+        ],
+        "operationFee": {
+          "totalFeeRials": 18000000,
+          "totalFeePercent": 10.0
+        },
+        "paymentRials": 192300000,
+        "installmentRials": 32050000,
+        "collaboratorLoanPlanId": "488e8dc5-d143-4bec-8229-7fe6cfc4d0c7",
+        "loanPrincipalSupplyPlanId": "d9235dba-8405-4d07-bc24-b8e2244db17e"
+      },
+      {
+        "termMonth": 9,
+        "installments": [
+          {
+            "type": "OPERATION_FEE",
+            "dueDate": "2025-05-14",
+            "emiRials": 21600000
+          },
+          {
+            "row": 1,
+            "type": "INSTALLMENT",
+            "dueDate": "2025-06-13",
+            "emiRials": 21970000,
+            "installmentRials": 21970000
+          },
+          {
+            "row": 2,
+            "type": "INSTALLMENT",
+            "dueDate": "2025-07-13",
+            "emiRials": 21970000,
+            "installmentRials": 21970000
+          },
+          {
+            "row": 3,
+            "type": "INSTALLMENT",
+            "dueDate": "2025-08-12",
+            "emiRials": 21970000,
+            "installmentRials": 21970000
+          },
+          {
+            "row": 4,
+            "type": "INSTALLMENT",
+            "dueDate": "2025-09-11",
+            "emiRials": 21970000,
+            "installmentRials": 21970000
+          },
+          {
+            "row": 5,
+            "type": "INSTALLMENT",
+            "dueDate": "2025-10-11",
+            "emiRials": 21970000,
+            "installmentRials": 21970000
+          },
+          {
+            "row": 6,
+            "type": "INSTALLMENT",
+            "dueDate": "2025-11-10",
+            "emiRials": 21970000,
+            "installmentRials": 21970000
+          },
+          {
+            "row": 7,
+            "type": "INSTALLMENT",
+            "dueDate": "2025-12-10",
+            "emiRials": 21970000,
+            "installmentRials": 21970000
+          },
+          {
+            "row": 8,
+            "type": "INSTALLMENT",
+            "dueDate": "2026-01-09",
+            "emiRials": 21970000,
+            "installmentRials": 21970000
+          },
+          {
+            "row": 9,
+            "type": "INSTALLMENT",
+            "dueDate": "2026-02-08",
+            "emiRials": 21970000,
+            "installmentRials": 21970000
+          }
+        ],
+        "operationFee": {
+          "totalFeeRials": 21600000,
+          "totalFeePercent": 12.0
+        },
+        "paymentRials": 197730000,
+        "installmentRials": 21970000,
+        "collaboratorLoanPlanId": "824a3255-ef60-4da7-993b-9ee5fa3f6f8b",
+        "loanPrincipalSupplyPlanId": "b0ca2c09-3af5-461b-a6e2-ab63dc2650c9"
+      }
+    ],
+    "principalRials": 180000000,
+    "interestRateAPR": 23.0,
+    "pledgeableCategoryName": "CRYPTO_AS_RIALS_CREDIT"
+  }
+]
+

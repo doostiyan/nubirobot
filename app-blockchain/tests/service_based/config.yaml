@@ -1,0 +1,197 @@
+networks:
+  fil:
+    is_memo_based: false
+    network: FIL
+    currency: 39
+    choose_rate: 5
+    active: true
+    schedule_every: 1
+  trx:
+    is_memo_based: false
+    network: TRX
+    currency: 20
+    choose_rate: 5
+    active: true
+    schedule_every: 1
+  btc:
+    is_memo_based: false
+    network: BTC
+    currency: 10
+    choose_rate: 5
+    active: true
+    schedule_every: 10
+  apt:
+    is_memo_based: false
+    network: APT
+    currency: 122
+    choose_rate: 50
+    active: true
+    schedule_every: 1
+  flow:
+    is_memo_based: false
+    network: FLOW
+    currency: 111
+    choose_rate: 50
+    active: true
+    schedule_every: 1
+  hbar:
+    is_memo_based: true
+    network: HBAR
+    currency: 112
+    choose_rate: 20
+    active: true
+    schedule_every: 1
+    address_list: [ '0.0.1455640' ]
+  xtz:
+    is_memo_based: false
+    network: XTZ
+    currency: 30
+    choose_rate: 50
+    active: true
+    schedule_every: 1
+  arb:
+    is_memo_based: false
+    network: ARB
+    currency: 152
+    choose_rate: 20
+    active: true
+    schedule_every: 1
+  atom:
+    is_memo_based: True
+    network: ATOM
+    currency: 56
+    choose_rate: 50
+    active: true
+    schedule_every: 1
+    address_list: [ 'cosmos1r2z7rdlfau43zh0xp0wpx4mnf4lmwry2kjsmu6' ]
+  algo:
+    is_memo_based: false
+    network: ALGO
+    currency: 103
+    choose_rate: 5
+    active: true
+    schedule_every: 5
+  ada:
+    is_memo_based: false
+    network: ADA
+    currency: 21
+    choose_rate: 10
+    active: true
+    schedule_every: 2
+  enj:
+    is_memo_based: false
+    network: ENJ
+    currency: 115
+    choose_rate: 20
+    active: true
+    schedule_every: 2
+  bch:
+    is_memo_based: false
+    network: BCH
+    currency: 15
+    choose_rate: 5
+    active: true
+    schedule_every: 10
+  eos:
+    is_memo_based: true
+    network: EOS
+    currency: 17
+    choose_rate: 20
+    active: true
+    schedule_every: 1
+    address_list: ['eostexpriwh1']
+  one:
+    is_memo_based: false
+    network: ONE
+    currency: 100
+    choose_rate: 80
+    active: true
+    schedule_every: 1
+  matic:
+    is_memo_based: false
+    network: MATIC
+    currency: 38
+    choose_rate: 20
+    active: true
+    schedule_every: 1
+  xlm:
+    is_memo_based: True
+    network: XLM
+    currency: 19
+    choose_rate: 50
+    active: true
+    schedule_every: 1
+    address_list: ['GCNZ3SFMGWKHTFFDEAB2QYQRCIZUQ55DULDF775WH7JR77P7UPJLMY2U']
+  ltc:
+    is_memo_based: false
+    network: LTC
+    currency: 12
+    choose_rate: 5
+    active: true
+    schedule_every: 10
+  egld:
+    is_memo_based: false
+    network: EGLD
+    currency: 74
+    choose_rate: 5
+    active: true
+    schedule_every: 2
+  bnb:
+    is_memo_based: True
+    network: BNB
+    currency: 16
+    choose_rate: 5
+    active: true
+    schedule_every: 2
+    address_list: [ 'bnb1d4u8amvqx3rm6022gnuhp7nq0tuj7fm4yt4azn' ]
+  dot:
+    is_memo_based: false
+    network: DOT
+    currency: 34
+    choose_rate: 5
+    active: true
+    schedule_every: 2
+  eth:
+    is_memo_based: false
+    network: ETH
+    currency: 11
+    choose_rate: 15
+    active: true
+    schedule_every: 1
+  etc:
+    is_memo_based: false
+    network: ETC
+    currency: 25
+    choose_rate: 20
+    active: true
+    schedule_every: 1
+  avax:
+    is_memo_based: false
+    network: AVAX
+    currency: 57
+    choose_rate: 15
+    active: true
+    schedule_every: 1
+  ton:
+    is_memo_based: true
+    network: TON
+    currency: 145
+    choose_rate: 5
+    active: true
+    schedule_every: 2
+    address_list: [ "EQBFMtW837BdMnXL8lW8kcNjXNSNY7cZRBWBxVQqR1D99S1Q" ]
+  doge:
+    is_memo_based: false
+    network: DOGE
+    currency: 18
+    choose_rate: 5
+    active: true
+    schedule_every: 1
+
+  ftm:
+    is_memo_based: false
+    network: FTM
+    currency: 75
+    choose_rate: 10
+    active: true
+    schedule_every: 2

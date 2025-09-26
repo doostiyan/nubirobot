@@ -1,0 +1,17 @@
+{% extends 'email_base.html' %}
+{% block content %}
+<div class="header">
+  <strong class="email-title">
+  </strong>
+</div>
+<div style="margin-top: 20px; margin-bottom: 50px">
+  <p class="content">
+    کاربر گرامی!
+    <br/>
+    مدت زمان طرح {{platform}} شما به پایان رسید و پاداش طرح با درصد بازده سالانه (APR) برابر {{realized_apr}} درصد به میزان {{amount}} {{currency}}
+    به کیف پول شما واریز شد. جهت پیگیری وضعیت به پنل {{platform}} خود مراجعه کنید.
+    <br/>
+    <br/>
+  </p>
+</div>
+{% endblock %}

@@ -1,0 +1,91 @@
+name: Test Nobitex Core with Python 3.12
+
+on:
+  workflow_dispatch:
+
+  push:
+    branches:
+      - master
+      - release-*
+    paths-ignore:
+      - ".github/workflows/*"
+
+permissions:
+  contents: read
+
+env:
+  CIRUNNER: ${{ vars.CIRUNNER }}
+
+concurrency:
+  group: ${{github.workflow}}-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  Test_Code:
+    runs-on: N-EU2-Nobitex-Core-TestNet
+    timeout-minutes: 15
+    permissions:
+      contents: write
+      checks: write
+
+    defaults:
+      run:
+        working-directory: core-312-${{ github.head_ref || github.ref_name }}
+
+    steps:
+      - name: Get Code
+        uses: actions/checkout@v4
+        with:
+          ref: ${{ github.head_ref || github.ref_name }}
+          path: core-312-${{ github.head_ref || github.ref_name }}
+
+      - name: Set private repos urls
+        run: |
+          sed -ie 's/git+ssh\:\/\/git\@github\.com\/nobitex\/app\-config\.git/git+ssh\:\/\/git\@github\.com-app-config\/nobitex\/app\-config\.git/' requirements.txt
+
+      - uses: actions/setup-python@v5
+        name: Setup Python
+        with:
+          python-version: 3.12
+
+      - name: Setup Venv
+        run: |
+          VENV="core-312-${{ github.head_ref || github.ref_name }}/venv"
+          python3 -m venv $VENV
+          source $VENV/bin/activate
+          echo "VIRTUAL_ENV=${VIRTUAL_ENV}" >> $GITHUB_ENV
+          echo "${VIRTUAL_ENV}/bin" >> $GITHUB_PATH
+
+      - name: Install Requirements
+        run: |
+          pip install pip -r requirements.txt -r requirements-dev.txt -U
+          pip install git+ssh://git@github.com-app-config/nobitex/app-config.git@e0fc3c55f4cc0ff7daa55c7deec59b9319b0d953 # Temp, until uncommented from requirements.txt
+
+      - name: Set Custom Git Submodule URLs
+        run: |
+          git submodule set-url exchange/broker git@github.com-app-exchange-client-queue:nobitex/exchange-queue-client.git &&
+          git submodule set-url exchange/blockchain git@github.com-app-blockchain:nobitex/app-blockchain.git
+          git submodule set-url exchange/config git@github.com-app-config:nobitex/app-config.git
+
+      - name: Initial Git Submodule
+        run: |
+          git submodule init
+
+      - name: Update Git Submodule
+        run: |
+          git submodule update
+
+      - name: Test Code in Non-Release Branches
+        if: ${{ !startsWith(github.ref, 'refs/heads/release-') }}
+        run: |
+          BRANCH_NAME=312-${{ github.head_ref || github.ref_name }} make test
+
+      - name: Test Code in Release Branches
+        if: ${{ startsWith(github.ref, 'refs/heads/release-') }}
+        run: |
+          BRANCH_NAME=312-${{ github.head_ref || github.ref_name }} make test-clean
+
+      - name: Clear Data From Runner
+        run: |
+          rm -rf ./*
+          rm -rf core-${{ github.head_ref || github.ref_name }}

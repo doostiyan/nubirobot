@@ -1,0 +1,36 @@
+
+.igx-button--raised {
+  background: #653b9c;
+  color: white;
+  min-width: 58.55px!important;
+  min-height: 38.55px!important;
+  padding: 0!important;
+  box-shadow: none!important;
+}
+
+.igx-drop-down__item  {
+  color: white;
+  max-width: 150px!important;
+  max-height: 150px!important;
+}
+
+.igx-drop-down__item:hover {
+  background: #261538;
+}
+
+.igx-drop-down {
+  background: #1c2031;
+}
+
+#lang-btn {
+  max-width: 25px;
+  height: 25px;
+  margin: 0!important;
+  padding-left: 20px;
+  padding-right: 20px;
+
+}
+
+app-language-selector {
+  float: left;
+}

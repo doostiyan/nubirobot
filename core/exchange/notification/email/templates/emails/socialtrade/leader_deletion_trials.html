@@ -1,0 +1,15 @@
+{% extends 'email_base.html' %} {% load nobitex %} {% block content %}
+<div class="header">
+  <strong class="email-title"> {{email_title}} </strong>
+</div>
+<div style="margin-top: 20px; margin-bottom: 50px">
+  <p class="content">
+    کاربر گرامی،
+    <br />
+    به دلیل عدم فعالیت تریدر انتخابی شما، امکان فعال‌سازی اشتراک سوشال ترید برای
+    تریدر انتخابی وجود نداشته و دوره آزمایشی اشتراک شما به پایان رسیده است.
+    <br />
+    تریدر: {{nickname}}
+  </p>
+</div>
+{% endblock %}

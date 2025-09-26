@@ -1,0 +1,42 @@
+{% extends 'email_base.html' %}
+{% load nobitex %}
+{% block content %}
+  <div class="header">
+    <strong class="email-title">
+      اضافه شدن آدرس جدید به دفتر آدرس
+    </strong>
+  </div>
+  <div style="margin-top: 20px; margin-bottom: 50px">
+    <p class="content">
+      کاربر محترم نوبیتکس،
+      <br/>
+      <br/>
+      آدرس جدید
+      <br/>
+      {{ address_book_address }}
+      <br/>
+      {% if address_book_tag %}
+      با تگِ
+      <br/>
+      {{ address_book_tag }}
+      <br/>
+      {% endif %}
+      به دفتر آدرس شما با موفقیت اضافه شد.
+      <br/>
+      {% if whitelist_mode %}
+      <br/>
+      به دلیل فعال بودن حالت برداشت امن، امکان برداشت رمزارز
+      <br/>
+      از حساب کاربری شما به مدت <strong>یک ساعت</strong> محدود شده است.
+      <br/>
+      {% endif %}
+      <br/>
+      <em>
+      در صورتی که این عملیات از جانب شما نبوده،
+      <br/>
+      هرچه سریعتر نسبت به حذف آدرس از دفتر آدرس خود اقدام فرمایید.
+      </em>
+      <br/>
+    </p>
+  </div>
+{% endblock %}

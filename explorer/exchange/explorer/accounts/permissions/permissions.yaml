@@ -1,0 +1,40 @@
+# use add, change, delete and view to define permissions
+- codename: view_user
+  name: مشاهده کاربر
+  display_name: مشاهده کاربر
+  description: مجور مشاهده کاربر
+  model: User
+  views:
+  category:
+  sensitive: false
+
+
+- codename: add_user
+  name: اضافه کردن کاربر
+  display_name: اضافه کردن کاربر
+  description: مجور اضافه کردن کاربر
+  model: User
+  views:
+  category:
+  sensitive: true
+
+- codename: change_user
+  name: تغییر کاربر
+  display_name: تغییر کاربر
+  description: مجور تغییر کاربر
+  model: User
+  views:
+  category:
+  sensitive: true
+
+- codename: delete_user
+  name: حذف کاربر
+  display_name: حذف کاربر
+  description: مجور حذف کاربر
+  model: User
+  views:
+  category:
+  sensitive: true
+
+
+

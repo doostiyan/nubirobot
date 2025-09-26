@@ -1,0 +1,22 @@
+{% extends 'email_base.html' %}
+{% load nobitex %}
+{% block content %}
+<style>
+    .content {
+      margin: 20px;
+      margin-bottom: 100px
+    }
+</style>
+<div class="header">
+  <div>
+    <img alt="success" id="success-image" src="https://cdn.nobitex.ir/email/tick-icon.png"/>
+  </div>
+  <strong class="email-title">کلید API شما تغییر یافت</strong>
+</div>
+<div dir="auto" class="content">
+  کاربر گرامی،
+  <br>
+  <br>
+  یکی از API Keyهای شما در تاریخ  {{ updated_at | shamsidateformat }} تغییراتی داشته است. (تغییر در IPهای مجاز). در صورتی که این اقدام توسط شما انجام نشده است، سریعاً اقدام به غیرفعال‌سازی API Key نمایید و با پشتیبانی تماس بگیرید.
+</div>
+{% endblock %}

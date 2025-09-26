@@ -1,0 +1,28 @@
+# Multiple time expansion stops because the price doesn't match the range.
+# But it got matched with next round and then another way of expansion happens.
+0 BUY 10 5
+1 BUY 10 6
+2 BUY 10 7
+3 BUY 10 7
+4 BUY 10 7
+6 BUY 10 20
+7 BUY 10 10
+8 SELL 10 30
+9 SELL 10 50
+10 SELL 10 80
+ORDERBOOK 2
+11 SELL 60 7
+MATCH 11 <= 6 10 20
+MATCH 11 <= 7 10 10
+MATCH 11 <= 2 10 7
+MATCH 11 <= 3 10 7
+MATCH 11 <= 4 10 7
+12 BUY 40 90
+# Here instead of expansion we matched with a partially filled order from the last round.
+MATCH 12 <= 11 10 7
+MATCH 12 <= 8 10 30
+MATCH 12 <= 9 10 50
+# but we still needs to expand.
+MATCH 12 <= 10 10 80
+EXPANSION buy 2 sell 1
+CHECK

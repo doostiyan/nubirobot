@@ -1,0 +1,57 @@
+name: Staging CD Pipeline
+
+on:
+  push:
+    branches:
+      - master
+
+jobs:
+  build:
+    runs-on: explorer-actions-runner
+    steps:
+      - name: Get code
+        uses: actions/checkout@v4
+        with:
+          submodules: false
+          ssh-key: ${{ secrets.EXPLORER_STAGING_SSH_KEY }}
+
+      - name: Checkout submodules
+        uses: ./.github/actions/checkout
+        with:
+          explorer_ssh_key: ${{ secrets.EXPLORER_STAGING_SSH_KEY }}
+          app_base_ssh_key: ${{ secrets.BASE_STAGING_SSH_KEY }}
+          app_blockchain_ssh_key: ${{ secrets.BLOCKCHAIN_STAGING_SSH_KEY }}
+          app_config_ssh_key: ${{ secrets.CONFIG_STAGING_SSH_KEY }}
+
+      - name: Setup Python and install pre-requirements
+        uses: ./.github/actions/setup
+
+      - name: Set up Docker Build
+        uses: docker/setup-buildx-action@v1
+
+      - name: Log in to Docker registry
+        run: echo "${{ secrets.REGISTRY_PASSWORD }}" | docker login ${{
+          vars.REGISTRY_URL }} -u ${{ secrets.REGISTRY_USER }} --password-stdin
+
+      - name: Build and Push Docker Image
+        run: >
+          docker build \
+            --build-arg CONFIG_SSH_PRIVATE_KEY="${{ secrets.CONFIG_STAGING_SSH_KEY }}" \
+            -t "${{ vars.REGISTRY_URL }}:${GITHUB_SHA::7}" \
+            --push .
+
+  deploy:
+    needs: build
+    runs-on: explorer-actions-runner
+    container:
+      image: hamravesh.hamdocker.ir/public/darkube-cli:v1.1
+    steps:
+      - name: Deploy to Darkube
+        run: >
+          darkube deploy \
+           --ref master \
+           --token ${{ secrets.DEPLOY_TOKEN_BACKEND_NOBITEX_EXPLORER_STAGING_NOBITEX_C62 }} \
+           --app-id ${{ secrets.APP_ID_BACKEND_NOBITEX_EXPLORER_STAGING_NOBITEX_C62 }} \
+           --image-tag "${GITHUB_SHA::7}" \
+           --job-id "${{ github.run_id }}" \
+           --stateless-app true

@@ -1,0 +1,11 @@
+POST {{ apiUrl }}/market/orders/add HTTP/1.1
+Content-Type: application/json
+Authorization: Token {{ token }}
+
+{
+  "type": "sell",
+  "srcCurrency": "bnb",
+  "dstCurrency": "usdt",
+  "amount": "1",
+  "price": "256.93"
+}

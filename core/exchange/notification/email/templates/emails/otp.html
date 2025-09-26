@@ -1,0 +1,31 @@
+{% extends 'email_base.html' %}
+{% load static %}
+{% block content %}
+<div class="header">
+  <strong class="email-title">
+    کد تائید نوبیتکس
+  </strong>
+</div>
+<div style="margin-top: 20px; margin-bottom: 50px">
+  <table style="width: 100%; padding: 1.84% 13.83% 0 13.14%">
+    <tbody>
+    <tr>
+      <th style="padding: 0">
+        <p style="float: right">کد تائید نوبیتکس شما:</p>
+      </th>
+      <td style="padding: 0">
+        <p id="otp" style="float: left">{{otp}}</p>
+      </td>
+    </tr>
+    </tbody>
+  </table>
+  <hr/>
+  <p class="content">
+    این کد برای تائید درخواست {{ request_type|default:'' }} شما در سایت نوبیتکس ارسال شده است.
+    <br/>
+    درصورتی که این درخواست از سمت شما نبوده، لطفا هرچه سریع‌تر
+    گذرواژه‌ی خود را تغییر داده و با پشتیبانی نوبیتکس تماس بگیرید.
+    همچنین پیشنهاد می‌کنیم تنظیمات امنیتی و تاریخچه‌ی ورود خود را بررسی کنید.
+  </p>
+</div>
+{% endblock %}

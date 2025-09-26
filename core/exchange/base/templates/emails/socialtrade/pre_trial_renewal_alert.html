@@ -1,0 +1,21 @@
+{% extends 'email_base.html' %} {% load nobitex %} {% block content %}
+<div class="header">
+  <strong class="email-title"> {{email_title}} </strong>
+</div>
+<div style="margin-top: 20px; margin-bottom: 50px">
+  <p class="content">
+    کاربر گرامی,
+    <br />
+    <br />
+    اشتراک آزمایشی شما در حال اتمام است. درصورت داشتن موجودی، اشتراک شما به صورت
+    خودکار فعال خواهد شد.
+    <br />
+    <br />
+    زمان پایان اشتراک آزمایشی: {{expires_at}}
+    <br />
+    تریدر: {{nickname}}
+    <br />
+    هزینه اشتراک: {{fee}}
+  </p>
+</div>
+{% endblock %}

@@ -1,0 +1,7 @@
+# Having partial matched order without any kind of expansion.
+# because we don't have any bounds from orderbook
+1 SELL 10 100
+2 BUY 15 100
+MATCH 2 <= 1 10 100
+EXPANSION buy 0 sell 0
+CHECK

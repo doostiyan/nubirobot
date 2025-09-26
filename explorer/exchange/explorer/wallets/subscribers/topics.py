@@ -1,0 +1,9 @@
+GET_ALL_CURRENCIES_BALANCES_RESPONSE_ROUTING_KEY = "address.get_balance_response.all_currencies.explorer"
+
+GET_SELECTED_CURRENCIES_BALANCE_RESPONSE_ROUTING_KEY = "address.get_balance_response.selected_currencies.explorer"
+
+GET_ALL_CURRENCIES_BALANCES_REQUEST_ROUTING_KEY = "address.get_balances_request.all_currencies.explorer"
+GET_ALL_CURRENCIES_BALANCES_REQUEST_QUEUE = "address.get_balances_request.all_currencies"
+
+GET_SELECTED_CURRENCIES_BALANCES_REQUEST_ROUTING_KEY = "address.get_balances_request.selected_currencies.explorer"
+GET_SELECTED_CURRENCIES_BALANCES_REQUEST_QUEUE = "address.get_balances_request.selected_currencies"

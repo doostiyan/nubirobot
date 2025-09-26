@@ -1,0 +1,9 @@
+POST {{ apiUrl }}/auth/login/ HTTP/1.1
+Content-Type: application/json
+User-Agent: TraderBot/Debug
+
+{
+  "username": "",
+  "password": "",
+  "captcha": "ip"
+}

@@ -1,0 +1,11 @@
+# sell oco - limit fully done
+LOAD base-full
+25 SELL 10 100 | 26 98 STOP 98.5
+CHECK
+27 SELL 10 MARKET
+MATCH 27 <= 9 10 99
+CHECK
+28 BUY 20 101
+MATCH 28 <= 25 10 100
+MATCH 28 <= 19 10 101
+CHECK

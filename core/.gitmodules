@@ -1,0 +1,12 @@
+[submodule "exchange/blockchain"]
+	path = exchange/blockchain
+	url = git@github.com:nobitex/app-blockchain.git
+	branch = master
+[submodule "exchange/broker"]
+	path = exchange/broker
+	url = git@github.com:nobitex/exchange-queue-client
+	branch = stable
+[submodule "exchange/config"]
+	path = exchange/config
+	url = git@github.com:nobitex/app-config.git
+	branch = main

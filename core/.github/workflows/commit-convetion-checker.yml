@@ -1,0 +1,49 @@
+name: Commit-Convention-Checker
+
+on:
+  workflow_dispatch:
+
+  push:
+    branches:
+      - master
+      - release-*
+    paths-ignore:
+      - ".github/workflows/*"
+
+  pull_request:
+    branches:
+      - master
+      - release-*
+    types:
+      - opened
+      - edited
+
+permissions:
+  contents: read
+
+env:
+  CIRUNNER: ${{ vars.CIRUNNER }}
+
+concurrency:
+  group: ${{github.workflow}}-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  Git_Checker:
+    runs-on: N-EU2-Nobitex-Core-TestNet
+    timeout-minutes: 15
+    permissions:
+      contents: write
+      checks: write
+      pull-requests: write
+
+    steps:
+      - name: Check Commit Message And PR Title
+        uses: nobitex/ci-actions/actions/commit-message-checker-main@commit-message-checker-v1
+        with:
+          pattern: '^(\u2728 feat|\uD83D\uDC1B fix|\uD83D\uDCDA docs|\uD83D\uDC85 style|\uD83E\uDDF9 refactor|\uD83D\uDE80 perf|\uD83E\uDDEA test|\uD83C\uDFD7\uFE0F build|\uD83D\uDC77 ci|\u267B\uFE0F chore|\u23EA revert|\uD83D\uDD00 merge)(\([\w\-\.]+\))?(!)?:\s.+$'
+          flags: 'm'
+          excludeTitle: 'false'
+          error: 'commit message or PR title check failed.'
+          excludeDescription: 'true'
+          checkAllCommitMessages: 'false'

@@ -1,0 +1,7 @@
+[run]
+source=exchange
+omit=
+    */migrations/*
+    */management/commands/*
+    */blockchain/*
+    */broker/*

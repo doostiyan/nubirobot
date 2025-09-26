@@ -1,0 +1,31 @@
+name: Explorer CI
+
+on:
+  push:
+    branches:
+      - master
+      - develop
+  pull_request:
+    types:
+      - opened
+      - reopened
+      - synchronize
+      - edited
+    branches:
+      - master
+      - develop
+  workflow_dispatch:
+
+jobs:
+  CI:
+    uses: ./.github/workflows/ci.yml
+    with:
+      RUNNER: explorer-actions-runner
+    secrets:
+      SSH_KEY: ${{ secrets.EXPLORER_PROD_SSH_KEY }}
+      MASTERKEY: ${{ secrets.MASTERKEY }}
+      SECRET_KEY: ${{ secrets.SECRET_KEY }}
+      SERVICE_BASE_API_KEY: ${{ secrets.SERVICE_BASE_API_KEY }}
+      APP_BASE_SSH_KEY: ${{ secrets.BASE_PROD_SSH_KEY }}
+      APP_BLOCKCHAIN_SSH_KEY: ${{ secrets.BLOCKCHAIN_PROD_SSH_KEY }}
+      APP_CONFIG_SSH_KEY: ${{ secrets.CONFIG_PROD_SSH_KEY }}

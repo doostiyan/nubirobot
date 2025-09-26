@@ -1,0 +1,22 @@
+{
+  "cSpell.ignorePaths": [
+    ".git",
+    ".vscode",
+    "exchange/settings.py"
+  ],
+  "emeraldwalk.runonsave": {
+    "commands": [
+      {
+        "match": "\\.py$",
+        "cmd": "${workspaceFolder}/venv/bin/darker \"${file}\" -S"
+      }
+    ]
+  },
+  "python.testing.autoTestDiscoverOnSaveEnabled": false,
+  "python.testing.pytestArgs": [
+    "tests"
+  ],
+  "python.testing.pytestEnabled": true,
+  "ruff.fixAll": true,
+  "ruff.trace.server": "off",
+}

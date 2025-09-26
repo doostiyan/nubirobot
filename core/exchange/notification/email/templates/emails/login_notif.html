@@ -1,0 +1,41 @@
+{% extends 'email_base.html' %}
+{% load static %}
+{% block content %}
+<div class="header">
+  {% if successful %}
+  <div>
+    <img
+      id="success-image"
+      src="https://cdn.nobitex.ir/email/tick-icon.png"
+    />
+  </div>
+  <strong class="email-title"> ورود دستگاه جدید </strong>
+  {% else %}
+  <strong class="email-title">تلاش ورود ناموفق</strong>
+  {% endif %}
+</div>
+<div style="margin-top: 20px; margin-bottom: 100px">
+  <table style="width: 100%; padding: 1.84% 13.83% 0 13.14%">
+    <tbody>
+    <tr>
+      <th style="padding: 0"><p class="text-right">آدرس اینترنتی</p></th>
+      <td style="padding: 0">
+        <p style="text-align: left">{{ip}}</p>
+      </td>
+    </tr>
+    <tr>
+      <th style="padding: 0"><p class="text-right">زمان</p></th>
+      <td style="padding: 0">
+        <p style="text-align: left">{{date}}</p>
+      </td>
+    </tr>
+    <tr>
+      <th style="padding: 0"><p class="text-right">دستگاه</p></th>
+      <td style="padding: 0">
+        <p style="text-align: left">{{ device }}</p>
+      </td>
+    </tr>
+    </tbody>
+  </table>
+</div>
+{% endblock %}

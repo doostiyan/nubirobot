@@ -1,0 +1,41 @@
+name: Mention Admin on Migration File Change
+
+on:
+  workflow_dispatch:
+
+  pull_request:
+    branches:
+      - master
+    types:
+      - closed
+
+jobs:
+  check_migration_files:
+    runs-on: N-EU2-Nobitex-Core-TestNet
+    if: github.event.pull_request.merged == true
+    steps:
+      - name: Check out the repository
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 2
+
+      - name: Get list of changed files
+        id: file_changes
+        run: |
+          # List files changed in the latest commit
+          changed_files=$(git diff --name-only HEAD^1 HEAD)
+
+          # Check if any file in the list contains 'migrations/' and ends with '.py'
+          if echo "$changed_files" | grep -qE 'migrations/.*\.py'; then
+            echo "MIGRATIONS_CHANGED=true" >> $GITHUB_ENV
+          else
+            echo "MIGRATIONS_CHANGED=false" >> $GITHUB_ENV
+          fi
+
+      - name: Comment on commit if migrations changed
+        if: env.MIGRATIONS_CHANGED == 'true'
+        uses: actions-ecosystem/action-create-comment@v1
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          body: |
+            @Saeid-mp, @mahdifarhang, there is changes in migration files.

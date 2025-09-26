@@ -1,0 +1,22 @@
+pylint
+pylint-django
+pytest
+pytest-cov
+pytest-django
+fakeredis
+freezegun>=1.5.1
+django-debug-toolbar==3.2.4
+autopep8
+coverage
+minify-html
+pre-commit
+# for mocking requests.
+responses
+ruff
+darker
+black==21.5b2
+# Pin due to a bug with --maxfail, see https://github.com/pytest-dev/pytest-xdist/issues/1034
+pytest-xdist==3.3
+moto
+testfixtures
+django-extensions==3.2.3

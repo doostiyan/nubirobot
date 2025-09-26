@@ -1,0 +1,23 @@
+version: '3'
+
+networks:
+  postgres: { }
+
+volumes:
+  postgres_data: { }
+
+services:
+  postgres:
+    image: postgres:16.3
+    ports:
+      - '5432:5432'
+    volumes:
+      - postgres_data:/var/lib/postgresql
+    environment:
+      - POSTGRES_PASSWORD=nobitex@1234
+      - POSTGRES_USER=nobitex
+      - POSTGRES_DB=explorer
+  redis:
+    image: redis:7.2.5
+    ports:
+      - '6379:6379'

@@ -1,0 +1,21 @@
+1 SELL 10 110
+2 SELL 10 111
+3 SELL 10 112
+4 BUY 10 109
+5 BUY 10 108
+6 BUY 10 107
+ORDERBOOK 2
+# Now matcher active sells ranges from 111 to 112 and buys ranges from 109 to 108
+# This hides orders #1 and #6 from matcher
+7 SELL 20 MARKET
+MATCH 7 <= 4 10 109
+MATCH 7 <= 5 10 108
+CHECK
+# Now, matcher active buys are empty, missing #6 till next `ORDERBOOK 2`
+8 SELL 10 106
+# Orderbook buys are extended to see #6
+MATCH 8 <= 6 10 107
+9 BUY 10 108
+EXPANSION buy 1 sell 0
+CHECK
+# Everything's fine

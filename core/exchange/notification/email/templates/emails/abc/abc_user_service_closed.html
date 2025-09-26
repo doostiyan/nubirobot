@@ -1,0 +1,16 @@
+{% extends 'email_base.html' %}
+{% block content %}
+  <div class="header">
+    <strong class="email-title">
+      لغو سرویس
+    </strong>
+  </div>
+  <div style="margin-top: 20px; margin-bottom: 50px">
+    <p class="content">
+      کاربر عزیز، سرویس {{ financial_service }} لغو شد.
+      <br/>
+      <br/>
+      در صورت تمایل، می توانید دوباره با مقدار دلخواه تا سقف اعتبار تعیین‌شده سرویس را فعال کنید.
+    </p>
+  </div>
+{% endblock %}

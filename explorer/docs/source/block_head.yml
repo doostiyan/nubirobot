@@ -1,0 +1,34 @@
+openapi: 3.0.2
+info:
+  title: ''
+  version: ''
+paths:
+  /blocks/{network}/head:
+    get:
+      operationId: retrieveBlockHead
+      description: ''
+      parameters:
+        - name: network
+          in: path
+          required: true
+          description: ''
+          schema:
+            type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                type: array
+                items: { }
+          description: ''
+        '403':
+          description: ''
+        '404':
+          description: ''
+        '429':
+          description: ''
+        '500':
+          description: ''
+      tags:
+        - blocks

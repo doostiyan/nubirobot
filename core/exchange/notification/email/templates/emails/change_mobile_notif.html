@@ -1,0 +1,27 @@
+{% extends 'email_base.html' %}
+{% load static %}
+{% block content %}
+<div class="header">
+  <div>
+    <img
+      id="success-image"
+      src="https://cdn.nobitex.ir/email/tick-icon.png"
+    />
+  </div>
+  <strong class="email-title"> تغییر شماره همراه </strong>
+</div>
+<div style="margin: 20px; margin-bottom: 100px" class="content">
+  کاربر گرامی!
+  <br>
+  <br>
+  شماره موبایل حساب‌کاربری نوبیتکس شما، در تاریخ {{ change_date }} و در ساعت {{ change_time }} از شماره <b>{{ old_mobile
+  }}</b> به شماره <b>{{ new_mobile }}</b>
+  تغییر کرد.
+  <br>
+  <br>
+  برای حفظ امنیت دارایی‌های شما، تا 48 ساعت آینده هیچ برداشت رمزارزی از حساب کاربری شما تایید نخواهد شد.
+  <br/>
+  <br/>
+  درصورتی که این درخواست از سمت شما نبوده؛ لطفا هرچه سریع‌تر گذرواژه‌ی خود را تغییر داده و با پشتیبانی نوبیتکس تماس بگیرید.
+</div>
+{% endblock %}

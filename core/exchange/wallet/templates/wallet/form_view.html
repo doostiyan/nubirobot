@@ -1,0 +1,38 @@
+{% extends 'ebase.html' %}
+
+{% block content %}
+  <div class="card">
+        <div class="card-header">
+            {% block header_title %}{% endblock %}
+        </div>
+        <div class="card-body">
+            <form method="post">
+                {% csrf_token %}
+                <div class="form-row">
+                    {% for field in form %}
+                        <div class="col-12">
+                            <div class="fieldWrapper form-group">
+                                {{ field.errors }}
+                                {{ field.label_tag }} {{ field }}
+                            </div>
+                        </div>
+                    {% endfor %}
+
+                </div>
+
+                <button type="submit" class="btn btn-success w-100">Save</button>
+            </form>
+            {% if result %}
+                <div class="alert alert-success mt-5" role="alert">
+                  {{ result_msg}}
+                </div>
+            {% endif %}
+            {% if error %}
+                <div class="alert alert-error mt-5" role="alert">
+                  {{ error_msg }}
+                </div>
+            {% endif %}
+        </div>
+    </div>
+
+{% endblock %}

@@ -1,0 +1,22 @@
+{% extends 'email_base.html' %}
+{% block content %}
+  <div class="header">
+    <strong class="email-title">
+      تبدیل دارایی در سرویس اعتبار ریالی
+    </strong>
+  </div>
+  <div style="margin-top: 20px; margin-bottom: 50px">
+    <p class="content">
+      کاربر گرامی،
+      <br/>
+      <br/>
+      به درخواست
+      {{ provider_name }}
+      وثیقه
+      {{ service_name }}
+      به میزان
+      {{ amount }}
+      تومان تبدیل و تسویه شد.
+    </p>
+  </div>
+{% endblock %}

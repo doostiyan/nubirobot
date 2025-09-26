@@ -1,0 +1,37 @@
+{% extends 'email_base.html' %}
+{% load nobitex %}
+{% block content %}
+<div class="header">
+  <div>
+    <img id="success-image" src="https://cdn.nobitex.ir/email/tick-icon.png"/>
+  </div>
+  <strong class="email-title"> تاریخچه تراکنش ها </strong>
+</div>
+<div style="margin: 20px; margin-bottom: 100px" class="content">
+  کاربر گرامی:
+  <br/>
+  <br/>
+
+  {% if tx_count %}
+  فایل تاریخچه تراکنش‌های شما برای بازه زمانی
+  {{ from|shamsidateformat }}
+   تا
+   {{ to|shamsidateformat }}
+  آماده‌ست.
+  <br/>
+  <br/>
+  <a class="btn" href="{{ link }}">دانلود</a>
+  <br/>
+  <br/>
+  <b>این لینک تا 24ساعت اعتبار دارد.</b>
+  <br/>
+  {% else %}
+ تاریخچه تراکنش‌های شما در بازه زمانی
+    {{ from|shamsidateformat }}
+    تا
+    {{ to|shamsidateformat }}
+    با فیلتر های اعمال شده خالی است.
+  {% endif %}
+  <br/>
+</div>
+{% endblock %}

@@ -1,0 +1,20 @@
+{% extends 'email_base.html' %} {% load nobitex %} {% block content %}
+<div class="header">
+  <strong class="email-title"> {{email_title}} </strong>
+</div>
+<div style="margin-top: 20px; margin-bottom: 50px">
+  <p class="content">
+    کاربر گرامی،
+    <br />
+    <br />
+    کاربر گرامی، موجودی شما برای تمدید اشتراک کافی نمی‌باشد. لطفا با مراجعه به
+    پنل کاربری موجودی کیف پول خود را افزایش داده و سپس اقدام به فعالسازی اشتراک
+    نمایید.
+    <br />
+    <br />
+    تریدر: {{nickname}}
+    <br />
+    هزینه اشتراک: {{subscription_fee}}
+  </p>
+</div>
+{% endblock %}

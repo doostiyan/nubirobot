@@ -1,0 +1,37 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: celery-{{ .Release.Name }}
+  namespace: {{ .Release.Namespace }}
+  labels:
+    app: celery
+spec:
+  replicas: {{ .Values.celery.replicaCount }}
+  selector:
+    matchLabels:
+      app: celery
+  template:
+    metadata:
+      labels:
+        app: celery
+    spec:
+      containers:
+        - name: celery-{{ .Chart.Name }}
+          image: {{ .Values.common.image.repository }}:{{ .Values.common.image.tag }}
+          imagePullPolicy: {{ .Values.common.image.pullPolicy }}
+          command: [ "celery" ]
+          args:
+            - -A
+            - {{ .Values.celery.app_name }}
+            - worker
+            - --autoscale={{ .Values.celery.autoscale }}
+            - --loglevel={{ .Values.celery.loglevel }}
+            - -Q
+            - {{ .Values.celery.queues }}
+          env:
+            - name: ENV
+              value: {{ .Values.common.env }}
+      {{- with .Values.common.imagePullSecrets }}
+      imagePullSecrets:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}

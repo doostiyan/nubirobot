@@ -1,0 +1,88 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2024-05-25 18:59+0330\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n > 1);\n"
+
+#: exchange/explorer/accounts/serializers/registeration.py:9
+msgid "Password must be at least 8 characters long."
+msgstr "طول پسورد باید حداقل ۸ کاراکتر باشد"
+
+#: exchange/explorer/accounts/serializers/registeration.py:12
+msgid "Password must contain at least one uppercase letter."
+msgstr "پسورد باید شامل حداقل یک کاراکتر بزرگ باشد"
+
+#: exchange/explorer/accounts/serializers/registeration.py:16
+msgid "Password must contain at least one lowercase letter."
+msgstr "پسورد باید حداقل شامل یک کاراکتر کوچک باشد"
+
+#: exchange/explorer/accounts/serializers/registeration.py:20
+msgid "Password must contain at least one digit."
+msgstr "پسورد باید شامل یک عدد باشد"
+
+#: exchange/explorer/accounts/serializers/registeration.py:24
+msgid "Password must contain at least one special character."
+msgstr "پسورد باید شامل حداقل یک کاراکتر خاص باشد"
+
+#: exchange/explorer/authentication/models.py:30
+#: exchange/explorer/authentication/models.py:48
+msgid "Pass Valid API key in {} header"
+msgstr "در API key مقدار درست را هدر پاس دهید {}"
+
+#: exchange/explorer/authentication/permissions/api_key.py:41
+#, fuzzy
+#| msgid "Pass Valid API key in {} header"
+msgid "Pass API key {} in header"
+msgstr "در API key مقدار را هدر پاس دهید {}"
+
+#: exchange/explorer/core/apps.py:8 exchange/explorer/core/apps.py:9
+msgid "Core"
+msgstr ""
+
+#: exchange/explorer/networkproviders/models/provider.py:21
+msgid "can not be more than 1"
+msgstr "نمی تواند بیشتر از ۱ باشد"
+
+#: exchange/explorer/utils/blockchain.py:36
+#: exchange/explorer/utils/blockchain.py:43
+#, fuzzy
+#| msgid "Network {network} not found"
+msgid "Network or currency parameters not found"
+msgstr "{network} شبکه یا کارنسی یافت نشد"
+
+#: exchange/explorer/wallets/serializers/balance.py:19
+#: exchange/explorer/wallets/serializers/balance.py:41
+#: exchange/explorer/wallets/serializers/wallet_transactions.py:14
+msgid "Address is not valid"
+msgstr "آدرس نادرست است"
+
+#: exchange/explorer/wallets/serializers/balance.py:33
+msgid "The value must be a string."
+msgstr "مقدار باید رشته باشد"
+
+#: exchange/settings/main.py:152
+msgid "English"
+msgstr ""
+
+#: exchange/settings/main.py:153
+msgid "Persian"
+msgstr ""
+
+#, fuzzy
+#~| msgid "Network {network} not found"
+#~ msgid "Network {} not found"
+#~ msgstr "شبکه {} یافت نشد"

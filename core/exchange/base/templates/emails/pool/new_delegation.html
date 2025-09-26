@@ -1,0 +1,23 @@
+{% extends 'email_base.html' %}
+{% load nobitex %}
+{% block content %}
+<div class="header">
+  <strong class="email-title">
+    ثبت درخواست مشارکت
+  </strong>
+</div>
+<div style="margin-top: 20px; margin-bottom: 50px">
+  <p class="content">
+    کاربر گرامی:
+    <br/>
+    <br/>
+    درخواست مشارکت شما در استخر
+    {{ currency|currencyformat:True }}
+    به میزان
+    {{ amount }}
+     در تاریخ
+    {{ created_at|shamsidateformat}}
+     ثبت شد. جهت کسب اطلاعات بیشتر لطفا به پنل کاربری خود در نوبیتکس و بخش استخر مشارکت مراجعه فرمایید.
+  </p>
+</div>
+{% endblock %}

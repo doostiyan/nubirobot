@@ -1,0 +1,82 @@
+[
+    {
+        "model": "sites.site",
+        "pk": 2,
+        "fields": {
+            "domain": "testnetapi.nobitex.ir",
+            "name": "Nobitex Testnet"
+        }
+    },
+    {
+        "model": "sites.site",
+        "pk": 3,
+        "fields": {
+            "domain": "127.0.0.1",
+            "name": "Nobitex Debug"
+        }
+    },
+    {
+        "model": "sites.site",
+        "pk": 4,
+        "fields": {
+            "domain": "api.nobitex.ir",
+            "name": "Nobitex.ir"
+        }
+    },
+    {
+        "model": "sites.site",
+        "pk": 5,
+        "fields": {
+            "domain": "api.nobitex1.ir",
+            "name": "Nobitex1.ir"
+        }
+    },
+    {
+        "model": "sites.site",
+        "pk": 6,
+        "fields": {
+            "domain": "api.nobitex.net",
+            "name": "Nobitex.net"
+        }
+    },
+    {
+        "model": "sites.site",
+        "pk": 9,
+        "fields": {
+            "domain": "testnetadmin.nxbo.ir",
+            "name": "Nobitex Testnet Admin"
+        }
+    },
+    {
+      "model": "sites.site",
+      "pk": 11,
+      "fields": {
+          "domain": "api-l.nobitex1.ir",
+          "name": "l.Nobitex1.ir"
+      }
+    },
+    {
+      "model": "sites.site",
+      "pk": 12,
+      "fields": {
+          "domain": "api-h.nobitex1.ir",
+          "name": "h.Nobitex1.ir"
+      }
+    },
+    {
+      "model": "sites.site",
+      "pk": 13,
+      "fields": {
+        "domain": "admin.nxbo.ir",
+        "name": "Nobitex Admin"
+      }
+    },
+    {
+      "model": "sites.site",
+      "pk": 14,
+      "fields": {
+        "domain": "api2.nobitex.ir",
+        "name": "Nobitex API2"
+      }
+    }
+]

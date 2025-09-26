@@ -1,0 +1,22 @@
+{% extends 'email_base.html' %}
+{% load static %}
+{% block content %}
+<div class="header">
+  <strong class="email-title">
+   عملیات ادغام با موفقیت انجام شد
+  </strong>
+</div>
+<div style="margin-top: 20px; margin-bottom: 50px">
+  کاربر گرامی،
+  ادغام
+  <span dir="ltr">{{second_account}}</span>
+   در حساب
+  <span dir="ltr">{{main_account}}</span>
+  با موفقیت انجام شد.
+  <br>
+  به منظور افزایش امنیت، برداشت رمزارز در حساب شما ۲۴ساعت محدود می‌شود.
+  <br>
+  در صورت هرگونه مغایرت با پشتیبانی موضوع را مطرح‌ نمایید.
+</div>
+
+{% endblock %}

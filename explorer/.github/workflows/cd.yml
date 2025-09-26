@@ -1,0 +1,41 @@
+name: ~CD
+
+on:
+  workflow_call:
+    inputs:
+      RUNNER:
+        required: true
+        type: string
+
+      hosts:
+        required: true
+        type: string
+
+    secrets:
+      SSH_KEY:
+        required: true
+
+      ANSIBLE_VAULT_PASS:
+        required: true
+
+jobs:
+  deploy:
+    runs-on: ${{ inputs.RUNNER }}
+    steps:
+      - name: Get code
+        uses: actions/checkout@v4
+        with:
+          submodules: recursive
+          ssh-key: ${{ secrets.SSH_KEY }}
+
+      - name: Update submodule.
+        run: git submodule update --remote
+
+      - name: Run playbook
+        uses: ./.github/actions/ansible
+        with:
+          ansible_dir: ~/explorer_ansible
+          inventory: hosts.yml
+          playbook: deploy.yml
+          vault_pass: ${{ secrets.ANSIBLE_VAULT_PASS }}
+          hosts: ${{ inputs.hosts }}

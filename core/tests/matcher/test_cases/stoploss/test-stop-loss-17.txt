@@ -1,0 +1,14 @@
+# double buy stop-limit - same stop point - first but worst done
+LOAD base-full
+25 BUY 10 102 STOP 101
+26 BUY 10 102.5 STOP 101
+CHECK
+27 BUY 40 MARKET
+MATCH 27 <= 19 10 101
+MATCH 27 <= 24 10 101
+MATCH 27 <= 3 10 102
+MATCH 27 <= 8 10 102
+CHECK
+MATCH 25 <= 11 10 102
+28 BUY 10 102
+CHECK

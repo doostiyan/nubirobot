@@ -1,0 +1,19 @@
+# Multiple time expansion stops because the price doesn't match the range.
+0 BUY 10 5
+1 BUY 10 6
+2 BUY 10 7
+3 BUY 10 7
+4 BUY 10 7
+6 BUY 10 20
+7 BUY 10 10
+8 SELL 10 30
+9 SELL 10 50
+ORDERBOOK 2
+10 SELL 60 7
+MATCH 10 <= 6 10 20
+MATCH 10 <= 7 10 10
+MATCH 10 <= 2 10 7
+MATCH 10 <= 3 10 7
+MATCH 10 <= 4 10 7
+EXPANSION buy 2 sell 0
+CHECK

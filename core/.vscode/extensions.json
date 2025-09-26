@@ -1,0 +1,14 @@
+{
+	"recommendations": [
+    "alefragnani.numbered-bookmarks",
+    "charliermarsh.ruff",
+    "editorconfig.editorconfig",
+		"esbenp.prettier-vscode",
+    "hediet.vscode-drawio",
+		"humao.rest-client",
+    "ms-python.python",
+    "streetsidesoftware.code-spell-checker",
+	],
+	"unwantedRecommendations": [
+	]
+}

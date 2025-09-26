@@ -1,0 +1,58 @@
+{% extends 'email_base.html' %}
+{% load static %}
+{% block content %}
+<div class="header">
+  <strong class="email-title">
+    شناسایی ورود با دستگاه یا مرورگر جدید
+  </strong>
+</div>
+<div style="margin-top: 20px; margin-bottom: 100px" class="content">
+  {{ user_full_name }} عزیز
+  <br/>
+  <br/>
+  لاگین به حساب شما با مشخصات زیر در نوبیتکس ثبت شده است.
+  <table style="width: 100%; padding: 1.84% 13.83% 0 13.14%">
+    <tbody>
+    <tr>
+      <th style="padding: 0">
+        <p class="text-right">دستگاه/مرورگر</p>
+      </th>
+      <td style="padding: 0">
+        <p style="text-align: left">{{ device_name }}</p>
+      </td>
+    </tr>
+    <tr>
+      <th style="padding: 0">
+        <p class="text-right">تاریخ</p>
+      </th>
+      <td style="padding: 0">
+        <p style="text-align: left">{{ login_date }}</p>
+      </td>
+    </tr>
+    <tr>
+      <th style="padding: 0">
+        <p class="text-right">زمان</p>
+      </th>
+      <td style="padding: 0">
+        <p style="text-align: left">{{ login_time }}</p>
+      </td>
+    </tr>
+    </tbody>
+  </table>
+  <br />
+  <br />
+  توجه: در صورتی که این ورود به حساب کاربری از طرف شما نبوده است،
+  توصیه داریم در اسرع وقت رمزحساب خود را تغییر داده یا با پشتیبانی تماس حاصل فرمایید.
+  در غیر این صورت این پیام صرفاً جهت اطلاع شما کاربر گرامی است و می توانید آن را نادیده بگیرید.
+  <br />
+  <br />
+  {% if emergency_cancel_url %}
+  همچنین می‌توانید از طریق لینک زیر برداشت‌های خود را مسدود کنید:
+  <br/>
+  <br/>
+  <a class="btn-danger" href="{{ emergency_cancel_url }}">لغو اضطراری برداشت</a>
+  <br/>
+  <br/>
+  {% endif %}
+</div>
+{% endblock %}

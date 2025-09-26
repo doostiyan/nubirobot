@@ -1,0 +1,118 @@
+name: ~CI
+
+on:
+  workflow_call:
+    inputs:
+      RUNNER:
+        required: true
+        type: string
+
+    secrets:
+      SSH_KEY:
+        required: true
+      MASTERKEY:
+        required: true
+      SECRET_KEY:
+        required: true
+      SERVICE_BASE_API_KEY:
+        required: true
+      APP_BASE_SSH_KEY:
+        required: true
+      APP_BLOCKCHAIN_SSH_KEY:
+        required: true
+      APP_CONFIG_SSH_KEY:
+        required: true
+
+
+env:
+  DJANGO_SETTINGS_MODULE: ${{ vars.DJANGO_SETTINGS_MODULE }}
+  DATABASE_URL: ${{ vars.DATABASE_URL }}
+  ALLOWED_HOSTS: ${{ vars.ALLOWED_HOSTS }}
+  MASTERKEY: ${{ secrets.MASTERKEY }}
+  SECRET_KEY: ${{ secrets.SECRET_KEY }}
+  SERVICE_BASE_API_KEY: ${{ secrets.SERVICE_BASE_API_KEY }}
+  REDIS_URL: 'redis://localhost:6379'
+  ENV: prod
+  IS_EXPLORER_SERVER: true
+
+jobs:
+  lint:
+    runs-on: ${{ inputs.RUNNER }}
+    steps:
+      - name: Get code
+        uses: actions/checkout@v4
+        with:
+          submodules: false
+          ssh-key: ${{ secrets.SSH_KEY }}
+
+      - name: Checkout submodules
+        uses: ./.github/actions/checkout
+        with:
+          app_base_ssh_key: ${{ secrets.APP_BASE_SSH_KEY }}
+          app_blockchain_ssh_key: ${{ secrets.APP_BLOCKCHAIN_SSH_KEY }}
+          app_config_ssh_key: ${{ secrets.APP_CONFIG_SSH_KEY }}
+
+      - name: Setup Python and install pre requirements
+        uses: ./.github/actions/setup
+
+      - name: Install dependencies
+        run: pip install -r requirements/lint.txt
+      - name: Run Ruff check
+        run: ruff check
+
+
+  test:
+    runs-on: ${{ inputs.RUNNER }}
+    services:
+      postgres:
+        image: postgres
+        env:
+          POSTGRES_DB: ${{ vars.PGDATABASE }}
+          POSTGRES_PASSWORD: postgres
+
+        options: >-
+          --health-cmd pg_isready
+          --health-interval 10s
+          --health-timeout 5s
+          --health-retries 5
+        ports:
+          - 5432:5432
+      redis:
+        image: redis
+        options: >-
+          --health-cmd "redis-cli ping"
+          --health-interval 10s
+          --health-timeout 5s
+          --health-retries 5
+        ports:
+          - 6379:6379
+    steps:
+      - name: Get code
+        uses: actions/checkout@v4
+        with:
+          submodules: false
+          ssh-key: ${{ secrets.SSH_KEY }}
+
+      - name: Checkout submodules
+        uses: ./.github/actions/checkout
+        with:
+          app_base_ssh_key: ${{ secrets.APP_BASE_SSH_KEY }}
+          app_blockchain_ssh_key: ${{ secrets.APP_BLOCKCHAIN_SSH_KEY }}
+          app_config_ssh_key: ${{ secrets.APP_CONFIG_SSH_KEY }}
+
+      - name: Setup Python and install pre requirements
+        uses: ./.github/actions/setup
+
+      - name: Install test dependencies
+        run: |
+          pip install -r requirements/run.txt -r requirements/test.txt --force-reinstall --no-cache-dir
+
+      - name: Collect statics files
+        run: |
+          python manage.py collectstatic
+
+      - name: Run Tests
+        run: |
+          pytest exchange/explorer
+
+# trigger workflow

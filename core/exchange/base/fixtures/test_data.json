@@ -1,0 +1,18 @@
+[
+  {
+    "model": "base.settings",
+    "pk": 100,
+    "fields": {
+      "key": "usd_value",
+      "value": "{\"sell\": 177300, \"buy\": 177100}"
+    }
+  },
+  {
+    "model": "sites.site",
+    "pk": 100,
+    "fields": {
+        "domain": "testserver",
+        "name": "Test Server"
+    }
+  }
+]

@@ -1,0 +1,3 @@
+/* Allow manual direction override by class directive and roles */
+.rtl { direction: rtl; }
+.ltr { direction: ltr; }

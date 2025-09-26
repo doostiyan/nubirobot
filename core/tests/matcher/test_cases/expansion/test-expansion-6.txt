@@ -1,0 +1,14 @@
+# Market order matched and doesn't have any kind of expansion.
+1 SELL 10 111
+2 SELL 5 160
+3 BUY 5 110.3
+4 BUY 5 100
+5 SELL 5 110.8
+6 SELL 5 150
+ORDERBOOK 2
+# Market price should be 110.8 and it will match within a range.
+7 BUY 15 MARKET
+MATCH 7 <= 5 5 110.8
+MATCH 7 <= 1 10 111
+EXPANSION buy 0 sell 0
+CHECK

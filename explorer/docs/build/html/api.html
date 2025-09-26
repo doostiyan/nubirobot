@@ -1,0 +1,338 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>API &mdash; Nobitex Explorer 1.0.0 documentation</title>
+      <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="_static/custom.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+        <script src="_static/jquery.js"></script>
+        <script src="_static/underscore.js"></script>
+        <script src="_static/doctools.js"></script>
+    <script src="_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="prev" title="Welcome to Nobitex Explorer v1.0.0!" href="index.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+            <a href="index.html" class="icon icon-home"> Nobitex Explorer
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul class="current">
+<li class="toctree-l1 current"><a class="current reference internal" href="#">API</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#how-to-use">How to use</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#transaction-details">Transaction Details</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#wallet-balance">Wallet Balance</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#wallet-transactions">Wallet Transactions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#block-info">Block info</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#block-head">Block head</a></li>
+</ul>
+</li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">Nobitex Explorer</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="index.html" class="icon icon-home"></a> &raquo;</li>
+      <li>API</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="_sources/api.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="api">
+<h1>API<a class="headerlink" href="#api" title="Permalink to this headline"></a></h1>
+<section id="how-to-use">
+<h2>How to use<a class="headerlink" href="#how-to-use" title="Permalink to this headline"></a></h2>
+<p>Pass the API key in NOBITEXPLORER-API-KEY header.</p>
+</section>
+<section id="transaction-details">
+<h2>Transaction Details<a class="headerlink" href="#transaction-details" title="Permalink to this headline"></a></h2>
+<dl class="http get">
+<dt class="sig sig-object http" id="get--transactions-network-tx_hash">
+<span class="sig-name descname"><span class="pre">GET</span> </span><span class="sig-name descname"><span class="pre">/transactions/{network}/{tx_hash}</span></span><a class="headerlink" href="#get--transactions-network-tx_hash" title="Permalink to this definition"></a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>network</strong> (<em>string</em>) – blockchain network to explore, e.g., BTC, ETH, BSC, FTM, POLYGON. It is Not case sensitive.</p></li>
+<li><p><strong>tx_hash</strong> (<em>string</em>) – transaction hash</p></li>
+</ul>
+</dd>
+<dt class="field-even">Status Codes</dt>
+<dd class="field-even"><ul class="simple">
+<li><p><span><a class="reference external" href="https://www.w3.org/Protocols/rfc2616/rfc2616-sec10.html#sec10.2.1">200 OK</a></span> – </p></li>
+<li><p><span><a class="reference external" href="https://www.w3.org/Protocols/rfc2616/rfc2616-sec10.html#sec10.4.4">403 Forbidden</a></span> – </p></li>
+<li><p><span><a class="reference external" href="https://www.w3.org/Protocols/rfc2616/rfc2616-sec10.html#sec10.4.5">404 Not Found</a></span> – </p></li>
+<li><p><span><a class="reference external" href="https://tools.ietf.org/html/rfc6585#section-4">429 Too Many Requests</a></span> – </p></li>
+<li><p><span><a class="reference external" href="https://www.w3.org/Protocols/rfc2616/rfc2616-sec10.html#sec10.5.1">500 Internal Server Error</a></span> – </p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<div class="line-block">
+<div class="line">            <strong>Response JSON Object:</strong></div>
+<div class="line">                * tx_hash(<em>string</em>)</div>
+<div class="line">                * success(<em>boolean</em>)</div>
+<div class="line">                * inputs(<em>[Input]</em>)</div>
+<div class="line">                * outputs(<em>[Output]</em>)</div>
+<div class="line">                * transfers(<em>[Transfer]</em>)</div>
+<div class="line">                * block(<em>integer</em>)</div>
+<div class="line">                * confirmations(<em>integer</em>)</div>
+<div class="line">                * fees(<em>string</em>)</div>
+<div class="line">                * memo(<em>string</em>)</div>
+<div class="line">                * date(<em>string</em>)</div>
+<div class="line">                * raw(<em>string</em>)</div>
+</div>
+<div class="line-block">
+<div class="line">                  <strong>Input Object:</strong></div>
+<div class="line">                      * currency(<em>string</em>)</div>
+<div class="line">                      * address(<em>string</em>)</div>
+<div class="line">                      * value(<em>string</em>)</div>
+<div class="line">                      * is_valid(<em>boolean</em>)</div>
+</div>
+<div class="line-block">
+<div class="line">                  <strong>Output Object:</strong></div>
+<div class="line">                      * currency(<em>string</em>)</div>
+<div class="line">                      * address(<em>string</em>)</div>
+<div class="line">                      * value(<em>string</em>)</div>
+<div class="line">                      * is_valid(<em>boolean</em>)</div>
+</div>
+<div class="line-block">
+<div class="line">                  <strong>Transfer Object:</strong></div>
+<div class="line">                      * type(<em>string</em>)</div>
+<div class="line">                      * symbol(<em>string</em>)</div>
+<div class="line">                      * from(<em>string</em>)</div>
+<div class="line">                      * to(<em>string</em>)</div>
+<div class="line">                      * token(<em>string</em>)</div>
+<div class="line">                      * value(<em>string</em>)</div>
+<div class="line">                      * is_valid(<em>boolean</em>)</div>
+</div>
+</section>
+<section id="wallet-balance">
+<h2>Wallet Balance<a class="headerlink" href="#wallet-balance" title="Permalink to this headline"></a></h2>
+<dl class="http get">
+<dt class="sig sig-object http" id="get--wallets-network-address-balance">
+<span class="sig-name descname"><span class="pre">GET</span> </span><span class="sig-name descname"><span class="pre">/wallets/{network}/{address}/balance</span></span><a class="headerlink" href="#get--wallets-network-address-balance" title="Permalink to this definition"></a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>network</strong> (<em>string</em>) – blockchain network to explore, e.g., BTC, ETH, BSC, FTM, POLYGON. It is Not case sensitive.</p></li>
+<li><p><strong>address</strong> (<em>string</em>) – </p></li>
+</ul>
+</dd>
+<dt class="field-even">Query Parameters</dt>
+<dd class="field-even"><ul class="simple">
+<li><p><strong>currency</strong> (<em>string</em>) – e.g., ETC, DOGE, DOT. It is Not case sensitive.</p></li>
+</ul>
+</dd>
+<dt class="field-odd">Status Codes</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><span><a class="reference external" href="https://www.w3.org/Protocols/rfc2616/rfc2616-sec10.html#sec10.2.1">200 OK</a></span> – </p></li>
+<li><p><span><a class="reference external" href="https://www.w3.org/Protocols/rfc2616/rfc2616-sec10.html#sec10.4.4">403 Forbidden</a></span> – </p></li>
+<li><p><span><a class="reference external" href="https://www.w3.org/Protocols/rfc2616/rfc2616-sec10.html#sec10.4.5">404 Not Found</a></span> – </p></li>
+<li><p><span><a class="reference external" href="https://tools.ietf.org/html/rfc6585#section-4">429 Too Many Requests</a></span> – </p></li>
+<li><p><span><a class="reference external" href="https://www.w3.org/Protocols/rfc2616/rfc2616-sec10.html#sec10.5.1">500 Internal Server Error</a></span> – </p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<div class="line-block">
+<div class="line">            <strong>Response JSON Object:</strong></div>
+<div class="line">                * <em>[Balance]</em></div>
+</div>
+<div class="line-block">
+<div class="line">                  <strong>Balance Object:</strong></div>
+<div class="line">                      * address(<em>string</em>)</div>
+<div class="line">                      * received(<em>decimal</em>)</div>
+<div class="line">                      * sent(<em>decimal</em>)</div>
+<div class="line">                      * balance(<em>decimal</em>)</div>
+<div class="line">                      * rewarded(<em>decimal</em>)</div>
+</div>
+</section>
+<section id="wallet-transactions">
+<h2>Wallet Transactions<a class="headerlink" href="#wallet-transactions" title="Permalink to this headline"></a></h2>
+<dl class="http get">
+<dt class="sig sig-object http" id="get--wallets-network-address-transactions">
+<span class="sig-name descname"><span class="pre">GET</span> </span><span class="sig-name descname"><span class="pre">/wallets/{network}/{address}/transactions</span></span><a class="headerlink" href="#get--wallets-network-address-transactions" title="Permalink to this definition"></a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>network</strong> (<em>string</em>) – blockchain network to explore, e.g., BTC, ETH, BSC, FTM, POLYGON. It is Not case sensitive.</p></li>
+<li><p><strong>address</strong> (<em>string</em>) – wallet address</p></li>
+</ul>
+</dd>
+<dt class="field-even">Query Parameters</dt>
+<dd class="field-even"><ul class="simple">
+<li><p><strong>currency</strong> (<em>string</em>) – e.g., ETC, DOGE, DOT. It is Not case sensitive.</p></li>
+</ul>
+</dd>
+<dt class="field-odd">Status Codes</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><span><a class="reference external" href="https://www.w3.org/Protocols/rfc2616/rfc2616-sec10.html#sec10.2.1">200 OK</a></span> – </p></li>
+<li><p><span><a class="reference external" href="https://www.w3.org/Protocols/rfc2616/rfc2616-sec10.html#sec10.4.4">403 Forbidden</a></span> – </p></li>
+<li><p><span><a class="reference external" href="https://www.w3.org/Protocols/rfc2616/rfc2616-sec10.html#sec10.4.5">404 Not Found</a></span> – </p></li>
+<li><p><span><a class="reference external" href="https://tools.ietf.org/html/rfc6585#section-4">429 Too Many Requests</a></span> – </p></li>
+<li><p><span><a class="reference external" href="https://www.w3.org/Protocols/rfc2616/rfc2616-sec10.html#sec10.5.1">500 Internal Server Error</a></span> – </p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<div class="line-block">
+<div class="line">            <strong>Response JSON Object:</strong></div>
+<div class="line">                * <em>[Transaction]</em></div>
+</div>
+<div class="line-block">
+<div class="line">                  <strong>Transaction Object:</strong></div>
+<div class="line">                      * tx_hash(<em>string</em>)</div>
+<div class="line">                      * address(<em>string</em>)</div>
+<div class="line">                      * from_address(<em>string</em>)</div>
+<div class="line">                      * to_address(<em>string</em>)</div>
+<div class="line">                      * amount(<em>decimal</em>)</div>
+<div class="line">                      * block(<em>integer</em>)</div>
+<div class="line">                      * date(<em>string</em>)</div>
+<div class="line">                      * confirmations(<em>integer</em>)</div>
+<div class="line">                      * direction(<em>string</em>)</div>
+<div class="line">                      * raw(<em>string</em>)</div>
+<div class="line">                      * memo(<em>string</em>)</div>
+</div>
+</section>
+<section id="block-info">
+<h2>Block info<a class="headerlink" href="#block-info" title="Permalink to this headline"></a></h2>
+<dl class="http get">
+<dt class="sig sig-object http" id="get--blocks-network-info">
+<span class="sig-name descname"><span class="pre">GET</span> </span><span class="sig-name descname"><span class="pre">/blocks/{network}/info</span></span><a class="headerlink" href="#get--blocks-network-info" title="Permalink to this definition"></a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>network</strong> (<em>string</em>) – </p></li>
+</ul>
+</dd>
+<dt class="field-even">Query Parameters</dt>
+<dd class="field-even"><ul class="simple">
+<li><p><strong>after_block_number</strong> (<em>integer</em>) – (Required)</p></li>
+<li><p><strong>to_block_number</strong> (<em>integer</em>) – (Required)</p></li>
+</ul>
+</dd>
+<dt class="field-odd">Status Codes</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><span><a class="reference external" href="https://www.w3.org/Protocols/rfc2616/rfc2616-sec10.html#sec10.2.1">200 OK</a></span> – </p></li>
+<li><p><span><a class="reference external" href="https://www.w3.org/Protocols/rfc2616/rfc2616-sec10.html#sec10.4.4">403 Forbidden</a></span> – </p></li>
+<li><p><span><a class="reference external" href="https://www.w3.org/Protocols/rfc2616/rfc2616-sec10.html#sec10.4.5">404 Not Found</a></span> – </p></li>
+<li><p><span><a class="reference external" href="https://tools.ietf.org/html/rfc6585#section-4">429 Too Many Requests</a></span> – </p></li>
+<li><p><span><a class="reference external" href="https://www.w3.org/Protocols/rfc2616/rfc2616-sec10.html#sec10.5.1">500 Internal Server Error</a></span> – </p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<div class="line-block">
+<div class="line">            <strong>Response JSON Object:</strong></div>
+<div class="line">                * <em>[Transaction]</em></div>
+<div class="line">                * latest_processed_block(<em>integer</em>)</div>
+</div>
+<div class="line-block">
+<div class="line">                  <strong>Transaction Object:</strong></div>
+<div class="line">                      * hash(<em>string</em>)</div>
+<div class="line">                      * currency(<em>string</em>)</div>
+<div class="line">                      * from_address(<em>string</em>)</div>
+<div class="line">                      * to_address(<em>string</em>)</div>
+<div class="line">                      * value(<em>decimal</em>)</div>
+</div>
+</section>
+<section id="block-head">
+<h2>Block head<a class="headerlink" href="#block-head" title="Permalink to this headline"></a></h2>
+<dl class="http get">
+<dt class="sig sig-object http" id="get--blocks-network-head">
+<span class="sig-name descname"><span class="pre">GET</span> </span><span class="sig-name descname"><span class="pre">/blocks/{network}/head</span></span><a class="headerlink" href="#get--blocks-network-head" title="Permalink to this definition"></a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>network</strong> (<em>string</em>) – </p></li>
+</ul>
+</dd>
+<dt class="field-even">Status Codes</dt>
+<dd class="field-even"><ul class="simple">
+<li><p><span><a class="reference external" href="https://www.w3.org/Protocols/rfc2616/rfc2616-sec10.html#sec10.2.1">200 OK</a></span> – </p></li>
+<li><p><span><a class="reference external" href="https://www.w3.org/Protocols/rfc2616/rfc2616-sec10.html#sec10.4.4">403 Forbidden</a></span> – </p></li>
+<li><p><span><a class="reference external" href="https://www.w3.org/Protocols/rfc2616/rfc2616-sec10.html#sec10.4.5">404 Not Found</a></span> – </p></li>
+<li><p><span><a class="reference external" href="https://tools.ietf.org/html/rfc6585#section-4">429 Too Many Requests</a></span> – </p></li>
+<li><p><span><a class="reference external" href="https://www.w3.org/Protocols/rfc2616/rfc2616-sec10.html#sec10.5.1">500 Internal Server Error</a></span> – </p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<div class="line-block">
+<div class="line">            <strong>Response JSON Object:</strong></div>
+<div class="line">                * block_head(<em>integer</em>)</div>
+</div>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="index.html" class="btn btn-neutral float-left" title="Welcome to Nobitex Explorer v1.0.0!" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2022, Mohammad Mojahed.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

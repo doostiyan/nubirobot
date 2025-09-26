@@ -1,0 +1,12 @@
+# sell stop-limit not filled
+LOAD base-full
+25 SELL 10 98.5 STOP 99
+CHECK
+26 SELL 40 98
+MATCH 26 <= 9 10 99
+MATCH 26 <= 12 10 99
+MATCH 26 <= 23 10 99
+MATCH 26 <= 6 10 98.5
+CHECK
+27 BUY 10 98
+CHECK

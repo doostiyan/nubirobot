@@ -1,0 +1,15 @@
+{% extends 'email_base.html' %} {% load nobitex %} {% block content %}
+<div class="header">
+  <strong class="email-title"> {{email_title}} </strong>
+</div>
+<div style="margin-top: 20px; margin-bottom: 50px">
+  <p class="content">
+    کاربر گرامی،
+    <br />
+    از این تاریخ شما امکان دریافت اشتراک جدید را نداشته و پس از پایان دوره
+    اشتراک کاربران، امکان فعالیت به عنوان تریدر سوشال ترید را نخواهید داشت.
+    <br />
+    دلیل: {{ reason }}
+  </p>
+</div>
+{% endblock %}

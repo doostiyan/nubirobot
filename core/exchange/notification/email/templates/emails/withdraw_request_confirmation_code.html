@@ -1,0 +1,37 @@
+{% extends 'email_base.html' %}
+{% load static %}
+{% block content %}
+  <div class="header">
+          <strong class="email-title">تایید درخواست برداشت </strong>
+        </div>
+  <div style="margin-top: 20px; margin-bottom: 35px">
+          <p class="content">
+            کاربر گرامی، درخواست برداشتی به مقدار
+            <span class="price">{{amount_display}}</span>
+            و به مقصد
+            <span class="price">{{destination}}</span> <br/>
+            {% if tag %}با تگ <span class="price">{{tag}}</span>{% endif %}
+            توسط شما ثبت شده است.
+          </p>
+          <hr />
+          <p class="content" style="line-height: 25px">
+            در صورت مورد تایید بودن این برداشت، روی دکمه زیر کلیک کنید:
+          </p>
+          <br /><a class="btn" href="{{verify_url}}">تایید برداشت</a
+          ><br /><br />
+          <p class="content">
+            همچنین می‌توانید کد تایید <span class="price">{{otp}}</span> را در
+            سایت وارد نمایید.
+          </p>
+          {% if emergency_cancel_url %}
+          <br />
+          <p class="content">
+            در صورتی که درخواست برداشت از سمت شما ثبت نشده است، می‌توانید جهت لغو
+            اضطراری روی دکمه‌ی زیر کلیک کنید:
+          </p>
+          <br /><a class="btn-danger" href="{{emergency_cancel_url}}"
+            >لغو اضطراری برداشت</a
+          ><br /><br />
+          {% endif %}
+        </div>
+{% endblock %}

@@ -1,0 +1,62 @@
+[
+    {
+        "pledgeableCategoryName": "CRYPTO_AS_RIALS_CREDIT",
+        "loanPrincipalSupplierId": "JIBIT",
+        "durations": [
+            {
+                "installments": [
+                    {
+                        "dueDate": "2024-07-07",
+                        "type": "OPERATION_FEE",
+                        "emiRials": 2100000
+                    },
+                    {
+                        "row": 1,
+                        "dueDate": "2024-08-06",
+                        "type": "INSTALLMENT",
+                        "emiRials": 71341667
+                    }
+                ],
+                "termMonth": 1,
+                "operationFee": {
+                    "totalFeePercent": 3.00
+                },
+                "paymentRials": 71341667
+            },
+            {
+                "installments": [
+                    {
+                        "dueDate": "2024-07-07",
+                        "type": "OPERATION_FEE",
+                        "emiRials": 3500000
+                    },
+                    {
+                        "row": 1,
+                        "dueDate": "2024-08-06",
+                        "type": "INSTALLMENT",
+                        "emiRials": 24227778
+                    },
+                    {
+                        "row": 2,
+                        "dueDate": "2024-09-05",
+                        "type": "INSTALLMENT",
+                        "emiRials": 24227778
+                    },
+                    {
+                        "row": 3,
+                        "dueDate": "2024-10-05",
+                        "type": "INSTALLMENT",
+                        "emiRials": 24227778
+                    }
+                ],
+                "termMonth": 3,
+                "operationFee": {
+                    "totalFeePercent": 5.00
+                },
+                "paymentRials": 72683334
+            }
+        ],
+        "principalRials": 70000000,
+        "interestRateAPR": 23.00
+    }
+]

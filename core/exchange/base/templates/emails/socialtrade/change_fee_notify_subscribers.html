@@ -1,0 +1,21 @@
+{% extends 'email_base.html' %}
+{% load nobitex %}
+{% block content %}
+  <div class="header">
+    <strong class="email-title">
+      {{ email_title }}
+    </strong>
+  </div>
+  <div style="margin-top: 20px; margin-bottom: 50px">
+    <p class="content">
+      کاربر گرامی،
+      <br/>
+      هزینه اشتراک سوشال ترید برای تریدر انتخابی شما در دوره بعدی با تغییر قیمت مواجه شده است. در صورت تمایل برای تغییر در اشتراک دوره بعدی به پنل کاربری مراجعه نمایید.
+      <br/>
+تریدر: {{nickname}}
+      <br/>
+      هزینه جدید اشتراک: {{subscription_fee}}
+      <br/>
+    </p>
+  </div>
+{% endblock %}

@@ -1,0 +1,840 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Code Review &mdash; Nobitex Explorer 1.0.0 documentation</title>
+      <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="_static/custom.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+        <script src="_static/jquery.js"></script>
+        <script src="_static/underscore.js"></script>
+        <script src="_static/doctools.js"></script>
+    <script src="_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="prev" title="API" href="api.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+            <a href="index.html" class="icon icon-home"> Nobitex Explorer
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="api.html">API</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Code Review</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#transactions">Transactions</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#transaction-details-service">Transaction Details Service</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#wallets">Wallets</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#wallet-balance-service">Wallet Balance Service</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#wallet-transactions-service">Wallet Transactions Service</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#wallet-details-service">Wallet Details Service</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#api">API</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#api-key">API key</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#jwt-authentication">JWT AUTHENTICATION</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#throttling">Throttling</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#accounts">Accounts</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#login-view">Login View</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#basis">Basis</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#tablefield">TableField</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#widget">Widget</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#html">Html</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#utils">Utils</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#dto">DTO</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#base-dto-creator">Base DTO Creator</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#baseinspector">BaseInspector</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">Nobitex Explorer</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="index.html" class="icon icon-home"></a> &raquo;</li>
+      <li>Code Review</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="_sources/code_review.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="code-review">
+<h1>Code Review<a class="headerlink" href="#code-review" title="Permalink to this headline"></a></h1>
+<section id="transactions">
+<h2>Transactions<a class="headerlink" href="#transactions" title="Permalink to this headline"></a></h2>
+<blockquote>
+<div><p>This module provides exploring services for transactions performed in different blockchain networks.</p>
+</div></blockquote>
+<section id="transaction-details-service">
+<h3>Transaction Details Service<a class="headerlink" href="#transaction-details-service" title="Permalink to this headline"></a></h3>
+<blockquote>
+<div><p>The get_transaction_details_dto method returns the details DTO of data returned by _get_transaction_details_data method for a transaction performed on blockchain. _get_transaction_details_data method first get the related inspector from get_inspector method and then it will check if there is config to use blockchain explorer or not then it will call the related method of inspector to get the transaction details data. If no transaction details data was found TransactionNotFoundException will be raised.</p>
+</div></blockquote>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">TransactionExplorerService</span><span class="p">:</span>
+
+<span class="nd">@staticmethod</span>
+<span class="k">def</span> <span class="nf">get_transaction_details_dto</span><span class="p">(</span><span class="n">network</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">tx_hash</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">currency</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span> <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">TransactionDetailsDTO</span><span class="p">:</span>
+    <span class="n">transaction_details_data</span> <span class="o">=</span> <span class="n">TransactionExplorerService</span><span class="o">.</span><span class="n">_get_transaction_details_data</span><span class="p">(</span><span class="n">network</span><span class="p">,</span> <span class="n">tx_hash</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">TransactionDetailsDTOCreator</span><span class="o">.</span><span class="n">get_dto</span><span class="p">(</span><span class="n">transaction_details_data</span><span class="p">)</span>
+
+<span class="nd">@staticmethod</span>
+
+<span class="k">def</span> <span class="nf">_get_transaction_details_data</span><span class="p">(</span><span class="n">network</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">tx_hash</span><span class="p">:</span> <span class="nb">str</span><span class="p">):</span>
+
+    <span class="n">_</span><span class="p">,</span> <span class="n">network</span> <span class="o">=</span> <span class="n">parse_currency2code_and_symbol</span><span class="p">(</span><span class="n">network</span><span class="p">)</span>
+    <span class="n">inspector</span> <span class="o">=</span> <span class="n">get_inspector</span><span class="p">(</span><span class="n">network</span><span class="p">)</span>
+    <span class="n">network</span> <span class="o">=</span> <span class="n">network</span><span class="o">.</span><span class="n">upper</span><span class="p">()</span>
+    <span class="n">transaction_details_data</span> <span class="o">=</span> <span class="n">inspector</span><span class="o">.</span><span class="n">get_transaction_details</span><span class="p">(</span><span class="n">network</span><span class="p">,</span> <span class="n">tx_hash</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">transaction_details_data</span><span class="p">:</span>
+        <span class="k">return</span> <span class="n">transaction_details_data</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="k">raise</span> <span class="n">TransactionNotFoundException</span><span class="p">(</span>
+            <span class="s1">&#39;Transaction not found, please check the network and hash parameter.&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</section>
+</section>
+<section id="wallets">
+<h2>Wallets<a class="headerlink" href="#wallets" title="Permalink to this headline"></a></h2>
+<blockquote>
+<div><p>This module provides exploring services for wallets(addresses) in different blockchain networks.</p>
+</div></blockquote>
+<section id="wallet-balance-service">
+<h3>Wallet Balance Service<a class="headerlink" href="#wallet-balance-service" title="Permalink to this headline"></a></h3>
+<blockquote>
+<div><p>The get_wallet_balances_dto method returns the balance DTO of a wallet(address). It first calls _get_wallet_balance_data. It gets inspector based whether network is in MAIN_INSPECTORS and currency is main currency of network or not and then it will call its get_wallet_balances method. The results passes to _parse_wallet_balances_data that creates wallet balances DTO of it. Then the dto will be returned.</p>
+</div></blockquote>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span> <span class="k">class</span> <span class="nc">WalletExplorerService</span><span class="p">:</span>
+
+<span class="nd">@staticmethod</span>
+<span class="k">def</span> <span class="nf">get_wallet_balances_dto</span><span class="p">(</span><span class="n">network</span><span class="p">,</span> <span class="n">address</span><span class="p">,</span> <span class="n">currency</span><span class="p">):</span>
+
+    <span class="n">currency2parse</span> <span class="o">=</span> <span class="n">get_currency2parse</span><span class="p">(</span><span class="n">currency</span><span class="p">,</span> <span class="n">network</span><span class="o">.</span><span class="n">lower</span><span class="p">())</span>
+    <span class="n">parsed_currency</span><span class="p">,</span> <span class="n">currency_symbol</span> <span class="o">=</span> <span class="n">parse_currency2code_and_symbol</span><span class="p">(</span><span class="n">currency2parse</span><span class="p">)</span>
+
+    <span class="n">raw_balances_data</span> <span class="o">=</span> <span class="n">WalletExplorerService</span><span class="o">.</span><span class="n">_get_wallet_balances_data</span><span class="p">(</span><span class="n">network</span><span class="o">.</span><span class="n">lower</span><span class="p">(),</span>
+                                                                        <span class="n">address</span><span class="p">,</span>
+                                                                        <span class="n">currency</span><span class="p">,</span>
+                                                                        <span class="n">currency_symbol</span><span class="p">,</span>
+                                                                        <span class="n">parsed_currency</span><span class="p">)</span>
+    <span class="n">balances_dto</span> <span class="o">=</span> <span class="n">WalletExplorerService</span><span class="o">.</span><span class="n">_parse_wallet_balances_data</span><span class="p">(</span><span class="n">raw_balances_data</span><span class="p">,</span>
+                                                                     <span class="n">currency</span><span class="p">,</span>
+                                                                     <span class="n">currency_symbol</span><span class="p">,</span>
+                                                                     <span class="n">currency2parse</span><span class="p">,</span>
+                                                                     <span class="n">parsed_currency</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">balances_dto</span>
+
+<span class="nd">@staticmethod</span>
+<span class="k">def</span> <span class="nf">_get_wallet_balances_data</span><span class="p">(</span><span class="n">network</span><span class="p">,</span> <span class="n">address</span><span class="p">,</span> <span class="n">currency</span><span class="p">,</span> <span class="n">currency_symbol</span><span class="p">,</span> <span class="n">parsed_currency</span><span class="p">):</span>
+    <span class="n">_</span><span class="p">,</span> <span class="n">network</span> <span class="o">=</span> <span class="n">parse_currency2code_and_symbol</span><span class="p">(</span><span class="n">network</span><span class="p">)</span>
+    <span class="n">network_upper</span> <span class="o">=</span> <span class="n">network</span><span class="o">.</span><span class="n">upper</span><span class="p">()</span>
+    <span class="n">address_list</span> <span class="o">=</span> <span class="p">[</span><span class="n">address</span><span class="p">,</span> <span class="p">]</span>
+    <span class="n">inspector</span> <span class="o">=</span> <span class="n">get_inspector</span><span class="p">(</span><span class="n">network</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">network</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">MAIN_INSPECTORS</span> <span class="ow">or</span> <span class="p">(</span><span class="n">currency</span> <span class="ow">and</span> <span class="n">is_main_currency_of_network</span><span class="p">(</span><span class="n">currency_symbol</span><span class="p">,</span> <span class="n">network</span><span class="p">)):</span>
+        <span class="n">raw_balances_data</span> <span class="o">=</span> <span class="n">inspector</span><span class="o">.</span><span class="n">get_wallet_balances</span><span class="p">(</span><span class="n">network_upper</span><span class="p">,</span> <span class="n">address_list</span><span class="p">,</span> <span class="n">parsed_currency</span><span class="p">)</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">main_network</span> <span class="o">=</span> <span class="n">MAIN_INSPECTORS</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">network</span><span class="p">)</span>
+        <span class="n">main_inspector</span> <span class="o">=</span> <span class="n">get_inspector</span><span class="p">(</span><span class="n">main_network</span><span class="p">)</span>
+        <span class="n">raw_balances_data</span> <span class="o">=</span> <span class="n">main_inspector</span><span class="o">.</span><span class="n">get_wallet_balances</span><span class="p">(</span><span class="n">network_upper</span><span class="p">,</span> <span class="n">address_list</span><span class="p">,</span>
+                                                               <span class="n">parsed_currency</span><span class="p">)</span> <span class="ow">or</span> <span class="n">defaultdict</span><span class="p">()</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="n">currency</span><span class="p">:</span>
+            <span class="n">currency_balances_data</span> <span class="o">=</span> <span class="n">inspector</span><span class="o">.</span><span class="n">get_wallet_balances</span><span class="p">(</span><span class="n">network_upper</span><span class="p">,</span> <span class="n">address_list</span><span class="p">,</span> <span class="n">parsed_currency</span><span class="p">)</span>
+            <span class="k">if</span> <span class="n">currency_balances_data</span><span class="p">:</span>
+                <span class="n">raw_balances_data</span><span class="o">.</span><span class="n">update</span><span class="p">({</span><span class="n">parsed_currency</span><span class="p">:</span> <span class="n">currency_balances_data</span><span class="p">})</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="k">raise</span> <span class="n">CustomException</span><span class="p">(</span><span class="s1">&#39;An error occurred!&#39;</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">raw_balances_data</span>
+
+<span class="nd">@staticmethod</span>
+<span class="k">def</span> <span class="nf">_parse_wallet_balances_data</span><span class="p">(</span><span class="n">raw_balances_data</span><span class="p">,</span> <span class="n">currency</span><span class="p">,</span> <span class="n">currency_symbol</span><span class="p">,</span> <span class="n">currency2parse</span><span class="p">,</span> <span class="n">parsed_currency</span><span class="p">):</span>
+    <span class="k">if</span> <span class="n">raw_balances_data</span><span class="p">:</span>
+        <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">raw_balances_data</span><span class="p">,</span> <span class="n">defaultdict</span><span class="p">):</span>
+            <span class="n">balances_data</span> <span class="o">=</span> <span class="p">[]</span>
+            <span class="k">if</span> <span class="n">currency</span><span class="p">:</span>
+                <span class="k">if</span> <span class="n">parsed_currency</span> <span class="ow">in</span> <span class="n">raw_balances_data</span><span class="p">:</span>
+                    <span class="n">balance_data</span> <span class="o">=</span> <span class="n">raw_balances_data</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">parsed_currency</span><span class="p">)</span>
+                    <span class="k">if</span> <span class="n">balance_data</span><span class="p">:</span>
+                        <span class="n">balance_data</span> <span class="o">=</span> <span class="n">balance_data</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+                        <span class="n">balance_data</span><span class="p">[</span><span class="s1">&#39;currency&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">currency_symbol</span>
+                        <span class="n">balances_data</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">balance_data</span><span class="p">)</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="k">for</span> <span class="n">_currency</span><span class="p">,</span> <span class="n">balance_data</span> <span class="ow">in</span> <span class="n">raw_balances_data</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+                    <span class="n">balance_data</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="s1">&#39;currency&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">get_currency_codename</span><span class="p">(</span><span class="n">_currency</span><span class="p">)</span><span class="o">.</span><span class="n">upper</span><span class="p">()</span>
+                    <span class="n">balances_data</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">balance_data</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+        <span class="k">elif</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">raw_balances_data</span><span class="p">,</span> <span class="nb">list</span><span class="p">):</span>
+            <span class="n">raw_balances_data</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="s1">&#39;currency&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">currency2parse</span>
+            <span class="n">balances_data</span> <span class="o">=</span> <span class="p">[</span><span class="n">raw_balances_data</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="p">]</span>
+        <span class="k">elif</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">raw_balances_data</span><span class="p">,</span> <span class="nb">dict</span><span class="p">):</span>
+            <span class="n">raw_balances_data</span><span class="p">[</span><span class="s1">&#39;currency&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">currency2parse</span>
+            <span class="n">balances_data</span> <span class="o">=</span> <span class="p">[</span><span class="n">raw_balances_data</span><span class="p">,</span> <span class="p">]</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">balances_data</span> <span class="o">=</span> <span class="n">raw_balances_data</span>
+        <span class="k">return</span> <span class="p">[</span><span class="n">WalletBalanceDTOCreator</span><span class="o">.</span><span class="n">get_dto</span><span class="p">(</span><span class="n">balance_data</span><span class="p">)</span> <span class="k">for</span> <span class="n">balance_data</span> <span class="ow">in</span> <span class="n">balances_data</span><span class="p">]</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="k">raise</span> <span class="n">CustomException</span><span class="p">(</span><span class="s1">&#39;An error occurred!&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</section>
+<section id="wallet-transactions-service">
+<h3>Wallet Transactions Service<a class="headerlink" href="#wallet-transactions-service" title="Permalink to this headline"></a></h3>
+<blockquote>
+<div><p>The get_wallet_transactions_dto method returns the balance DTO of a wallet(address). It first calls _get_wallet_transactions_data. It gets inspector based whether network is in MAIN_INSPECTORS and currency is main currency of network or not and then it will call its get_wallet_transactions method. The results passes to _parse_wallet_transactions_data that creates wallet transactions DTO of it. Then the dto will be returned.</p>
+</div></blockquote>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="nd">@staticmethod</span>
+<span class="k">def</span> <span class="nf">get_wallet_transactions_dto</span><span class="p">(</span><span class="n">network</span><span class="p">,</span> <span class="n">address</span><span class="p">,</span> <span class="n">currency</span><span class="p">):</span>
+    <span class="n">currency2parse</span> <span class="o">=</span> <span class="n">get_currency2parse</span><span class="p">(</span><span class="n">currency</span><span class="p">,</span> <span class="n">network</span><span class="o">.</span><span class="n">lower</span><span class="p">())</span>
+    <span class="n">parsed_currency</span><span class="p">,</span> <span class="n">currency_symbol</span> <span class="o">=</span> <span class="n">parse_currency2code_and_symbol</span><span class="p">(</span><span class="n">currency2parse</span><span class="p">)</span>
+    <span class="n">raw_transactions_data</span> <span class="o">=</span> <span class="n">WalletExplorerService</span><span class="o">.</span><span class="n">_get_wallet_transactions_data</span><span class="p">(</span><span class="n">network</span><span class="o">.</span><span class="n">lower</span><span class="p">(),</span>
+                                                                                <span class="n">address</span><span class="p">,</span>
+                                                                                <span class="n">currency</span><span class="p">,</span>
+                                                                                <span class="n">currency_symbol</span><span class="p">,</span>
+                                                                                <span class="n">parsed_currency</span><span class="p">)</span>
+    <span class="n">transactions_dto</span> <span class="o">=</span> <span class="n">WalletExplorerService</span><span class="o">.</span><span class="n">_parse_wallet_transactions_data</span><span class="p">(</span><span class="n">raw_transactions_data</span><span class="p">,</span> <span class="n">currency</span><span class="p">,</span>
+                                                                             <span class="n">currency_symbol</span><span class="p">,</span> <span class="n">currency2parse</span><span class="p">,</span>
+                                                                             <span class="n">parsed_currency</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">transactions_dto</span>
+
+<span class="nd">@staticmethod</span>
+<span class="k">def</span> <span class="nf">_get_wallet_transactions_data</span><span class="p">(</span><span class="n">network</span><span class="p">,</span> <span class="n">address</span><span class="p">,</span> <span class="n">currency</span><span class="p">,</span> <span class="n">currency_symbol</span><span class="p">,</span> <span class="n">parsed_currency</span><span class="p">):</span>
+    <span class="n">_</span><span class="p">,</span> <span class="n">network</span> <span class="o">=</span> <span class="n">parse_currency2code_and_symbol</span><span class="p">(</span><span class="n">network</span><span class="p">)</span>
+    <span class="n">network_upper</span> <span class="o">=</span> <span class="n">network</span><span class="o">.</span><span class="n">upper</span><span class="p">()</span>
+    <span class="n">inspector</span> <span class="o">=</span> <span class="n">get_inspector</span><span class="p">(</span><span class="n">network</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">network</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">MAIN_INSPECTORS</span> <span class="ow">or</span> <span class="p">(</span><span class="n">currency</span> <span class="ow">and</span> <span class="n">is_main_currency_of_network</span><span class="p">(</span><span class="n">currency_symbol</span><span class="p">,</span> <span class="n">network</span><span class="p">)):</span>
+        <span class="n">raw_transactions_data</span> <span class="o">=</span> <span class="n">inspector</span><span class="o">.</span><span class="n">get_wallet_transactions</span><span class="p">(</span><span class="n">network_upper</span><span class="p">,</span> <span class="n">address</span><span class="p">,</span>
+                                                                  <span class="n">parsed_currency</span><span class="p">)</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">main_network</span> <span class="o">=</span> <span class="n">MAIN_INSPECTORS</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">network</span><span class="p">)</span>
+        <span class="n">main_inspector</span> <span class="o">=</span> <span class="n">get_inspector</span><span class="p">(</span><span class="n">main_network</span><span class="p">)</span>
+        <span class="n">raw_transactions_data</span> <span class="o">=</span> <span class="n">main_inspector</span><span class="o">.</span><span class="n">get_wallet_transactions</span><span class="p">(</span><span class="n">network_upper</span><span class="p">,</span> <span class="n">address</span><span class="p">,</span>
+                                                                       <span class="n">parsed_currency</span><span class="p">)</span> <span class="ow">or</span> <span class="n">defaultdict</span><span class="p">()</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="n">currency</span><span class="p">:</span>
+            <span class="n">currency_transactions_data</span> <span class="o">=</span> <span class="n">inspector</span><span class="o">.</span><span class="n">get_wallet_transactions</span><span class="p">(</span><span class="n">network_upper</span><span class="p">,</span> <span class="n">address</span><span class="p">,</span> <span class="n">parsed_currency</span><span class="p">)</span>
+            <span class="k">if</span> <span class="n">currency_transactions_data</span><span class="p">:</span>
+                <span class="n">raw_transactions_data</span><span class="o">.</span><span class="n">update</span><span class="p">({</span><span class="n">parsed_currency</span><span class="p">:</span> <span class="n">currency_transactions_data</span><span class="p">})</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="k">raise</span> <span class="n">CustomException</span><span class="p">(</span><span class="s1">&#39;An error occurred!&#39;</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">raw_transactions_data</span>
+
+<span class="nd">@staticmethod</span>
+<span class="k">def</span> <span class="nf">_parse_wallet_transactions_data</span><span class="p">(</span><span class="n">raw_transactions_data</span><span class="p">,</span> <span class="n">currency</span><span class="p">,</span> <span class="n">currency_symbol</span><span class="p">,</span> <span class="n">currency2parse</span><span class="p">,</span>
+                                    <span class="n">parsed_currency</span><span class="p">):</span>
+    <span class="k">if</span> <span class="n">raw_transactions_data</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="n">transactions_data</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">raw_transactions_data</span><span class="p">,</span> <span class="p">(</span><span class="n">defaultdict</span><span class="p">,</span> <span class="nb">dict</span><span class="p">)):</span>
+            <span class="k">if</span> <span class="n">currency</span><span class="p">:</span>
+                <span class="k">if</span> <span class="n">parsed_currency</span> <span class="ow">in</span> <span class="n">raw_transactions_data</span><span class="p">:</span>
+                    <span class="n">raw_transaction_data</span> <span class="o">=</span> <span class="n">raw_transactions_data</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">parsed_currency</span><span class="p">)</span>
+                    <span class="k">if</span> <span class="n">raw_transaction_data</span><span class="p">:</span>
+                        <span class="k">for</span> <span class="n">transaction_data</span> <span class="ow">in</span> <span class="n">raw_transaction_data</span><span class="p">:</span>
+                            <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">transaction_data</span><span class="p">,</span> <span class="nb">dict</span><span class="p">):</span>
+                                <span class="n">transaction_data</span><span class="p">[</span><span class="s1">&#39;currency&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">currency_symbol</span>
+                            <span class="k">else</span><span class="p">:</span>
+                                <span class="n">transaction_data</span><span class="o">.</span><span class="n">currency</span> <span class="o">=</span> <span class="n">currency_symbol</span>
+                            <span class="n">transactions_data</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">transaction_data</span><span class="p">)</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="k">for</span> <span class="n">_currency</span><span class="p">,</span> <span class="n">raw_transaction_data</span> <span class="ow">in</span> <span class="n">raw_transactions_data</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+                    <span class="n">currency_code_name</span> <span class="o">=</span> <span class="n">get_currency_codename</span><span class="p">(</span><span class="n">_currency</span><span class="p">)</span><span class="o">.</span><span class="n">upper</span><span class="p">()</span>
+                    <span class="k">for</span> <span class="n">transaction_data</span> <span class="ow">in</span> <span class="n">raw_transaction_data</span><span class="p">:</span>
+                        <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">transaction_data</span><span class="p">,</span> <span class="nb">dict</span><span class="p">):</span>
+                            <span class="n">transaction_data</span><span class="p">[</span><span class="s1">&#39;currency&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">currency_code_name</span>
+                        <span class="k">else</span><span class="p">:</span>
+                            <span class="n">transaction_data</span><span class="o">.</span><span class="n">currency</span> <span class="o">=</span> <span class="n">currency_code_name</span>
+                        <span class="n">transactions_data</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">transaction_data</span><span class="p">)</span>
+        <span class="k">elif</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">raw_transactions_data</span><span class="p">,</span> <span class="nb">list</span><span class="p">):</span>
+            <span class="k">for</span> <span class="n">transaction_data</span> <span class="ow">in</span> <span class="n">raw_transactions_data</span><span class="p">:</span>
+                <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">transaction_data</span><span class="p">,</span> <span class="nb">dict</span><span class="p">):</span>
+                    <span class="n">transaction_data</span><span class="p">[</span><span class="s1">&#39;currency&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">currency2parse</span>
+                <span class="k">else</span><span class="p">:</span>
+                    <span class="n">transaction_data</span><span class="o">.</span><span class="n">currency</span> <span class="o">=</span> <span class="n">currency2parse</span>
+                <span class="n">transactions_data</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">transaction_data</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">transactions_data</span> <span class="o">=</span> <span class="n">raw_transactions_data</span>
+
+        <span class="k">return</span> <span class="p">[</span><span class="n">WalletTransactionDTOCreator</span><span class="o">.</span><span class="n">get_dto</span><span class="p">(</span><span class="n">transaction_data</span><span class="p">)</span> <span class="k">for</span> <span class="n">transaction_data</span> <span class="ow">in</span> <span class="n">transactions_data</span><span class="p">]</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="k">raise</span> <span class="n">CustomException</span><span class="p">(</span><span class="s1">&#39;An error occurred!&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</section>
+<section id="wallet-details-service">
+<h3>Wallet Details Service<a class="headerlink" href="#wallet-details-service" title="Permalink to this headline"></a></h3>
+<blockquote>
+<div><p>This method calls two service above and returns the result as wallet details DTO.</p>
+</div></blockquote>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="nd">@staticmethod</span>
+<span class="k">def</span> <span class="nf">get_wallet_details_dto</span><span class="p">(</span><span class="n">network</span><span class="p">,</span> <span class="n">address</span><span class="p">,</span> <span class="n">currency</span><span class="p">):</span>
+    <span class="n">balances_dto</span> <span class="o">=</span> <span class="n">WalletExplorerService</span><span class="o">.</span><span class="n">get_wallet_balances_dto</span><span class="p">(</span><span class="n">network</span><span class="p">,</span> <span class="n">address</span><span class="p">,</span> <span class="n">currency</span><span class="p">)</span>
+    <span class="n">transactions_dto</span> <span class="o">=</span> <span class="n">WalletExplorerService</span><span class="o">.</span><span class="n">get_wallet_transactions_dto</span><span class="p">(</span><span class="n">network</span><span class="p">,</span> <span class="n">address</span><span class="p">,</span> <span class="n">currency</span><span class="p">)</span>
+    <span class="n">details_dto</span> <span class="o">=</span> <span class="n">WalletDetailsDto</span><span class="p">(</span><span class="n">address</span><span class="o">=</span><span class="n">address</span><span class="p">,</span>
+                                   <span class="n">network</span><span class="o">=</span><span class="n">network</span><span class="p">,</span>
+                                   <span class="n">balance</span><span class="o">=</span><span class="n">balances_dto</span><span class="p">,</span>
+                                   <span class="n">transactions</span><span class="o">=</span><span class="n">transactions_dto</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">details_dto</span>
+</pre></div>
+</div>
+</section>
+</section>
+<section id="api">
+<h2>API<a class="headerlink" href="#api" title="Permalink to this headline"></a></h2>
+<p>It provides features about using API.</p>
+<section id="api-key">
+<h3>API key<a class="headerlink" href="#api-key" title="Permalink to this headline"></a></h3>
+<p>UserAPIKey is subclass of AbstractAPIKey of djangorestframework-api-key package that extended with rate and a foreign key to User model.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">UserAPIKey</span><span class="p">(</span><span class="n">AbstractAPIKey</span><span class="p">):</span>
+    <span class="n">objects</span> <span class="o">=</span> <span class="n">UserAPIKeyManager</span><span class="p">()</span>
+    <span class="n">user</span> <span class="o">=</span> <span class="n">models</span><span class="o">.</span><span class="n">ForeignKey</span><span class="p">(</span><span class="n">User</span><span class="p">,</span> <span class="n">on_delete</span><span class="o">=</span><span class="n">models</span><span class="o">.</span><span class="n">CASCADE</span><span class="p">,</span> <span class="n">related_name</span><span class="o">=</span><span class="s1">&#39;user_api_keys&#39;</span><span class="p">)</span>
+    <span class="n">rate</span> <span class="o">=</span> <span class="n">models</span><span class="o">.</span><span class="n">CharField</span><span class="p">(</span><span class="n">max_length</span><span class="o">=</span><span class="mi">20</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>This is the manager of model above. The get_from_key method trys to first fetch api key by its prefix from local cache then redis and then database. It will write to cache in the case of not written.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">UserAPIKeyManager</span><span class="p">(</span><span class="n">BaseAPIKeyManager</span><span class="p">):</span>
+
+    <span class="k">def</span> <span class="nf">_get_api_key_from_db</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">prefix</span><span class="p">:</span> <span class="nb">str</span><span class="p">):</span>
+        <span class="n">queryset</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_usable_keys</span><span class="p">()</span>
+        <span class="k">try</span><span class="p">:</span>
+            <span class="n">api_key</span> <span class="o">=</span> <span class="n">queryset</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">prefix</span><span class="o">=</span><span class="n">prefix</span><span class="p">)</span>
+            <span class="k">return</span> <span class="n">api_key</span>
+        <span class="k">except</span> <span class="bp">self</span><span class="o">.</span><span class="n">model</span><span class="o">.</span><span class="n">DoesNotExist</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="n">APIKeyNotFoundException</span><span class="p">(</span>
+                <span class="s1">&#39;Pass Valid API key in </span><span class="si">{}</span><span class="s1"> header&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">settings</span><span class="o">.</span><span class="n">API_KEY_CUSTOM_HEADER_CLIENT_FORMAT</span><span class="p">),</span>
+                <span class="s1">&#39;API key not found, Enter valid API key&#39;</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">get_from_key</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">key</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="s2">&quot;UserAPIKey&quot;</span><span class="p">:</span>
+        <span class="n">prefix</span><span class="p">,</span> <span class="n">_</span><span class="p">,</span> <span class="n">_</span> <span class="o">=</span> <span class="n">key</span><span class="o">.</span><span class="n">partition</span><span class="p">(</span><span class="s2">&quot;.&quot;</span><span class="p">)</span>
+
+        <span class="n">api_key</span> <span class="o">=</span> <span class="n">CacheUtils</span><span class="o">.</span><span class="n">read_from_local_cache</span><span class="p">(</span><span class="n">prefix</span><span class="p">,</span> <span class="s1">&#39;local__user_api_keys&#39;</span><span class="p">)</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="n">api_key</span><span class="p">:</span>
+            <span class="n">api_key</span> <span class="o">=</span> <span class="n">CacheUtils</span><span class="o">.</span><span class="n">read_from_external_cache</span><span class="p">(</span><span class="n">prefix</span><span class="p">,</span> <span class="s1">&#39;redis__user_api_keys&#39;</span><span class="p">)</span>
+            <span class="k">if</span> <span class="ow">not</span> <span class="n">api_key</span><span class="p">:</span>
+                <span class="n">api_key</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_get_api_key_from_db</span><span class="p">(</span><span class="n">prefix</span><span class="p">)</span>
+                <span class="n">CacheUtils</span><span class="o">.</span><span class="n">write_to_external_cache</span><span class="p">(</span><span class="n">prefix</span><span class="p">,</span> <span class="n">api_key</span><span class="p">,</span> <span class="s1">&#39;redis__user_api_keys&#39;</span><span class="p">)</span>
+            <span class="n">CacheUtils</span><span class="o">.</span><span class="n">write_to_local_cache</span><span class="p">(</span><span class="n">prefix</span><span class="p">,</span> <span class="n">api_key</span><span class="p">,</span> <span class="s1">&#39;local__user_api_keys&#39;</span><span class="p">)</span>
+
+        <span class="k">if</span> <span class="ow">not</span> <span class="n">api_key</span><span class="o">.</span><span class="n">is_valid</span><span class="p">(</span><span class="n">key</span><span class="p">):</span>
+            <span class="k">raise</span> <span class="n">APIKeyNotFoundException</span><span class="p">(</span>
+                <span class="s1">&#39;Pass Valid API key in </span><span class="si">{}</span><span class="s1"> header&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">settings</span><span class="o">.</span><span class="n">API_KEY_CUSTOM_HEADER_CLIENT_FORMAT</span><span class="p">),</span>
+                <span class="s1">&#39;API key not found, Enter valid API key&#39;</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">return</span> <span class="n">api_key</span>
+
+    <span class="k">def</span> <span class="nf">is_valid</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">api_key</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
+        <span class="k">if</span> <span class="n">api_key</span><span class="o">.</span><span class="n">has_expired</span><span class="p">:</span>
+            <span class="k">return</span> <span class="kc">False</span>
+
+        <span class="k">return</span> <span class="kc">True</span>
+</pre></div>
+</div>
+<p>UserHasAPIKey permission is checked for transactions and wallets services. It receives keys either from cookie or header based on format be html or json. It always allows clients with ips declared in settings to use api by free and without passing API key and for others checks the validity of api_key by is_valid method of model manager.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">UserHasAPIKey</span><span class="p">(</span><span class="n">BaseHasAPIKey</span><span class="p">):</span>
+    <span class="n">model</span> <span class="o">=</span> <span class="n">UserAPIKey</span>
+    <span class="n">API_KEY_HEADER</span> <span class="o">=</span> <span class="n">settings</span><span class="o">.</span><span class="n">API_KEY_CUSTOM_HEADER</span>
+
+    <span class="k">def</span> <span class="nf">has_permission</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">request</span><span class="p">,</span> <span class="n">view</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
+        <span class="k">assert</span> <span class="bp">self</span><span class="o">.</span><span class="n">model</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">,</span> <span class="p">(</span>
+                <span class="s2">&quot;</span><span class="si">%s</span><span class="s2"> must define `.model` with the API key model to use&quot;</span>
+                <span class="o">%</span> <span class="bp">self</span><span class="o">.</span><span class="vm">__class__</span><span class="o">.</span><span class="vm">__name__</span>
+        <span class="p">)</span>
+        <span class="n">client_ip</span> <span class="o">=</span> <span class="n">get_client_ip</span><span class="p">(</span><span class="n">request</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">client_ip</span> <span class="ow">in</span> <span class="n">settings</span><span class="o">.</span><span class="n">ALLOWED_CLIENT_IPS</span><span class="p">:</span>
+            <span class="k">return</span> <span class="kc">True</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">key</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_key</span><span class="p">(</span><span class="n">request</span><span class="p">)</span>
+            <span class="k">if</span> <span class="ow">not</span> <span class="n">key</span><span class="p">:</span>
+                <span class="k">return</span> <span class="kc">False</span>
+            <span class="n">model_manager</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">model</span><span class="o">.</span><span class="n">objects</span>
+            <span class="n">api_key</span> <span class="o">=</span> <span class="n">model_manager</span><span class="o">.</span><span class="n">get_from_key</span><span class="p">(</span><span class="n">key</span><span class="p">)</span>
+            <span class="n">request</span><span class="o">.</span><span class="n">api_key</span> <span class="o">=</span> <span class="n">api_key</span>
+            <span class="k">return</span> <span class="n">model_manager</span><span class="o">.</span><span class="n">is_valid</span><span class="p">(</span><span class="n">api_key</span><span class="p">)</span>
+
+    <span class="nd">@classmethod</span>
+    <span class="k">def</span> <span class="nf">get_key</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">request</span><span class="p">):</span>
+        <span class="nb">format</span> <span class="o">=</span> <span class="n">request</span><span class="o">.</span><span class="n">accepted_renderer</span><span class="o">.</span><span class="n">format</span>
+        <span class="k">if</span> <span class="nb">format</span> <span class="o">==</span> <span class="s1">&#39;html&#39;</span><span class="p">:</span>
+            <span class="n">key</span> <span class="o">=</span> <span class="n">request</span><span class="o">.</span><span class="n">COOKIES</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;api_key&#39;</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">key</span> <span class="o">=</span> <span class="n">request</span><span class="o">.</span><span class="n">META</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="bp">cls</span><span class="o">.</span><span class="n">API_KEY_HEADER</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">key</span>
+</pre></div>
+</div>
+</section>
+<section id="jwt-authentication">
+<h3>JWT AUTHENTICATION<a class="headerlink" href="#jwt-authentication" title="Permalink to this headline"></a></h3>
+<p>This is authentication class used for dashboard view. authenticate method first obtains token from cookies or header bases on format and then validate this token and returns authenticated user. It is stateless and does not require database queries.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">APIAuthentication</span><span class="p">(</span><span class="n">JWTStatelessUserAuthentication</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">authenticate</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">request</span><span class="p">):</span>
+        <span class="nb">format</span> <span class="o">=</span> <span class="n">request</span><span class="o">.</span><span class="n">accepted_renderer</span><span class="o">.</span><span class="n">format</span>
+        <span class="k">if</span> <span class="nb">format</span> <span class="o">==</span> <span class="s1">&#39;html&#39;</span><span class="p">:</span>
+            <span class="n">raw_token_str</span> <span class="o">=</span> <span class="n">request</span><span class="o">.</span><span class="n">COOKIES</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;access_token&#39;</span><span class="p">)</span>
+            <span class="k">if</span> <span class="n">raw_token_str</span><span class="p">:</span>
+                <span class="n">raw_token</span> <span class="o">=</span> <span class="nb">str</span><span class="o">.</span><span class="n">encode</span><span class="p">(</span><span class="n">raw_token_str</span><span class="p">)</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="k">return</span> <span class="kc">None</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">header</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_header</span><span class="p">(</span><span class="n">request</span><span class="p">)</span>
+            <span class="k">if</span> <span class="n">header</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+                <span class="k">return</span> <span class="kc">None</span>
+            <span class="n">raw_token</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_raw_token</span><span class="p">(</span><span class="n">header</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">raw_token</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="k">return</span> <span class="kc">None</span>
+
+        <span class="n">validated_token</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_validated_token</span><span class="p">(</span><span class="n">raw_token</span><span class="p">)</span>
+
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_user</span><span class="p">(</span><span class="n">validated_token</span><span class="p">),</span> <span class="n">validated_token</span>
+</pre></div>
+</div>
+</section>
+<section id="throttling">
+<h3>Throttling<a class="headerlink" href="#throttling" title="Permalink to this headline"></a></h3>
+<p>This is throttle class used for wallets and transactions services. allow_request method calls throttle_success or throttle_failure methods based on history and rate limit of api key.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">APIKeyRateThrottle</span><span class="p">(</span><span class="n">BaseThrottle</span><span class="p">):</span>
+    <span class="n">cache</span> <span class="o">=</span> <span class="n">caches</span><span class="p">[</span><span class="s1">&#39;redis__throttling&#39;</span><span class="p">]</span>
+    <span class="n">cache_format</span> <span class="o">=</span> <span class="s1">&#39;throttle_</span><span class="si">%(ident)s</span><span class="s1">&#39;</span>
+    <span class="n">timer</span> <span class="o">=</span> <span class="n">time</span><span class="o">.</span><span class="n">time</span>
+
+    <span class="k">def</span> <span class="nf">get_cache_key</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">request</span><span class="p">,</span> <span class="n">view</span><span class="p">):</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">cache_format</span> <span class="o">%</span> <span class="p">{</span>
+            <span class="s1">&#39;ident&#39;</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_ident</span><span class="p">(</span><span class="n">request</span><span class="p">)</span>
+        <span class="p">}</span>
+
+    <span class="k">def</span> <span class="nf">get_ident</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">request</span><span class="p">):</span>
+        <span class="k">return</span> <span class="n">request</span><span class="o">.</span><span class="n">api_key</span><span class="o">.</span><span class="n">prefix</span>
+
+    <span class="k">def</span> <span class="nf">get_rate</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">request</span><span class="p">):</span>
+        <span class="k">return</span> <span class="n">request</span><span class="o">.</span><span class="n">api_key</span><span class="o">.</span><span class="n">rate</span>
+
+    <span class="k">def</span> <span class="nf">parse_rate</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">rate</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Given the request rate string, return a two tuple of:</span>
+<span class="sd">        &lt;allowed number of requests&gt;, &lt;period of time in seconds&gt;</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="n">rate</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="k">return</span> <span class="kc">None</span><span class="p">,</span> <span class="kc">None</span>
+        <span class="n">num</span><span class="p">,</span> <span class="n">period</span> <span class="o">=</span> <span class="n">rate</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s1">&#39;/&#39;</span><span class="p">)</span>
+        <span class="n">num_requests</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">num</span><span class="p">)</span>
+        <span class="n">duration</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;s&#39;</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span> <span class="s1">&#39;m&#39;</span><span class="p">:</span> <span class="mi">60</span><span class="p">,</span> <span class="s1">&#39;h&#39;</span><span class="p">:</span> <span class="mi">3600</span><span class="p">,</span> <span class="s1">&#39;d&#39;</span><span class="p">:</span> <span class="mi">86400</span><span class="p">}[</span><span class="n">period</span><span class="p">[</span><span class="mi">0</span><span class="p">]]</span>
+        <span class="k">return</span> <span class="n">num_requests</span><span class="p">,</span> <span class="n">duration</span>
+
+    <span class="k">def</span> <span class="nf">allow_request</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">request</span><span class="p">,</span> <span class="n">view</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Implement the check to see if the request should be throttled.</span>
+
+<span class="sd">        On success calls `throttle_success`.</span>
+<span class="sd">        On failure calls `throttle_failure`.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="nb">hasattr</span><span class="p">(</span><span class="n">request</span><span class="p">,</span> <span class="s1">&#39;api_key&#39;</span><span class="p">):</span>
+            <span class="n">rate</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_rate</span><span class="p">(</span><span class="n">request</span><span class="p">)</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">num_requests</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">duration</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">parse_rate</span><span class="p">(</span><span class="n">rate</span><span class="p">)</span>
+
+            <span class="bp">self</span><span class="o">.</span><span class="n">key</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_cache_key</span><span class="p">(</span><span class="n">request</span><span class="p">,</span> <span class="n">view</span><span class="p">)</span>
+            <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">key</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+                <span class="k">return</span> <span class="kc">True</span>
+
+            <span class="bp">self</span><span class="o">.</span><span class="n">history</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">cache</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">key</span><span class="p">,</span> <span class="p">[])</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">now</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">timer</span><span class="p">()</span>
+
+            <span class="c1"># Drop any requests from the history which have now passed the</span>
+            <span class="c1"># throttle duration</span>
+            <span class="k">while</span> <span class="bp">self</span><span class="o">.</span><span class="n">history</span> <span class="ow">and</span> <span class="bp">self</span><span class="o">.</span><span class="n">history</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="o">&lt;=</span> <span class="bp">self</span><span class="o">.</span><span class="n">now</span> <span class="o">-</span> <span class="bp">self</span><span class="o">.</span><span class="n">duration</span><span class="p">:</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">history</span><span class="o">.</span><span class="n">pop</span><span class="p">()</span>
+            <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">history</span><span class="p">)</span> <span class="o">&gt;=</span> <span class="bp">self</span><span class="o">.</span><span class="n">num_requests</span><span class="p">:</span>
+                <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">throttle_failure</span><span class="p">()</span>
+            <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">throttle_success</span><span class="p">()</span>
+        <span class="k">return</span> <span class="kc">True</span>
+
+    <span class="k">def</span> <span class="nf">throttle_success</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Inserts the current request&#39;s timestamp along with the key</span>
+<span class="sd">        into the cache.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">history</span><span class="o">.</span><span class="n">insert</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">now</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">cache</span><span class="o">.</span><span class="n">set</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">key</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">history</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">duration</span><span class="p">)</span>
+        <span class="k">return</span> <span class="kc">True</span>
+
+    <span class="k">def</span> <span class="nf">throttle_failure</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Called when a request to the API has failed due to throttling.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="kc">False</span>
+
+    <span class="k">def</span> <span class="nf">wait</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Returns the recommended next request time in seconds.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">history</span><span class="p">:</span>
+            <span class="n">remaining_duration</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">duration</span> <span class="o">-</span> <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">now</span> <span class="o">-</span> <span class="bp">self</span><span class="o">.</span><span class="n">history</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">])</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">remaining_duration</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">duration</span>
+
+        <span class="n">available_requests</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">num_requests</span> <span class="o">-</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">history</span><span class="p">)</span> <span class="o">+</span> <span class="mi">1</span>
+        <span class="k">if</span> <span class="n">available_requests</span> <span class="o">&lt;=</span> <span class="mi">0</span><span class="p">:</span>
+            <span class="k">return</span> <span class="kc">None</span>
+
+        <span class="k">return</span> <span class="n">remaining_duration</span> <span class="o">/</span> <span class="nb">float</span><span class="p">(</span><span class="n">available_requests</span><span class="p">)</span>
+</pre></div>
+</div>
+</section>
+</section>
+<section id="accounts">
+<h2>Accounts<a class="headerlink" href="#accounts" title="Permalink to this headline"></a></h2>
+<p>This is the app that add accounting features to the project.</p>
+<section id="login-view">
+<h3>Login View<a class="headerlink" href="#login-view" title="Permalink to this headline"></a></h3>
+<p>The post method first checks if the login_form is valid then authenticates the user by given credentials if it was successful checks the validity of refresh and access token and issues new pair tokens if required then redirects to the dashboard page.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">LoginView</span><span class="p">(</span><span class="n">APIView</span><span class="p">):</span>
+    <span class="n">renderer_classes</span> <span class="o">=</span> <span class="p">(</span><span class="n">JSONRenderer</span><span class="p">,</span> <span class="n">TemplateHTMLRenderer</span><span class="p">,)</span>
+
+    <span class="k">def</span> <span class="nf">get</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">request</span><span class="p">,</span> <span class="nb">format</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+        <span class="nb">format</span> <span class="o">=</span> <span class="n">request</span><span class="o">.</span><span class="n">accepted_renderer</span><span class="o">.</span><span class="n">format</span>
+        <span class="k">if</span> <span class="nb">format</span> <span class="o">==</span> <span class="s1">&#39;html&#39;</span><span class="p">:</span>
+            <span class="n">login_form</span> <span class="o">=</span> <span class="n">LoginForm</span><span class="p">()</span>
+            <span class="n">context</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;login_form&#39;</span><span class="p">:</span> <span class="n">login_form</span><span class="p">}</span>
+            <span class="k">return</span> <span class="n">render</span><span class="p">(</span><span class="n">request</span><span class="p">,</span> <span class="s1">&#39;accounts/login.html&#39;</span><span class="p">,</span> <span class="n">context</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">post</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">request</span><span class="p">):</span>
+
+        <span class="n">login_form</span> <span class="o">=</span> <span class="n">LoginForm</span><span class="p">(</span><span class="n">data</span><span class="o">=</span><span class="n">request</span><span class="o">.</span><span class="n">data</span><span class="p">)</span>
+        <span class="n">context</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;login_form&#39;</span><span class="p">:</span> <span class="n">login_form</span><span class="p">}</span>
+        <span class="k">if</span> <span class="n">login_form</span><span class="o">.</span><span class="n">is_valid</span><span class="p">():</span>
+            <span class="n">username</span> <span class="o">=</span> <span class="n">login_form</span><span class="o">.</span><span class="n">cleaned_data</span><span class="p">[</span><span class="s1">&#39;username&#39;</span><span class="p">]</span>
+            <span class="n">password</span> <span class="o">=</span> <span class="n">login_form</span><span class="o">.</span><span class="n">cleaned_data</span><span class="p">[</span><span class="s1">&#39;password&#39;</span><span class="p">]</span>
+            <span class="n">user</span> <span class="o">=</span> <span class="n">authenticate</span><span class="p">(</span><span class="n">username</span><span class="o">=</span><span class="n">username</span><span class="p">,</span> <span class="n">password</span><span class="o">=</span><span class="n">password</span><span class="p">)</span>
+            <span class="k">if</span> <span class="ow">not</span> <span class="n">user</span><span class="p">:</span>
+                <span class="n">login_form</span><span class="o">.</span><span class="n">add_error</span><span class="p">(</span><span class="s2">&quot;password&quot;</span><span class="p">,</span> <span class="s2">&quot;خطا: نام کاربری یا گذرواژه اشتباه است!&quot;</span><span class="p">)</span>
+                <span class="k">return</span> <span class="n">render</span><span class="p">(</span><span class="n">request</span><span class="p">,</span> <span class="s1">&#39;accounts/login.html&#39;</span><span class="p">,</span> <span class="n">context</span><span class="p">)</span>
+
+            <span class="n">access_token_str</span> <span class="o">=</span> <span class="n">request</span><span class="o">.</span><span class="n">COOKIES</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;access_token&#39;</span><span class="p">)</span>
+            <span class="n">response</span> <span class="o">=</span> <span class="n">redirect</span><span class="p">(</span><span class="n">reverse</span><span class="p">(</span><span class="s1">&#39;accounts:dashboard&#39;</span><span class="p">)</span> <span class="o">+</span> <span class="s1">&#39;?format=html&#39;</span><span class="p">)</span>
+            <span class="n">issue_new_pair_tokens</span> <span class="o">=</span> <span class="kc">False</span>
+            <span class="k">if</span> <span class="ow">not</span> <span class="n">access_token_str</span> <span class="ow">or</span> <span class="p">(</span><span class="n">access_token_str</span> <span class="ow">and</span> <span class="n">has_expired</span><span class="p">(</span><span class="n">decode_token</span><span class="p">(</span><span class="s1">&#39;access&#39;</span><span class="p">,</span> <span class="n">access_token_str</span><span class="p">))):</span>
+                <span class="n">refresh_token_str</span> <span class="o">=</span> <span class="n">request</span><span class="o">.</span><span class="n">COOKIES</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;refresh_token&#39;</span><span class="p">)</span>
+                <span class="k">if</span> <span class="n">refresh_token_str</span><span class="p">:</span>
+                    <span class="n">refresh_token</span> <span class="o">=</span> <span class="n">decode_token</span><span class="p">(</span><span class="s1">&#39;refresh&#39;</span><span class="p">,</span> <span class="n">refresh_token_str</span><span class="p">)</span>
+                    <span class="k">if</span> <span class="n">has_expired</span><span class="p">(</span><span class="n">refresh_token</span><span class="p">):</span>
+                        <span class="n">issue_new_pair_tokens</span> <span class="o">=</span> <span class="kc">True</span>
+                    <span class="k">else</span><span class="p">:</span>
+                        <span class="n">access_token</span> <span class="o">=</span> <span class="n">refresh_token</span><span class="o">.</span><span class="n">access_token</span>
+                        <span class="n">response</span><span class="o">.</span><span class="n">set_cookie</span><span class="p">(</span><span class="s1">&#39;access_token&#39;</span><span class="p">,</span> <span class="n">access_token</span><span class="p">,</span> <span class="n">httponly</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+                <span class="k">else</span><span class="p">:</span>
+                    <span class="n">issue_new_pair_tokens</span> <span class="o">=</span> <span class="kc">True</span>
+            <span class="k">if</span> <span class="n">issue_new_pair_tokens</span><span class="p">:</span>
+                <span class="n">refresh_token</span><span class="p">,</span> <span class="n">access_token</span> <span class="o">=</span> <span class="n">get_token</span><span class="p">(</span><span class="n">user</span><span class="p">)</span>
+                <span class="n">response</span><span class="o">.</span><span class="n">set_cookie</span><span class="p">(</span><span class="s1">&#39;refresh_token&#39;</span><span class="p">,</span> <span class="n">refresh_token</span><span class="p">,</span> <span class="n">httponly</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+                <span class="n">response</span><span class="o">.</span><span class="n">set_cookie</span><span class="p">(</span><span class="s1">&#39;access_token&#39;</span><span class="p">,</span> <span class="n">access_token</span><span class="p">,</span> <span class="n">httponly</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+
+            <span class="k">return</span> <span class="n">response</span>
+
+        <span class="k">return</span> <span class="n">render</span><span class="p">(</span><span class="n">request</span><span class="p">,</span> <span class="s1">&#39;accounts/login.html&#39;</span><span class="p">,</span> <span class="n">context</span><span class="p">)</span>
+</pre></div>
+</div>
+</section>
+</section>
+<section id="basis">
+<h2>Basis<a class="headerlink" href="#basis" title="Permalink to this headline"></a></h2>
+<p>This is the app contains some basic templates and forms.</p>
+<section id="tablefield">
+<h3>TableField<a class="headerlink" href="#tablefield" title="Permalink to this headline"></a></h3>
+<p>This is a field in a django form shown as html table. It accepts list of dictionaries as input and creates list of lists that the first list is headers and others are values. It is used in transactions and wallets apps.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">TableField</span><span class="p">(</span><span class="n">Field</span><span class="p">):</span>
+    <span class="n">widget</span> <span class="o">=</span> <span class="n">Table</span>
+    <span class="n">fields</span> <span class="o">=</span> <span class="kc">None</span>
+    <span class="n">headers</span> <span class="o">=</span> <span class="kc">None</span>
+
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+        <span class="k">for</span> <span class="n">kwarg</span> <span class="ow">in</span> <span class="p">[</span><span class="s1">&#39;headers&#39;</span><span class="p">,</span> <span class="s1">&#39;fields&#39;</span><span class="p">]:</span>
+            <span class="k">if</span> <span class="n">kwarg</span> <span class="ow">in</span> <span class="n">kwargs</span><span class="p">:</span>
+                <span class="n">value</span> <span class="o">=</span> <span class="n">kwargs</span><span class="o">.</span><span class="n">pop</span><span class="p">(</span><span class="n">kwarg</span><span class="p">)</span>
+                <span class="nb">setattr</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">kwarg</span><span class="p">,</span> <span class="n">value</span><span class="p">)</span>
+        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">prepare_value</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">value</span><span class="p">):</span>
+        <span class="n">val</span> <span class="o">=</span> <span class="p">[[]]</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">headers</span><span class="p">:</span>
+            <span class="n">val</span> <span class="o">=</span> <span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">headers</span><span class="p">]</span>
+        <span class="k">if</span> <span class="n">value</span><span class="p">:</span>
+            <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">fields</span><span class="p">:</span>
+                <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">value</span><span class="p">)):</span>
+                    <span class="n">value</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="p">{</span><span class="n">field</span><span class="p">:</span> <span class="n">value</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="n">field</span><span class="p">]</span> <span class="k">for</span> <span class="n">field</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">fields</span><span class="p">}</span>
+
+            <span class="n">val</span> <span class="o">+=</span> <span class="n">list_of_dicts2list_of_lists</span><span class="p">(</span><span class="n">value</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">headers</span><span class="p">:</span>
+                <span class="n">val</span> <span class="o">+=</span> <span class="p">[[</span><span class="s1">&#39;&#39;</span><span class="p">]</span> <span class="o">*</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">headers</span><span class="p">)]</span>
+        <span class="k">return</span> <span class="n">val</span>
+</pre></div>
+</div>
+<section id="widget">
+<h4>Widget<a class="headerlink" href="#widget" title="Permalink to this headline"></a></h4>
+<p>This is table widget used in table field.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">Table</span><span class="p">(</span><span class="n">Widget</span><span class="p">):</span>
+    <span class="n">template_name</span> <span class="o">=</span> <span class="s1">&#39;basis/table_field.html&#39;</span>
+</pre></div>
+</div>
+</section>
+<section id="html">
+<h4>Html<a class="headerlink" href="#html" title="Permalink to this headline"></a></h4>
+<p>This is html code of table field.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">&lt;</span><span class="n">div</span> <span class="n">class</span><span class="o">=</span><span class="s2">&quot;py-2 table-responsive&quot;</span><span class="o">&gt;</span>
+    <span class="o">&lt;</span><span class="n">table</span> <span class="n">class</span><span class="o">=</span><span class="s2">&quot;table table-striped table-bordered text-center&quot;</span> <span class="nb">type</span><span class="o">=</span><span class="s2">&quot;{{ widget.type }}&quot;</span>
+            <span class="p">{</span><span class="o">%</span> <span class="n">include</span> <span class="s2">&quot;django/forms/widgets/attrs.html&quot;</span> <span class="o">%</span><span class="p">}</span><span class="o">&gt;</span>
+        <span class="p">{</span><span class="o">%</span> <span class="k">with</span> <span class="n">widget</span><span class="o">.</span><span class="n">value</span><span class="o">|</span><span class="n">string2list</span> <span class="k">as</span> <span class="n">rows</span> <span class="o">%</span><span class="p">}</span>
+            <span class="o">&lt;</span><span class="n">thead</span><span class="o">&gt;</span>
+            <span class="o">&lt;</span><span class="n">tr</span><span class="o">&gt;</span>
+                <span class="p">{</span><span class="o">%</span> <span class="k">for</span> <span class="n">col</span> <span class="ow">in</span> <span class="n">rows</span><span class="mf">.0</span> <span class="o">%</span><span class="p">}</span>
+                    <span class="o">&lt;</span><span class="n">th</span><span class="o">&gt;</span><span class="p">{{</span> <span class="n">col</span> <span class="p">}}</span><span class="o">&lt;/</span><span class="n">th</span><span class="o">&gt;</span>
+                <span class="p">{</span><span class="o">%</span> <span class="n">endfor</span> <span class="o">%</span><span class="p">}</span>
+            <span class="o">&lt;/</span><span class="n">tr</span><span class="o">&gt;</span>
+            <span class="o">&lt;/</span><span class="n">thead</span><span class="o">&gt;</span>
+            <span class="o">&lt;</span><span class="n">tbody</span><span class="o">&gt;</span>
+            <span class="p">{</span><span class="o">%</span> <span class="k">for</span> <span class="n">row</span> <span class="ow">in</span> <span class="n">rows</span> <span class="o">%</span><span class="p">}</span>
+                <span class="p">{</span><span class="o">%</span> <span class="k">if</span> <span class="ow">not</span> <span class="n">forloop</span><span class="o">.</span><span class="n">first</span> <span class="o">%</span><span class="p">}</span>
+                    <span class="o">&lt;</span><span class="n">tr</span><span class="o">&gt;</span>
+                        <span class="p">{</span><span class="o">%</span> <span class="k">for</span> <span class="n">col</span> <span class="ow">in</span> <span class="n">row</span> <span class="o">%</span><span class="p">}</span>
+                            <span class="o">&lt;</span><span class="n">td</span> <span class="nb">dir</span><span class="o">=</span><span class="s2">&quot;ltr&quot;</span><span class="o">&gt;</span><span class="p">{{</span> <span class="n">col</span> <span class="p">}}</span><span class="o">&lt;/</span><span class="n">td</span><span class="o">&gt;</span>
+                        <span class="p">{</span><span class="o">%</span> <span class="n">endfor</span> <span class="o">%</span><span class="p">}</span>
+                    <span class="o">&lt;/</span><span class="n">tr</span><span class="o">&gt;</span>
+                <span class="p">{</span><span class="o">%</span> <span class="n">endif</span> <span class="o">%</span><span class="p">}</span>
+            <span class="p">{</span><span class="o">%</span> <span class="n">endfor</span> <span class="o">%</span><span class="p">}</span>
+            <span class="o">&lt;/</span><span class="n">tbody</span><span class="o">&gt;</span>
+        <span class="p">{</span><span class="o">%</span> <span class="n">endwith</span> <span class="o">%</span><span class="p">}</span>
+    <span class="o">&lt;/</span><span class="n">table</span><span class="o">&gt;</span>
+<span class="o">&lt;/</span><span class="n">div</span><span class="o">&gt;</span>
+</pre></div>
+</div>
+</section>
+</section>
+</section>
+<section id="utils">
+<h2>Utils<a class="headerlink" href="#utils" title="Permalink to this headline"></a></h2>
+<p>Here are some tools used in django apps.</p>
+<section id="dto">
+<h3>DTO<a class="headerlink" href="#dto" title="Permalink to this headline"></a></h3>
+<p>This is the parent class of DTO classes of apps. get_data method returns a dict representation of DTO data.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="nd">@dataclass</span>
+<span class="k">class</span> <span class="nc">DTO</span><span class="p">:</span>
+    <span class="nd">@classmethod</span>
+    <span class="k">def</span> <span class="nf">get_fields</span><span class="p">(</span><span class="bp">cls</span><span class="p">):</span>
+        <span class="k">return</span> <span class="n">fields</span><span class="p">(</span><span class="bp">cls</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">get_data</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="n">data</span> <span class="o">=</span> <span class="p">{}</span>
+        <span class="k">for</span> <span class="n">field</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_fields</span><span class="p">():</span>
+            <span class="n">value</span> <span class="o">=</span> <span class="nb">getattr</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">field</span><span class="o">.</span><span class="n">name</span><span class="p">)</span>
+            <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">value</span><span class="p">,</span> <span class="n">DTO</span><span class="p">):</span>
+                <span class="n">value</span> <span class="o">=</span> <span class="n">value</span><span class="o">.</span><span class="n">get_data</span><span class="p">()</span>
+            <span class="k">elif</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">value</span><span class="p">,</span> <span class="nb">list</span><span class="p">):</span>
+                <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">value</span><span class="p">)):</span>
+                    <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">value</span><span class="p">[</span><span class="n">i</span><span class="p">],</span> <span class="n">DTO</span><span class="p">):</span>
+                        <span class="n">value</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">value</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">.</span><span class="n">get_data</span><span class="p">()</span>
+            <span class="n">data</span><span class="p">[</span><span class="n">field</span><span class="o">.</span><span class="n">name</span><span class="p">]</span> <span class="o">=</span> <span class="n">value</span>
+        <span class="k">return</span> <span class="n">data</span>
+</pre></div>
+</div>
+</section>
+<section id="base-dto-creator">
+<h3>Base DTO Creator<a class="headerlink" href="#base-dto-creator" title="Permalink to this headline"></a></h3>
+<p>This is the base class of DTO Creator classes of apps. get_dto method creates DTO using matched data between data given and DTO class fields.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">BaseDTOCreator</span><span class="p">:</span>
+    <span class="n">DTO_CLASS</span> <span class="o">=</span> <span class="kc">None</span>
+
+    <span class="nd">@classmethod</span>
+    <span class="k">def</span> <span class="nf">normalize_data</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">data</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">dict</span><span class="p">:</span>
+        <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="nb">dict</span><span class="p">):</span>
+            <span class="k">return</span> <span class="n">data</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">return</span> <span class="n">data</span><span class="o">.</span><span class="vm">__dict__</span>
+
+    <span class="nd">@classmethod</span>
+    <span class="k">def</span> <span class="nf">get_dto</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">data</span><span class="p">:</span> <span class="nb">dict</span><span class="p">):</span>
+        <span class="n">normalized_data</span> <span class="o">=</span> <span class="bp">cls</span><span class="o">.</span><span class="n">normalize_data</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
+        <span class="n">_fields</span> <span class="o">=</span> <span class="bp">cls</span><span class="o">.</span><span class="n">DTO_CLASS</span><span class="o">.</span><span class="n">get_fields</span><span class="p">()</span>
+        <span class="n">matched_data</span> <span class="o">=</span> <span class="p">{</span><span class="n">field</span><span class="o">.</span><span class="n">name</span><span class="p">:</span> <span class="n">normalized_data</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">field</span><span class="o">.</span><span class="n">name</span><span class="p">)</span> <span class="k">for</span> <span class="n">field</span> <span class="ow">in</span> <span class="n">_fields</span><span class="p">}</span>
+        <span class="k">return</span> <span class="bp">cls</span><span class="o">.</span><span class="n">DTO_CLASS</span><span class="p">(</span><span class="o">**</span><span class="n">matched_data</span><span class="p">)</span>
+</pre></div>
+</div>
+<section id="baseinspector">
+<h4>BaseInspector<a class="headerlink" href="#baseinspector" title="Permalink to this headline"></a></h4>
+<p>This is wrapper for blockchain module BlockchainExplorer and Coins Inspector classes. It also saves the call to each inspector apis.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">BaseInspector</span><span class="p">:</span>
+    <span class="n">network</span> <span class="o">=</span> <span class="kc">None</span>
+    <span class="n">transaction_details_api_methods</span><span class="p">:</span> <span class="kc">None</span>
+    <span class="n">wallet_balances_api_methods</span><span class="p">:</span> <span class="kc">None</span>
+    <span class="n">wallet_transactions_api_methods</span><span class="p">:</span> <span class="kc">None</span>
+
+    <span class="nd">@classmethod</span>
+    <span class="nd">@run_in_thread</span>
+    <span class="nd">@catch_all_exceptions</span><span class="p">()</span>
+    <span class="k">def</span> <span class="nf">log_call</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">selected_api</span><span class="p">):</span>
+        <span class="n">Call</span><span class="o">.</span><span class="n">objects</span><span class="o">.</span><span class="n">create</span><span class="p">(</span><span class="n">network</span><span class="o">=</span><span class="bp">cls</span><span class="o">.</span><span class="n">network</span><span class="p">,</span> <span class="n">api</span><span class="o">=</span><span class="n">selected_api</span><span class="p">)</span>
+
+    <span class="nd">@classmethod</span>
+    <span class="k">def</span> <span class="nf">get_transaction_details</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">network</span><span class="p">,</span> <span class="n">tx_hash</span><span class="p">):</span>
+        <span class="k">if</span> <span class="n">network</span> <span class="ow">in</span> <span class="n">APIS_CONF</span> <span class="ow">and</span> <span class="s1">&#39;txs_details&#39;</span> <span class="ow">in</span> <span class="n">APIS_CONF</span><span class="p">[</span><span class="n">network</span><span class="p">]:</span>
+            <span class="k">return</span> <span class="bp">cls</span><span class="o">.</span><span class="n">get_transaction_details_new_method</span><span class="p">(</span><span class="n">network</span><span class="p">,</span> <span class="n">tx_hash</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">return</span> <span class="bp">cls</span><span class="o">.</span><span class="n">get_transaction_details_old_method</span><span class="p">(</span><span class="n">tx_hash</span><span class="p">)</span>
+
+    <span class="nd">@classmethod</span>
+    <span class="k">def</span> <span class="nf">get_wallet_balances</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">network</span><span class="p">,</span> <span class="n">address_list</span><span class="p">,</span> <span class="n">parsed_currency</span><span class="p">):</span>
+        <span class="k">if</span> <span class="n">network</span> <span class="ow">in</span> <span class="n">APIS_CONF</span> <span class="ow">and</span> <span class="s1">&#39;get_balances&#39;</span> <span class="ow">in</span> <span class="n">APIS_CONF</span><span class="p">[</span><span class="n">network</span><span class="p">]:</span>
+            <span class="k">return</span> <span class="bp">cls</span><span class="o">.</span><span class="n">get_wallet_balances_new_method</span><span class="p">({</span><span class="n">network</span><span class="p">:</span> <span class="n">address_list</span><span class="p">},</span> <span class="n">parsed_currency</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">return</span> <span class="bp">cls</span><span class="o">.</span><span class="n">get_wallet_balances_old_method</span><span class="p">(</span><span class="n">address_list</span><span class="o">=</span><span class="n">address_list</span><span class="p">)</span>
+
+    <span class="nd">@classmethod</span>
+    <span class="k">def</span> <span class="nf">get_wallet_transactions</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">network</span><span class="p">,</span> <span class="n">address</span><span class="p">,</span> <span class="n">parsed_currency</span><span class="p">):</span>
+        <span class="k">if</span> <span class="n">network</span> <span class="ow">in</span> <span class="n">APIS_CONF</span> <span class="ow">and</span> <span class="s1">&#39;get_txs&#39;</span> <span class="ow">in</span> <span class="n">APIS_CONF</span><span class="p">[</span><span class="n">network</span><span class="p">]:</span>
+            <span class="k">return</span> <span class="bp">cls</span><span class="o">.</span><span class="n">get_wallet_transactions_new_method</span><span class="p">(</span><span class="n">network</span><span class="p">,</span> <span class="n">address</span><span class="p">,</span> <span class="n">parsed_currency</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">return</span> <span class="bp">cls</span><span class="o">.</span><span class="n">get_wallet_transactions_old_method</span><span class="p">(</span><span class="n">address</span><span class="o">=</span><span class="n">address</span><span class="p">)</span>
+
+    <span class="c1"># old version (Currency inspectors) ...............................................................................</span>
+    <span class="nd">@classmethod</span>
+    <span class="k">def</span> <span class="nf">get_transaction_details_old_method</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">tx_hash</span><span class="p">):</span>
+        <span class="n">selected_api</span> <span class="o">=</span> <span class="bp">cls</span><span class="o">.</span><span class="n">select_transaction_details_api_method</span><span class="p">()</span>
+        <span class="n">api_method</span> <span class="o">=</span> <span class="bp">cls</span><span class="o">.</span><span class="n">transaction_details_api_methods</span><span class="p">[</span><span class="n">selected_api</span><span class="p">]</span>
+        <span class="bp">cls</span><span class="o">.</span><span class="n">log_call</span><span class="p">(</span><span class="n">selected_api</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">api_method</span><span class="p">(</span><span class="n">tx_hash</span><span class="p">)</span>
+
+    <span class="nd">@classmethod</span>
+    <span class="k">def</span> <span class="nf">select_transaction_details_api_method</span><span class="p">(</span><span class="bp">cls</span><span class="p">):</span>
+        <span class="k">raise</span> <span class="ne">NotImplementedError</span>
+
+    <span class="nd">@classmethod</span>
+    <span class="k">def</span> <span class="nf">get_wallet_balances_old_method</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">address_list</span><span class="p">):</span>
+        <span class="n">selected_api</span> <span class="o">=</span> <span class="bp">cls</span><span class="o">.</span><span class="n">select_wallet_balances_api_method</span><span class="p">()</span>
+        <span class="n">api_method</span> <span class="o">=</span> <span class="bp">cls</span><span class="o">.</span><span class="n">wallet_balances_api_methods</span><span class="p">[</span><span class="n">selected_api</span><span class="p">]</span>
+        <span class="bp">cls</span><span class="o">.</span><span class="n">log_call</span><span class="p">(</span><span class="n">selected_api</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">api_method</span><span class="p">(</span><span class="n">address_list</span><span class="p">)</span>
+
+    <span class="nd">@classmethod</span>
+    <span class="k">def</span> <span class="nf">select_wallet_balances_api_method</span><span class="p">(</span><span class="bp">cls</span><span class="p">):</span>
+        <span class="k">raise</span> <span class="ne">NotImplementedError</span>
+
+    <span class="nd">@classmethod</span>
+    <span class="k">def</span> <span class="nf">get_wallet_transactions_old_method</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">address</span><span class="p">):</span>
+        <span class="n">selected_api</span> <span class="o">=</span> <span class="bp">cls</span><span class="o">.</span><span class="n">select_wallet_transactions_api_method</span><span class="p">()</span>
+        <span class="n">api_method</span> <span class="o">=</span> <span class="bp">cls</span><span class="o">.</span><span class="n">wallet_transactions_api_methods</span><span class="p">[</span><span class="n">selected_api</span><span class="p">]</span>
+        <span class="bp">cls</span><span class="o">.</span><span class="n">log_call</span><span class="p">(</span><span class="n">selected_api</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">api_method</span><span class="p">(</span><span class="n">address</span><span class="p">)</span>
+
+    <span class="nd">@classmethod</span>
+    <span class="k">def</span> <span class="nf">select_wallet_transactions_api_method</span><span class="p">(</span><span class="bp">cls</span><span class="p">):</span>
+        <span class="k">raise</span> <span class="ne">NotImplementedError</span>
+
+    <span class="c1"># new version (BlockchainExplorer) .................................................................................</span>
+
+    <span class="nd">@classmethod</span>
+    <span class="k">def</span> <span class="nf">get_transaction_details_new_method</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">network</span><span class="p">,</span> <span class="n">tx_hash</span><span class="p">):</span>
+        <span class="n">selected_api</span> <span class="o">=</span> <span class="bp">cls</span><span class="o">.</span><span class="n">select_transaction_details_api_name</span><span class="p">()</span>
+        <span class="bp">cls</span><span class="o">.</span><span class="n">log_call</span><span class="p">(</span><span class="n">selected_api</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">BlockchainExplorer</span><span class="o">.</span><span class="n">get_transactions_details</span><span class="p">([</span><span class="n">tx_hash</span><span class="p">,</span> <span class="p">],</span> <span class="n">network</span><span class="p">,</span> <span class="n">selected_api</span><span class="p">,</span> <span class="n">raise_error</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span><span class="o">.</span><span class="n">get</span><span class="p">(</span>
+            <span class="n">tx_hash</span><span class="p">)</span>
+
+    <span class="nd">@classmethod</span>
+    <span class="k">def</span> <span class="nf">select_transaction_details_api_name</span><span class="p">(</span><span class="bp">cls</span><span class="p">):</span>
+        <span class="k">return</span> <span class="n">APIS_CONF</span><span class="p">[</span><span class="bp">cls</span><span class="o">.</span><span class="n">network</span><span class="o">.</span><span class="n">upper</span><span class="p">()][</span><span class="s1">&#39;txs_details&#39;</span><span class="p">]</span>
+
+    <span class="nd">@classmethod</span>
+    <span class="k">def</span> <span class="nf">get_wallet_balances_new_method</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">address_list</span><span class="p">,</span> <span class="n">parsed_currency</span><span class="p">):</span>
+        <span class="n">selected_api</span> <span class="o">=</span> <span class="bp">cls</span><span class="o">.</span><span class="n">select_wallet_balances_api_name</span><span class="p">()</span>
+        <span class="bp">cls</span><span class="o">.</span><span class="n">log_call</span><span class="p">(</span><span class="n">selected_api</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">BlockchainExplorer</span><span class="o">.</span><span class="n">get_wallets_balance</span><span class="p">(</span><span class="n">address_list</span><span class="p">,</span> <span class="n">parsed_currency</span><span class="p">,</span> <span class="n">selected_api</span><span class="p">,</span> <span class="n">raise_error</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+
+    <span class="nd">@classmethod</span>
+    <span class="k">def</span> <span class="nf">select_wallet_balances_api_name</span><span class="p">(</span><span class="bp">cls</span><span class="p">):</span>
+        <span class="k">return</span> <span class="n">APIS_CONF</span><span class="p">[</span><span class="bp">cls</span><span class="o">.</span><span class="n">network</span><span class="o">.</span><span class="n">upper</span><span class="p">()][</span><span class="s1">&#39;get_balances&#39;</span><span class="p">]</span>
+
+    <span class="nd">@classmethod</span>
+    <span class="k">def</span> <span class="nf">get_wallet_transactions_new_method</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">address</span><span class="p">,</span> <span class="n">parsed_currency</span><span class="p">,</span> <span class="n">network</span><span class="p">):</span>
+        <span class="n">selected_api</span> <span class="o">=</span> <span class="bp">cls</span><span class="o">.</span><span class="n">select_wallet_transactions_api_name</span><span class="p">()</span>
+        <span class="bp">cls</span><span class="o">.</span><span class="n">log_call</span><span class="p">(</span><span class="n">selected_api</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">BlockchainExplorer</span><span class="o">.</span><span class="n">get_wallet_transactions</span><span class="p">(</span><span class="n">address</span><span class="p">,</span> <span class="n">parsed_currency</span><span class="p">,</span> <span class="n">network</span><span class="p">,</span> <span class="n">selected_api</span><span class="p">,</span>
+                                                          <span class="n">raise_error</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+
+    <span class="nd">@classmethod</span>
+    <span class="k">def</span> <span class="nf">select_wallet_transactions_api_name</span><span class="p">(</span><span class="bp">cls</span><span class="p">):</span>
+        <span class="k">return</span> <span class="n">APIS_CONF</span><span class="p">[</span><span class="bp">cls</span><span class="o">.</span><span class="n">network</span><span class="o">.</span><span class="n">upper</span><span class="p">()][</span><span class="s1">&#39;get_balances&#39;</span><span class="p">]</span>
+</pre></div>
+</div>
+</section>
+</section>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="api.html" class="btn btn-neutral float-left" title="API" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2022, Mohammad Mojahed.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

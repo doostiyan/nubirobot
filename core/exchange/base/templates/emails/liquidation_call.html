@@ -1,0 +1,22 @@
+{% extends 'email_base.html' %}
+{% load nobitex %}
+{% block content %}
+<div class="header">
+  <strong class="email-title">
+    موقعیت {{ is_short|yesno:'فروش,خرید' }} شما لیکوئید شد
+  </strong>
+</div>
+<div style="margin-top: 20px; margin-bottom: 50px">
+  <p class="content">
+    کاربر گرامی!
+    <br/>
+    <br/>
+   موقعیت {{ is_short|yesno:'فروش,خرید' }} شما
+   در بازار {{ market_display }}
+   در تاریخ {{ closed_at_date|shamsidateformat }}
+   و ساعت {{ closed_at|time:'H:i' }}
+   و در قیمت {{ exit_price|marketpriceformat:market_display }}
+    لیکوئید و به اجبار بسته شده است.
+  </p>
+</div>
+{% endblock %}

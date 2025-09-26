@@ -1,0 +1,33 @@
+{% extends 'email_base.html' %}
+{% load static %}
+{% block content %}
+<div class="header">
+  <div>
+    <img id="success-image" src="https://cdn.nobitex.ir/email/tick-icon.png"/>
+  </div>
+  <strong class="email-title"> تغییر ایمیل </strong>
+</div>
+<div style="margin: 20px; margin-bottom: 100px" class="content">
+  کاربر گرامی!
+  <br/>
+  <br/>
+  ایمیل حساب کاربری نوبیتکس شما با موفقیت از {{ old_email }} به {{ new_email }} تغییر پیدا کرد.
+  <br/>
+  <br/>
+  برای حفظ امنیت دارایی‌های شما، تا 48 ساعت آینده هیچ برداشت رمزارزی از حساب کاربری شما تایید نخواهد شد.
+  <br/>
+  <br/>
+  درصورتی که این درخواست از سمت شما نبوده؛ لطفا هرچه سریع‌تر گذرواژه‌ی خود را تغییر داده و با پشتیبانی نوبیتکس تماس
+  بگیرید.
+  <br/>
+  <br/>
+  {% if emergency_cancel_url %}
+  همچنین می‌توانید از طریق لینک زیر برداشت‌های خود را مسدود کنید:
+  <br/>
+  <br/>
+  <a class="btn-danger" href="{{ emergency_cancel_url }}">لغو اضطراری برداشت</a>
+  <br/>
+  <br/>
+  {% endif %}
+</div>
+{% endblock %}

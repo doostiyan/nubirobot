@@ -1,0 +1,79 @@
+{% extends 'ebase.html' %}
+{% load nobitex %}
+
+{% block content %}
+<div class="farsi">
+  <div class="jumbotron text-center">
+    <h1>وضعیت سامانه</h1>
+  </div>
+
+  <ul class="nav nav-tabs" role="tablist">
+    {% for c in reports.keys %}
+    <li class="nav-item">
+      <a class="nav-link {% if forloop.first %}active{% endif %}" data-toggle="pill" href="#report-{{ forloop.counter }}" role="tab" aria-controls="pills-home" aria-selected="true">{{ c }}</a>
+    </li>
+    {% endfor %}
+  </ul>
+  <div class="tab-content" id="reports-tabs">
+    {% for currency, report in reports.items %}
+    <div class="tab-pane p-3 fade show {% if forloop.first %}active{% endif %}" id="report-{{ forloop.counter }}" role="tabpanel" aria-labelledby="pills-home-tab">
+      <h4>واریزهای مهم</h4>
+      <table class="table">
+        <thead>
+          <tr>
+            <th>کاربر</th>
+            <th>سطح</th>
+            <th>مقدار</th>
+            <th>زمان</th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for deposit in report.deposits %}
+          <tr>
+            {% if currency == 'RLS' %}
+            <td>{{ deposit.user.get_full_name }}</td>
+            <td>{{ deposit.user.get_user_type_display }}</td>
+            {% else %}
+            <td>{{ deposit.address.wallet.user.get_full_name }}</td>
+            <td>{{ deposit.address.wallet.user.get_user_type_display }}</td>
+            {% endif %}
+            <td>{{ deposit.amount }}</td>
+            <td>{{ deposit.created_at }}</td>
+          </tr>
+          {% empty %}
+          <tr><td colspan="4" class="text-center">واریزی در این بازه زمانی ثبت نشده است</td></tr>
+          {% endfor %}
+        </tbody>
+      </table>
+
+      <h4 class="mt-4">برداشت‌های مهم</h4>
+      <table class="table">
+        <thead>
+          <tr>
+            <th>کاربر</th>
+            <th>سطح</th>
+            <th>مقدار</th>
+            <th>وضعیت</th>
+            <th>زمان</th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for withdraw in report.withdraws %}
+          <tr>
+            <td>{{ withdraw.wallet.user.get_full_name }}</td>
+            <td>{{ withdraw.wallet.user.get_user_type_display }}</td>
+            <td>{{ withdraw.amount }}</td>
+            <td>{{ withdraw.get_status_display }}</td>
+            <td>{{ withdraw.created_at }}</td>
+          </tr>
+          {% empty %}
+          <tr><td colspan="4" class="text-center">برداشتی در این بازه زمانی ثبت نشده است</td></tr>
+          {% endfor %}
+        </tbody>
+      </table>
+    </div>
+    {% endfor %}
+  </div>
+  </div>
+</div>
+{% endblock %}

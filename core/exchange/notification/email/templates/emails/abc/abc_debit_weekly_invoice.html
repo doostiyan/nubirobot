@@ -1,0 +1,51 @@
+{% extends 'email_base.html' %}
+{% block content %}
+
+
+    <strong class="email-title" style="display: block;">تاریخچه‌ی تراکنش‌های نوبی‌پی</strong>
+     <br>
+    <span>تراکنش‌های نوبی‌پی شما در هفته‌ی گذشته به شرح زیر است:</span>
+
+    <table style="border-spacing: 16px;border-collapse: collapse; width: 658px; border: 1px solid #E5E7F0; margin: 30px auto;">
+      <thead style="background-color: #E5E7F0; border: 1px solid #E5E7F0">
+    <tr>
+      <th style="width: 30px; padding: 10px; border: 1px solid transparent; border-top-right-radius: 6px;">&nbsp;</th>
+      <th style="padding: 10px; border: 1px solid transparent;">تاریخ - زمان</th>
+      <th style="padding: 10px; border: 1px solid transparent;">مقدار (تومان)</th>
+      <th style="padding: 10px; border: 1px solid transparent;">موجودی تقریبی بعد از<br> تراکنش (تومان)</th>
+      <th style="padding: 10px; border: 1px solid transparent; border-top-left-radius: 6px;">شناسه</th>
+    </tr>
+      </thead>
+      <tbody>
+
+    {% for trans in transactions %}
+
+
+        <tr>
+          <td style="border: 1px solid #E5E7F0; padding: 8px;">{{ trans.index }}</td>
+          <td style="border: 1px solid #E5E7F0; padding: 8px;">{{ trans.created_at }}</td>
+          <td style="border: 1px solid #E5E7F0; padding: 8px;">{{ trans.amount }}</td>
+          <td style="border: 1px solid #E5E7F0; padding: 8px;" >{{ trans.remaining_amount }}</td>
+          <td style="border: 1px solid #E5E7F0; padding: 8px;">{{ trans.id }}</td>
+        </tr>
+
+      {% endfor %}
+
+      </tbody>
+    </table>
+
+<!-- add total and date-->
+   <footer style="box-sizing:border-box;background-color:#e5e7f0;border-radius:6px;width:658px;margin:auto auto 20px;padding:10px;display:block;">
+
+  <div style="float:right;">مجموع برداشت:
+    <b>{{ total_amount }}</b>
+    تومان</div>
+
+  <div style="float:left;">از تاریخ {{ from_date }} تا تاریخ {{ to_date }}</div>
+  <div style="clear:both;"></div>
+
+  </footer>
+
+
+
+{% endblock %}

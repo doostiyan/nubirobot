@@ -1,0 +1,18 @@
+# sell oco - manual cancel stop
+LOAD base-full
+25 SELL 10 100 | 26 98 STOP 98.5
+CHECK
+26 CANCELED
+CHECK
+27 BUY 5 100
+# no match for oco limit order
+CHECK
+28 SELL 40 MARKET
+MATCH 28 <= 27 5 100
+MATCH 28 <= 9 10 99
+MATCH 28 <= 12 10 99
+MATCH 28 <= 23 10 99
+MATCH 28 <= 6 5 98.5
+CHECK
+# no match for oco stop order
+CHECK

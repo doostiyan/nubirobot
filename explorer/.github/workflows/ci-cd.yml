@@ -1,0 +1,45 @@
+name: ~CI/CD
+
+on:
+  workflow_call:
+    inputs:
+      RUNNER:
+        required: true
+        type: string
+
+      hosts:
+        required: true
+        type: string
+
+    secrets:
+      SSH_KEY:
+        required: true
+      ANSIBLE_VAULT_PASS:
+        required: true
+      MASTERKEY:
+        required: true
+      SECRET_KEY:
+        required: true
+      SERVICE_BASE_API_KEY:
+        required: true
+
+jobs:
+  CI:
+    uses: ./.github/workflows/ci.yml
+    with:
+      RUNNER: ${{ inputs.RUNNER }}
+    secrets:
+      SSH_KEY: ${{ secrets.SSH_KEY }}
+      MASTERKEY: ${{ secrets.MASTERKEY }}
+      SECRET_KEY: ${{ secrets.SECRET_KEY }}
+      SERVICE_BASE_API_KEY: ${{ secrets.SERVICE_BASE_API_KEY }}
+
+  CD:
+    needs: CI
+    uses: ./.github/workflows/cd.yml
+    with:
+      RUNNER: ${{ inputs.RUNNER }}
+      hosts: ${{ inputs.hosts }}
+    secrets:
+      SSH_KEY: ${{ secrets.SSH_KEY }}
+      ANSIBLE_VAULT_PASS: ${{ secrets.ANSIBLE_VAULT_PASS }}

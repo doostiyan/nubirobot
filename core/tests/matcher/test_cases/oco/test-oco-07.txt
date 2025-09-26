@@ -1,0 +1,15 @@
+# sell oco - stop activated and partially matched
+LOAD base-full
+25 SELL 10 100 | 26 98 STOP 98.5
+CHECK
+27 SELL 30 MARKET
+MATCH 27 <= 9 10 99
+MATCH 27 <= 12 10 99
+MATCH 27 <= 23 10 99
+CHECK
+28 SELL 15 98
+MATCH 28 <= 6 10 98.5
+MATCH 28 <= 18 5 98
+CHECK
+MATCH 26 <= 18 5 98
+CHECK

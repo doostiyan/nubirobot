@@ -1,0 +1,44 @@
+openapi: 3.0.2
+info:
+  title: ''
+  version: ''
+paths:
+  /wallets/{network}/{address}/:
+    get:
+      operationId: retrieveWalletDetails
+      description: ''
+      parameters:
+        - name: network
+          in: path
+          required: true
+          description: 'blockchain network to explore, e.g., BTC, ETH, BSC, FTM, POLYGON.'
+          schema:
+            type: string
+        - name: address
+          in: path
+          required: true
+          description: ''
+          schema:
+            type: string
+        - name: currency
+          in: query
+          required: false
+          description: 'e.g., ETC, DOGE, DOT.'
+          schema:
+            type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                type: array
+                items: { }
+          description: ''
+        '403':
+          description: ''
+        '404':
+          description: ''
+        '500':
+          description: ''
+      tags:
+        - wallets

@@ -1,0 +1,127 @@
+name: Checkout Explorer in App-Blockchain
+
+on:
+  push:
+    branches:
+      - master
+      - develop
+  pull_request:
+    types:
+      - opened
+      - reopened
+      - synchronize
+      - edited
+    branches:
+      - master
+      - develop
+
+jobs:
+  checkout-explorer:
+    runs-on: ubuntu-22.04
+
+    steps:
+      - name: Checkout app-blockchain repository
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0  # ensures full history is fetched
+          clean: true
+
+      - name: Setup SSH
+        run: |
+          mkdir -p ~/.ssh
+          echo "${{ secrets.EXPLORER_STAGING_SSH_KEY }}" > ~/.ssh/id_rsa
+          chmod 600 ~/.ssh/id_rsa
+          ssh-keyscan github.com >> ~/.ssh/known_hosts
+
+      - name: Clone Explorer Repository
+        run: git clone git@github.com:nobitex/explorer.git explorer
+
+      - name: Configure SSH Keys
+        shell: bash
+        run: |
+              mkdir -p ~/.ssh
+              echo "${{ secrets.BLOCKCHAIN_STAGING_SSH_KEY }}" > ~/.ssh/id_rsa_blockchain
+              echo "${{ secrets.BASE_STAGING_SSH_KEY }}" > ~/.ssh/id_rsa_base
+              echo "${{ secrets.CONFIG_STAGING_SSH_KEY }}" > ~/.ssh/id_rsa_config
+              chmod 600 ~/.ssh/id*
+
+              # Configure SSH config file
+              cat >> ~/.ssh/config <<EOL
+              Host github-blockchain
+                HostName github.com
+                IdentityFile ~/.ssh/id_rsa_blockchain
+                User git
+              Host github-base
+                HostName github.com
+                IdentityFile ~/.ssh/id_rsa_base 
+                User git
+              Host github-config
+                HostName github.com
+                IdentityFile ~/.ssh/id_rsa_config
+                User git
+              EOL
+
+      - name: Update Submodule URLs
+        shell: bash
+        working-directory: explorer
+        run: |
+              git submodule set-url exchange/blockchain git@github-blockchain:nobitex/app-blockchain.git
+              git submodule set-url exchange/base git@github-base:nobitex/app-base.git
+
+      - name: Initialize and Update Submodules
+        shell: bash
+        working-directory: explorer
+        run: |
+              git submodule update --init --remote --recursive
+
+      - name: Configure Git for PIP
+        shell: bash
+        run: |
+              git config --global url."ssh://git@github-config/nobitex/app-config.git".insteadOf "ssh://git@github.com/nobitex/app-config.git"
+
+      - name: Start PostgreSQL
+        run: |
+          docker run -d --name postgres \
+            -e POSTGRES_DB=explorer \
+            -e POSTGRES_PASSWORD=nobitex@1234 \
+            -e POSTGRES_USER=nobitex \
+            -p 5432:5432 \
+            --health-cmd "pg_isready" \
+            --health-interval 10s \
+            --health-timeout 5s \
+            --health-retries 5 \
+            postgres
+
+      - name: Start Redis
+        run: |
+          docker run -d --name redis \
+            -p 6379:6379 \
+            --health-cmd "redis-cli ping" \
+            --health-interval 10s \
+            --health-timeout 5s \
+            --health-retries 5 \
+            redis
+
+      - name: Install test dependencies
+        working-directory: explorer
+        run: |
+          pip install -r requirements/run.txt -r requirements/dev.txt -r requirements/test.txt -r requirements/lint.txt --force-reinstall --no-cache-dir
+
+
+      - name: Run Tests
+        working-directory: explorer
+        env:
+          ALLOWED_HOSTS: "*"
+          SECRET_KEY: ${{ secrets.SECRET_KEY }}
+          MASTERKEY: ${{ secrets.MASTERKEY }}
+          DATABASE_URL: "psql://nobitex:nobitex@1234@127.0.0.1:5432/explorer"
+          REDIS_URL: "redis://127.0.0.1:6379"
+          SERVICE_BASE_API_KEY: ${{ secrets.SERVICE_BASE_API_KEY }}
+        run: |
+            git checkout develop
+            cd exchange/blockchain
+            git checkout "${{ github.event.pull_request.head.sha || github.sha }}"
+            pytest -v
+
+      - name: Run Ruff check
+        run: ruff check

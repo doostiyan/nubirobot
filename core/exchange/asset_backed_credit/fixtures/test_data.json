@@ -1,0 +1,68 @@
+[
+  {
+    "model": "accounts.user",
+    "pk": 910,
+    "fields": {
+      "username": "tara-account",
+      "first_name": "tara",
+      "last_name": "tara",
+      "email": "tara@internal.com",
+      "user_type": 92
+    }
+  },
+  {
+    "model": "accounts.user",
+    "pk": 911,
+    "fields": {
+      "username": "baloan-account",
+      "first_name": "baloan",
+      "last_name": "baloan",
+      "email": "baloan@internal.com",
+      "user_type": 92
+    }
+  },
+  {
+    "model": "accounts.user",
+    "pk": 912,
+    "fields": {
+      "username": "vency-account",
+      "first_name": "vency",
+      "last_name": "vency",
+      "email": "vency@internal.com",
+      "user_type": 92
+    }
+  },
+  {
+    "model": "accounts.user",
+    "pk": 913,
+    "fields": {
+      "username": "wepod-account",
+      "first_name": "wepod",
+      "last_name": "wepod",
+      "email": "wepod@internal.com",
+      "user_type": 92
+    }
+  },
+  {
+    "model": "accounts.user",
+    "pk": 914,
+    "fields": {
+      "username": "pnovin-account",
+      "first_name": "pardakht",
+      "last_name": "novin",
+      "email": "pnovin@internal.com",
+      "user_type": 92
+    }
+  },
+  {
+    "model": "accounts.user",
+    "pk": 915,
+    "fields": {
+      "username": "parsian-account",
+      "first_name": "parsian",
+      "last_name": "parsian",
+      "email": "parsian@internal.com",
+      "user_type": 92
+    }
+  }
+]

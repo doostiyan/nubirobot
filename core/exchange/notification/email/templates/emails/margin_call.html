@@ -1,0 +1,64 @@
+{% extends 'email_base.html' %}
+{% block content %}
+<div class="header">
+  <strong class="email-title">
+    هشدار لیکوئید شدن موقعیت {{ is_short|yesno:'فروش,خرید' }}
+  </strong>
+</div>
+<div style="margin-top: 20px; margin-bottom: 50px" class="content">
+    کاربر گرامی!
+    <br/>
+    <br/>
+    موقعیت {{ is_short|yesno:'فروش,خرید' }} شما در بازار
+     {{ market_display }} نزدیک به نقطه‌ی لیکوئید شدن است.
+    {% if price_diff_percent > price_diff_threshold %}
+    <br/>
+    در صورتی که قیمت فعلی {{ price_diff_percent }} درصد
+     {% if is_short %}افزایش{% else %}کاهش{% endif %} یابد، موقعیت {{ is_short|yesno:'فروش,خرید' }} شما لیکوئید و به اجبار بسته خواهد شد.
+    {% endif %}
+    <br/>
+    <br/>
+    جزئیات موقعیت شما:
+  <table style="width: 100%; padding: 1.84% 13.83% 0 13.14%">
+    <tbody>
+    <tr>
+      <th style="padding: 0">
+        <p class="text-right">نوع موقعیت:</p>
+      </th>
+      <td style="padding: 0">
+        <p style="text-align: left" class="content">{{ is_short|yesno:'فروش,خرید' }} {{ leverage }}x</p>
+      </td>
+    </tr>
+    <tr>
+      <th style="padding: 0">
+        <p class="text-right">مقدار:</p>
+      </th>
+      <td style="padding: 0">
+        <p style="text-align: left" class="content">{{ liability }}</p>
+      </td>
+    </tr>
+    <tr>
+      <th style="padding: 0">
+        <p class="text-right">قیمت لیکوئید شدن:</p>
+      </th>
+      <td style="padding: 0">
+        <p style="text-align: left" class="content">{{ liquidation_price }}</p>
+      </td>
+    </tr>
+    </tbody>
+  </table>
+    شما می‌توانید برای مدیریت ریسک ناشی از لیکویید شدن اقدامات زیر را انجام دهید:
+    <br/>
+    <ul class="content" style="text-align: right">
+      <li>برای جلوگیری از ضرر بیشتر، تمام موقعیت را ببندید.</li>
+      <li>مقداری از موجودی آزاد کیف پول تعهدی را به آن موقعیت اختصاص دهید و وجه تضمین موقعیت را بیشتر کنید تا قیمت لیکویید شدن خود را {{ is_short|yesno:'افزایش,کاهش' }} دهید.</li>
+      <li>بخشی از موقعیت خود را با ضرر بندید تا نسبت تعهد شما بیشتر شود و قیمت لیکویید شدن {{ is_short|yesno:'افزایش,کاهش' }} یابد.</li>
+    </ul>
+  <a class="content" href="{{domain}}panel/exchange/position/{{market_display}}" style="color: #5e35b1; text-decoration: underline">
+    ورود به حساب کاربری
+  </a>
+  <br/>
+  <br/>
+    لازم است بدانید، مسئولیت ریسک‌های احتمالی موقعیت‌های خرید و فروش شما، بر عهده‌ی خودتان است. توصیه می‌‌کنیم این ریسک‌ها را بشناسید و از عواقب آن آگاه باشید.
+</div>
+{% endblock %}

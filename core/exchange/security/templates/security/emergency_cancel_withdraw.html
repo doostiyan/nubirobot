@@ -1,0 +1,37 @@
+{% extends 'ebase.html' %}
+
+{% block content %}
+<style>
+.btn-danger {
+    padding: 10px 30px;
+    border-radius: 3px;
+    background-color: #f04c4c;
+    color: white;
+    text-decoration: none
+}
+
+</style>
+{% if status == 'ok' %}
+<div class="text-center rtl-div">
+  <h2 style="margin-bottom:5%;text-align:center">لغو اضطراری درخواست های برداشت</h2>
+  <p><b>توجه: </b>با ثبت درخواست لغو اضطراری، کلیه درخواست های برداشت شما لغو خواهند گردید و به دلیل حفظ امنیت حساب شما،
+    امکان برداشت تا ۷۲ ساعت آینده غیرفعال خواهد شد.
+  </p>
+  <br>
+  <form method="POST">
+    {% csrf_token %}
+    <input type="hidden" name="code" value="{{cancel_code}}">
+    <input class="btn-danger" type="submit" value="لغو اضطراری">
+  </form>
+</div>
+{% elif status == 'done' %}
+  <div class="text-center rtl-div">
+    <h2 style="color:green;text-align:center">{{message}}</h2>
+    <p>کلیه درخواست های برداشت لغو گردید و امکان ثبت درخواست برداشت تا ۷۲ ساعت آینده امکان پذیر نخواهد بود.</p>
+  </div>
+{% else %}
+  <div class="text-center rtl-div">
+    <h2 style="color:red;text-align:center">{{message}}</h2>
+  </div>
+{% endif %}
+{% endblock %}

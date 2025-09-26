@@ -1,0 +1,22 @@
+{% extends 'email_base.html' %}
+{% block content %}
+  <div class="header">
+    <strong class="email-title">
+      غیرفعال شدن موجودی اعتبار خرید کالا
+    </strong>
+  </div>
+  <div style="margin-top: 20px; margin-bottom: 50px">
+    <p class="content">
+      کاربر گرامی،
+      <br/>
+      <br/>
+      به‌دلیل کمتر شدن نسبت ارزش از ۱.۰۵، باقیمانده‌ی موجودی شما در {{ service_name }} غیرفعال شد و استفاده از آن امکان‌پذیر نیست.
+      <br/>
+      <br/>
+      این کار، از لیکویید شدن وثیقه‌ی شما جلوگیری می‌کند.
+      <br/>
+      <br/>
+      در صورت تمایل، می‌توانید موجودی کیف وثیقه‌ی خود را افزایش دهید و دوباره اعتبار دریافت کنید.
+    </p>
+  </div>
+{% endblock %}

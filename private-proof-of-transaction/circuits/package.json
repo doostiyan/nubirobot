@@ -1,0 +1,26 @@
+{
+  "name": "circuits",
+  "version": "1.0.0",
+  "dependencies": {
+    "circomlib": "^2.0.5",
+    "snarkjs": "^0.7.1"
+  },
+  "engines": {
+    "npm": ">=7.0.0",
+    "node": ">=14.0.0"
+  },
+  "scripts": {
+    "dex:setup": "mkdir -p zk/zkeys && mkdir -p zk/proofs && mkdir -p zk/verification && mkdir -p zk/circuits, && mkdir -p zk/witnesses",
+    "compile": "circom circuit.circom --r1cs --wasm --sym",
+    "generate-witness": "snarkjs wtns calculate circuit.wasm input.json witness.wtns",
+    "steup": "snarkjs groth16 setup circuit.r1cs powersOfTau28_hez_final_10.ptau circuit_0000.zkey",
+    "contribute-to-circuit-zkey": "snarkjs groth16 contribute circuit_0000.zkey circuit_final.zkey --name=\"First contribution\" --power=26",
+    "exoport-verification-key": "snarkjs zkey export verificationkey circuit_final.zkey verification_key.json",
+    "prove": "snarkjs groth16 prove circuit_final.zkey witness.wtns proof.json public.json",
+    "verify": "snarkjs groth16 verify verification_key.json public.json proof.json",
+    "export-verifier-contract": "snarkjs zkey export solidityverifier circuit_final.zkey verifier.sol",
+    "contract-generatecall": "snarkjs generatecall zk/proofs/main_public.json zk/proofs/main_proof.json ",
+    "contribute-to-power-of-tau": "snarkjs powersoftau contribute powersOfTau28_hez_final_10.ptau circuit_0000.zkey --name=\"First contribution\" --curve=BW6_761",
+    "check": "yarn compile && yarn generate-witness && yarn prove && yarn verify"
+  }
+}

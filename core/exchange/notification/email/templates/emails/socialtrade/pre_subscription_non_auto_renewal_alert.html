@@ -1,0 +1,19 @@
+{% extends 'email_base.html' %} {% load nobitex %} {% block content %}
+<div class="header">
+  <strong class="email-title"> {{email_title}} </strong>
+</div>
+<div style="margin-top: 20px; margin-bottom: 50px">
+  <p class="content">
+    کاربر گرامی,
+    <br />
+    <br />
+    کاربر گرامی، اشتراک شما در تاریخ {{expires_at}} به پایان می‌رسد. در صورت
+    تمایل برای تمدید اشتراک، به پنل کاربری خود مراجعه نمایید.
+    <br />
+    <br />
+    تریدر: {{nickname}}
+    <br />
+    هزینه اشتراک: {{fee}}
+  </p>
+</div>
+{% endblock %}

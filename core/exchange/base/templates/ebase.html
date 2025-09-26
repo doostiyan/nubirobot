@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta http-equiv="Content-type" content="text/html; charset=utf-8" />
+    <link rel="stylesheet" href="https://cdn.nobitex.ir/files/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdn.nobitex.ir/files/font-awesome/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://cdn.nobitex.ir/files/bootstrap-table.min.css">
+    <title>{{title}}</title>
+    <style>
+        @font-face {
+            font-family: 'IRANSans';
+            font-style: normal;
+            font-weight: normal;
+            src: url('https://cdn.nobitex.ir/fonts/IRANSans/IRANSans.woff2') format('woff2'),
+                url('https://cdn.nobitex.ir/fonts/IRANSans/IRANSans.woff') format('woff'),
+                url('https://cdn.nobitex.ir/fonts/IRANSans/IRANSans.ttf') format('truetype');
+        }
+        @font-face {
+            font-family: 'IRANSans';
+            font-style: normal;
+            font-weight: bold;
+            src: url('https://cdn.nobitex.ir/fonts/IRANSans/IRANSans_Bold.woff2') format('woff2'),
+                url('https://cdn.nobitex.ir/fonts/IRANSans/IRANSans_Bold.woff') format('woff'),
+                url('https://cdn.nobitex.ir/fonts/IRANSans/IRANSans_Bold.ttf') format('truetype');
+        }
+        .page {
+            padding-top: 25px;
+            min-height: 80vh;
+            font-family: 'IRANSans'
+        }
+        .rtl-div {
+            direction: rtl;
+            font-family: 'IRANSans'
+        }
+        .rtl-div .table th { text-align: right; }
+        .rtl-div .table td { text-align: right; }
+        .form-group {
+            direction: rtl;
+            text-align: right;
+        }
+        /* Bootstrap RTL Fix */
+        h2, h3, h4, h5, h6, h7, h8 {text-align: right;}
+        .farsi .table {direction: rtl;}
+        .farsi th, .farsi td {text-align: right;}
+        .btn-group .btn { direction: rtl; }
+    </style>
+</head>
+
+<body>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark justify-content-between">
+        <a class="navbar-brand" href="/">{% if currentSite %}{{ currentSite.name }}{% else %}Nobitex{% endif %}</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+        {% if request.user.is_staff %}
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav mr-auto">
+            <li class="nav-item"><a class="nav-link" href="/bitex/status/">Status</a></li>
+            <li class="nav-item"><a class="nav-link" href="/bitex/wallets/">Wallets</a></li>
+            <li class="nav-item"><a class="nav-link" href="/bitex/control-panel/">Control Panel</a></li>
+            {% if request.user.is_superuser %}
+            <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="#" data-toggle="dropdown">Wallets Control Panel</a>
+                <div class="dropdown-menu">
+                    <a class="dropdown-item" href="/bitex/wallets/create-wallet">Create Wallets</a>
+                    <a class="dropdown-item" href="/bitex/wallets/create-wallet-bip39">Create Wallets BIP39</a>
+                    <a class="dropdown-item" href="/bitex/wallets/import-cold-wallet">Import Cold Wallets</a>
+                    <a class="dropdown-item" href="/bitex/wallets/tron/freeze">Freeze Tron</a>
+                    <a class="dropdown-item" href="/bitex/wallets/tron/unfreeze">Unfreeze Tron</a>
+                    <a class="dropdown-item" href="/bitex/wallets/tron/mint">Mint TronZ</a>
+                    <a class="dropdown-item" href="/bitex/wallets/tron/zbalance">Balance TronZ</a>
+                    <a class="dropdown-item" href="/bitex/wallets/contract-extract">Extract Contract</a>
+                </div>
+            </li>
+            <li class="nav-item"><a class="nav-link" href="/users/wallets/deposit/update">Refresh Wallet</a></li>
+            {% endif %}
+            </ul>
+            <ul class="navbar-nav">
+                <li class="nav-item"><a class="nav-link" href="/bitex/admin/logout/"><i class="fa fa-power-off"></i></a></li>
+            </ul>
+        </div>
+        {% endif %}
+    </nav>
+    <div class="container-fluid page">
+        <div class="row">
+            <div class="col-1"></div>
+            <div class="col-10 content">
+                {% block content %}{% endblock %}
+            </div>
+            <div class="col-1"></div>
+        </div>
+    </div>
+    <script src="https://cdn.nobitex.ir/files/jquery.min.js"></script>
+    <script src="https://cdn.nobitex.ir/files/popper.min.js"></script>
+    <script src="https://cdn.nobitex.ir/files/bootstrap.min.js"></script>
+    <script src="https://cdn.nobitex.ir/files/tableExport.min.js"></script>
+    <script src="https://cdn.nobitex.ir/files/bootstrap-table.min.js"></script>
+    <script src="https://cdn.nobitex.ir/files/bootstrap-table-export.min.js"></script>
+    {% block page_script %}{% endblock %}
+</body>
+
+</html>

@@ -1,0 +1,22 @@
+common:
+  image:
+    repository: core
+    tag: "microservice-basic-k8s-helm-chart"
+    pullPolicy: IfNotPresent
+  imagePullSecrets:
+    - name: registry-cred
+  env: "testnet"
+
+core:
+  replicaCount: 1
+  service:
+    type: ClusterIP
+    port: 8000
+    targetPort: 8000
+
+celery:
+  replicaCount: 1
+  app_name: exchange
+  autoscale: "1,4"
+  loglevel: info
+  queues: "celery,accounts,market,admin,cache,notif,margin,staking,credit,socialtrade,files,abc,xchange,webengage,direct_debi"

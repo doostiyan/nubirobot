@@ -1,0 +1,22 @@
+{% extends 'email_base.html' %}
+{% load nobitex %}
+{% block content %}
+<style>
+    .content {
+      margin: 20px;
+      margin-bottom: 100px
+    }
+</style>
+<div class="header">
+  <div>
+    <img alt="success" id="success-image" src="https://cdn.nobitex.ir/email/tick-icon.png"/>
+  </div>
+  <strong class="email-title">کلید API شما ساخته شد</strong>
+</div>
+<div dir="auto" class="content">
+  کاربر گرامی،
+  <br>
+  <br>
+  API Key جدید با مشخصات تعریف‌شده توسط شما در تاریخ {{ created_at | shamsidateformat }} به حساب کاربری شما اضافه شده است. در صورتی که این اقدام توسط شما انجام نشده است، سریعاً اقدام به غیرفعال‌سازی API Key نمایید و با پشتیبانی تماس بگیرید.
+</div>
+{% endblock %}

@@ -1,0 +1,37 @@
+{% extends 'email_base.html' %}
+{% load static %}
+{% block content %}
+<div class="header">
+  <strong class="email-title"> ثبت نام خود را تکمیل کنید </strong>
+</div>
+<div style="margin-top: 20px; margin-bottom: 35px">
+  <p class="content">
+    به نوبیتکس خوش آمدید! <br/><br/>
+
+    جهت تایید ایمیل خود،
+    {% if otp %}
+    کد
+    <span id="otp">{{otp}}</span>
+    را در صفحه‌ی ثبت نام وارد کنید یا
+    {% endif %}
+    روی دکمه‌ی زیر کلیک کنید: <br/><br/>
+  </p>
+  <div style="text-align: center">
+    <a class="btn"
+      href="{{domain}}users/email-activation-redirect?token={{token}}">تایید ایمیل ثبت نام</a>
+  </div>
+  <p class="content">
+    <br/><br/>
+    سپس به منظور استفاده از تمامی امکانات نوبیتکس، لطفاً مراحل احراز هویت را
+    در سایت یا اپلیکیشن نوبیتکس تکمیل کنید.
+  </p>
+  <hr/>
+  <h4>راهنمای نوبیتکس</h4>
+  <p class="content">
+    سایت راهنمای نوبیتکس جهت کمک به استفاده از خدمات نوبیتکس در آدرس
+    <a style="color: #00aea4" alt="نحوه واریز و برداشت"
+       title="نحوه واریز و برداشت" target="_blank" href="https://help.nobitex.ir/">help.nobietx.ir</a>
+    همواره در دسترس شماست.
+  </p>
+</div>
+{% endblock %}

@@ -1,0 +1,46 @@
+openapi: 3.0.2
+info:
+  title: ''
+  version: ''
+paths:
+  /blocks/{network}/info:
+    get:
+      operationId: retrieveBlockInfo
+      description: ''
+      parameters:
+        - name: network
+          in: path
+          required: true
+          description: ''
+          schema:
+            type: string
+        - name: after_block_number
+          in: query
+          required: true
+          description: ''
+          schema:
+            type: integer
+        - name: to_block_number
+          in: query
+          required: true
+          description: ''
+          schema:
+            type: integer
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                type: array
+                items: { }
+          description: ''
+        '403':
+          description: ''
+        '404':
+          description: ''
+        '429':
+          description: ''
+        '500':
+          description: ''
+      tags:
+        - blocks

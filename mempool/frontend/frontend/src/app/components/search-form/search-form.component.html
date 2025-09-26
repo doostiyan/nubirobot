@@ -1,0 +1,12 @@
+<form [formGroup]="searchForm" (submit)="searchForm.valid && search()" novalidate>
+  <div class="d-flex">
+    <app-language-selector id="en-lan-option" style="padding-right: 8px"></app-language-selector>
+    <div class="search-box-container float-right">
+      <input #instance="ngbTypeahead" [ngbTypeahead]="typeaheadSearchFn" (selectItem)="itemSelected()" (focus)="focus$.next($any($event).target.value)" (click)="click$.next($any($event).target.value)" formControlName="searchText" type="text" class="form-control" i18n-placeholder="search-form.searchbar-placeholder" placeholder="TXID, block height, hash or address">
+    </div>
+    <div>
+      <button [disabled]="isSearching" type="submit" class="btn btn-block btn-primary mr-2 ml-2"><fa-icon [icon]="['fas', 'search']" [fixedWidth]="true" i18n-title="search-form.search-title" title="Search"></fa-icon></button>
+    </div>
+    <app-language-selector id="fa-lan-option"></app-language-selector>
+  </div>
+</form>

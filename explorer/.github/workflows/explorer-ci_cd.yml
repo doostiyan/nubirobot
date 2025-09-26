@@ -1,0 +1,16 @@
+name: Explorer CI/CD
+
+on:
+  workflow_dispatch:
+
+jobs:
+  CI_CD:
+    uses: ./.github/workflows/ci-cd.yml
+    with:
+      RUNNER: explorer-actions-runner
+      hosts: explorer
+    secrets:
+      SSH_KEY: ${{ secrets.SSH_KEY }}
+      ANSIBLE_VAULT_PASS: ${{ secrets.ANSIBLE_VAULT_PASS }}
+      MASTERKEY: ${{ secrets.MASTERKEY }}
+      SECRET_KEY: ${{ secrets.SECRET_KEY }}

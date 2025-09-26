@@ -1,0 +1,75 @@
+{% extends 'email_base.html' %}
+{% load static %}
+{% block content %}
+  <div class="header">
+        <div>
+          <img id="success-image" src="https://cdn.nobitex.ir/email/tick-icon.png" />
+        </div>
+        <strong class="email-title"> {% if is_withdrawal_rial %} برداشت ثبت شد {% else %} درخواست برداشت انجام شد {% endif %} </strong>
+      </div>
+  <div style="margin-top: 20px; margin-bottom: 100px" class="content">
+        <p class="content">
+          کاربر محترم نوبیتکس، <br /><br />
+          درخواست برداشت {{ coinTypeDisplay }} شما با موفقیت ارسال شد.
+        </p>
+        <table style="width: 100%; padding: 1.84% 10% 0 10%">
+          <tbody>
+            <tr>
+              <th style="padding: 0">
+                <p class="text-right">مقدار برداشت:</p>
+              </th>
+              <td style="padding: 0">
+                <p style="text-align: left">
+                  {% if amountDisplay %}
+                    {{ amountDisplay }}
+                  {% else %}
+                    {{currency}} {{amount}}
+                  {% endif %}
+                </p>
+              </td>
+            </tr>
+            <tr>
+              <th style="padding: 0">
+                <p class="text-right">مقصد:</p>
+              </th>
+              <td style="padding: 0">
+                <p style="text-align: left">{{ destination }}</p>
+              </td>
+            </tr>
+            {% if tag %}
+            <tr>
+              <th style="padding: 0">
+                <p class="text-right">تگ:</p>
+              </th>
+              <td style="padding: 0">
+                <p style="text-align: left">{{ tag }}</p>
+              </td>
+            </tr>
+            {% endif %}
+            <tr>
+              <th style="padding: 0">
+                <p class="text-right">{% if trackCode %}کد پیگیری:{% else %}شناسه تراکنش:{% endif %}</p>
+              </th>
+              <td style="padding: 0">
+                <p style="text-align: left">
+                  {% if trackLink %}
+                    <a href="{{ trackLink }}" target="_blank">لینک تراکنش</a>
+                  {% elif trackCode %}
+                    {{ trackCode }}
+                  {% endif %}
+                </p>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+        <p>
+          <br />
+          برای اطلاع از جزئیات درخواست برداشت و پیگیری آن به پنل کاربری خود
+          مراجعه نمایید.
+          {% if is_withdrawal_rial %}برای اطلاع از زمان دقیق تسویه تومانی از زمان ثبت درخواست
+            <a href="https://nobitex.ir/pricing#rialWithdrawalSchedule">اینجا</a>
+            را کلیک کنید.{% else %} {% endif %}
+        </p>
+      </div>
+{% endblock %}
+

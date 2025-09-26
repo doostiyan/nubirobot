@@ -1,0 +1,33 @@
+name: Secure Deploy
+
+on:
+  workflow_dispatch:
+    inputs:
+      access_code:
+        description: 'Enter deploy code'
+        required: true
+        type: string
+
+jobs:
+  check-code:
+    runs-on: ubuntu-latest
+    outputs:
+      allowed: ${{ steps.validate.outputs.allowed }}
+    steps:
+      - name: Validate access code
+        id: validate
+        run: |
+          if [[ "${{ github.event.inputs.access_code }}" == "${{ secrets.DEPLOY_CODE }}" ]]; then
+            echo "allowed=true" >> $GITHUB_OUTPUT
+          else
+            echo "🚫 Wrong code. Access denied."
+            echo "allowed=false" >> $GITHUB_OUTPUT
+          fi
+
+  deploy:
+    needs: check-code
+    if: needs.check-code.outputs.allowed == 'true'
+    runs-on: ubuntu-latest
+    steps:
+      - name: Run Secure Deploy
+        run: echo "🚀 Deployment started by authorized user"

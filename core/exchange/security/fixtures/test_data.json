@@ -1,0 +1,11 @@
+[
+  {
+    "model": "security.knownip",
+    "pk": 1,
+    "fields": {
+      "ip_range": "127.0.0",
+      "country": "IR",
+      "city": "UN"
+    }
+  }
+]

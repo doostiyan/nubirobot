@@ -1,0 +1,7 @@
+POST {{ apiUrl }}/users/payments/create-id HTTP/1.1
+Content-Type: application/json
+Authorization: Token {{ token }}
+
+{
+  "iban": "IR270530000002004040000011"
+}

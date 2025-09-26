@@ -1,0 +1,18 @@
+# double sell stop-limit - same stop point - first but worst done
+LOAD base-full
+25 SELL 10 98 STOP 98.5
+26 SELL 10 97.5 STOP 98.5
+CHECK
+27 SELL 20 MARKET
+MATCH 27 <= 9 10 99
+MATCH 27 <= 12 10 99
+CHECK
+28 SELL 20 98
+MATCH 28 <= 23 10 99
+MATCH 28 <= 6 10 98.5
+CHECK
+ORDERBOOK 4
+MATCH 25 <= 18 10 98
+29 SELL 5 97
+MATCH 29 <= 7 5 97
+CHECK

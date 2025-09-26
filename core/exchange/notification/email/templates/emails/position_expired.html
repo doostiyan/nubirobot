@@ -1,0 +1,24 @@
+{% extends 'email_base.html' %}
+{% load nobitex %}
+{% block content %}
+<div class="header">
+  <strong class="email-title">
+    موقعیت {{ is_short|yesno:'فروش,خرید' }} شما منقضی شد
+  </strong>
+</div>
+<div style="margin-top: 20px; margin-bottom: 50px">
+  <p class="content">
+    کاربر گرامی!
+    <br/>
+    <br/>
+   موقعیت {{ is_short|yesno:'فروش,خرید' }} شما
+   در بازار {{ market_display }}
+    {% if extension_fee_amount > collateral %}
+    به علت کمتر بودن وجه تضمین از مقدار کارمزد روزانه تمدید وکالت،
+    {% else %}
+   با گذشت یک ماه از زمان درخواست وکالت اولیه در تاریخ {{ created_at|shamsidateformat }}،
+    {% endif %}
+    منقضی و به اجبار بسته شده است.
+  </p>
+</div>
+{% endblock %}

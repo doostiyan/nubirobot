@@ -1,0 +1,12 @@
+namePrefix: testnet-
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
+resources:
+- ../../base
+labels:
+- includeSelectors: true
+  pairs:
+    env: testnet
+patches:
+- path: configmap-patch.yaml
+- path: deployment-patch.yaml

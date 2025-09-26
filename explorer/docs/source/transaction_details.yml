@@ -1,0 +1,53 @@
+openapi: 3.0.2
+info:
+  title: ''
+  version: ''
+paths:
+  /transactions/{network}/{tx_hash}:
+    get:
+      operationId: retrieveTransactionDetails
+      description: ''
+      parameters:
+        - name: network
+          in: path
+          required: true
+          description: 'blockchain network to explore, e.g., BTC, ETH, BSC, FTM, POLYGON. It is Not case sensitive.'
+          schema:
+            type: string
+        - name: tx_hash
+          in: path
+          required: true
+          description: 'transaction hash'
+          schema:
+            type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  hash:
+                    type: string
+                  success:
+                    type: boolean
+                  block:
+                    type: integer
+                  confirmations:
+                    type: integer
+                  fees:
+                    type: string
+                  date:
+                    type: string
+          description: ''
+        '403':
+          description: ''
+        '404':
+          description: ''
+        '429':
+          description: ''
+        '500':
+          description: ''
+
+      tags:
+        - transactions

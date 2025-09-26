@@ -1,0 +1,27 @@
+{% extends 'email_base.html' %}
+{% load static %}
+{% block content %}
+<div class="header">
+  <strong class="email-title"> فعال‌سازی شناسایی دوعاملی </strong>
+</div>
+<div style="margin-top: 20px; margin-bottom: 50px" class="content">
+  کاربر گرامی!
+  <br/>
+  <br/>
+  شناسایی دوعاملی برای حساب کاربری نوبیتکس شما با موفقیت فعال شد.
+  <br/>
+  <br/>
+  درصورتی که این درخواست از سمت شما نبوده؛ لطفا هرچه سریع‌تر گذرواژه‌ی خود را تغییر داده و با پشتیبانی نوبیتکس تماس
+  بگیرید.
+  <br/>
+  <br/>
+  {% if emergency_cancel_url %}
+  همچنین می‌توانید از طریق لینک زیر برداشت‌های خود را مسدود کنید:
+  <br/>
+  <br/>
+  <a class="btn-danger" href="{{ emergency_cancel_url }}">لغو اضطراری برداشت</a>
+  <br/>
+  <br/>
+  {% endif %}
+</div>
+{% endblock %}

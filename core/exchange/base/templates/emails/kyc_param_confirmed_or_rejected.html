@@ -1,0 +1,15 @@
+{% extends 'email_base.html' %}
+{% load static %}
+{% block content %}
+  <div class="header">
+          <strong class="email-title">{{title}}</strong>
+        </div>
+  <div style="margin: 20px; margin-bottom: 100px" class="content">
+    {{ message }}
+    <br/>
+    <br/>
+    <a class="btn" href="{{ kyc_page }}">{{ button_message }}</a>
+    <br/>
+    <br/>
+  </div>
+{% endblock %}

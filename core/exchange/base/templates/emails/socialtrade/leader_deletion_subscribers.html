@@ -1,0 +1,16 @@
+{% extends 'email_base.html' %} {% load nobitex %} {% block content %}
+<div class="header">
+  <strong class="email-title"> {{email_title}} </strong>
+</div>
+<div style="margin-top: 20px; margin-bottom: 50px">
+  <p class="content">
+    کاربر گرامی،
+    <br />
+    تریدر انتخابی شما تا پایان دوره فعلی اشتراک فعالیت خواهد داشت و پس از آن
+    امکان تمدید اشتراک وجود نخواهد داشت.
+    <br />
+    تریدر: {{nickname}}
+    <br />
+  </p>
+</div>
+{% endblock %}

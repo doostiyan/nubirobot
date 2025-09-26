@@ -1,0 +1,9 @@
+test,operation,obj_name,attribute,result
+1,Equal,buy,status,Order.STATUS.active
+2,Equal,over_priced_sell_1,status,Order.STATUS.active
+3,Equal,over_priced_sell_2,status,Order.STATUS.active
+4,Equal,over_priced_sell_3,status,Order.STATUS.active
+5,Equal,buy,unmatched_amount,Decimal(1)
+6,Equal,over_priced_sell_1,unmatched_amount,Decimal(1)
+7,Equal,over_priced_sell_2,unmatched_amount,Decimal(1)
+8,Equal,over_priced_sell_3,unmatched_amount,Decimal(1)

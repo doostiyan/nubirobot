@@ -1,0 +1,35 @@
+{% extends 'email_base.html' %}
+{% load static %}
+{% block content %}
+<div class="header">
+  <strong class="email-title"> غیرفعال‌سازی شناسایی دوعاملی </strong>
+</div>
+<div style="margin-top: 20px; margin-bottom: 50px">
+  <table style="width: 100%; padding: 1.84% 13.83% 0 13.14%">
+    <tbody>
+    <tr>
+      <th style="padding: 0">
+        <p style="float: right">کد امنیتی شما:</p>
+      </th>
+      <td style="padding: 0">
+        <p id="otp" style="float: left">{{otp}}</p>
+      </td>
+    </tr>
+    </tbody>
+  </table>
+  <hr/>
+  <p class="content">
+    کاربر گرامی!
+    <br/>
+    <br/>
+    شما درخواست غیرفعال‌سازی شناسایی دوعاملی حساب
+    {% if isTestnet %} شبیه‌ساز{% endif %}
+    نوبیتکس خود را کرده‌اید. برای تایید این درخواست از کد بالا استفاده کنید.
+    <br/>
+    <br/>
+    درصورتی که این درخواست از سمت شما نبوده؛ لطفا هرچه سریع‌تر گذرواژه‌ی خود را تغییر داده و با پشتیبانی نوبیتکس تماس
+    بگیرید.
+  </p>
+</div>
+{% endblock %}
+

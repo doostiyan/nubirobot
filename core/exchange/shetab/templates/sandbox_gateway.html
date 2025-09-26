@@ -1,0 +1,46 @@
+{% extends 'ebase.html' %} {% block content %}
+<div class="text-center rtl-div">
+  {% if id %}
+  <table class="table" style="width: 350px; margin: 50px auto">
+    <tr>
+      <th style="width: 200px">شناسه پرداخت:</th>
+      <td>{{id}}</td>
+    </tr>
+    <tr>
+      <th>مبلغ واریزی:</th>
+      <td>{{amount}} ﷼</td>
+    </tr>
+    <tr>
+      <th>مبلغ کارمزد:</th>
+      <td>{{fee}} ﷼</td>
+    </tr>
+    <tr>
+      <th>مبلغ شارژ کیف پول:</th>
+      <td>{{net_amount}} ﷼</td>
+    </tr>
+  </table>
+  <form id="form" action="{{callback_url}}" method="POST">
+    <input
+      type="hidden"
+      id="id"
+      name="id"
+      value="{{ id }}"
+    />    <input
+      type="hidden"
+      id="amount"
+      name="amount"
+      value="{{ amount }}"
+    />
+    <div>
+      <input type="radio" id="accept" name="status" value="accept" checked />
+      <label for="huey">تایید واریز</label>
+    </div>
+    <div>
+      <input type="radio" id="reject" name="status" value="reject" checked />
+      <label for="huey">رد واریز</label>
+    </div>
+    <button type="submit" class="form">ارسال</button>
+  </form>
+  {% else %} شناسه‌ی واریز یافت نشد. {% endif %}
+</div>
+{% endblock %}

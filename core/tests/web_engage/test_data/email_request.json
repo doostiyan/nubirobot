@@ -1,0 +1,26 @@
+{
+    "email": {
+        "from": "from@email.xyz",
+        "fromName": "John Doe",
+        "replyTo": ["replyone@email.xyz", "replytwo@email.xyz"],
+        "subject": "email subject",
+        "text": "text body",
+        "html": "html body",
+        "recipients": {
+            "to": [{"name": "Recipient1", "email": "abc12345"}, {"name": "Recipient2", "email": "abc@pqr.xyz"}],
+            "cc": ["recipient_cc1@email.xyz", "recipient_cc2@email.xyz"],
+            "bcc": ["recipient_bcc1@email.xyz", "recipient_bcc2@email.xyz"],
+        },
+        "attachments": [
+            {"name": "Attachment1", "url": "http://link/to/attachment/1"},
+            {"name": "Attachment2", "url": "http://link/to/attachment/2"}
+        ]
+    },
+    "metadata": {
+        "campaignType": "PROMOTIONAL",
+        "custom": {"key1": "val1", "key2": "val2"},
+        "timestamp": 1521012814,
+        "messageId": "webengage-message-id",
+    },
+    "version": "1.0"
+}

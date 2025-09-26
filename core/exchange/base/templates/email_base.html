@@ -1,0 +1,259 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8"/>
+  <meta content="width=device-width, initial-scale=1" name="viewport"/>
+  <title>Nobitex</title>
+  <style>
+    @font-face {
+      font-family: "Vazir";
+      font-weight: normal;
+      src: url("https://cdn.nobitex.ir/fonts/Vazir/Vazir.woff2") format("woff2"),
+           url("https://cdn.nobitex.ir/fonts/Vazir/Vazir.woff") format("woff");
+    }
+    @font-face {
+      font-family: "Vazir";
+      font-weight: bold;
+      src: url("https://cdn.nobitex.ir/fonts/Vazir/Vazir-Medium.woff2") format("woff2"),
+           url("https://cdn.nobitex.ir/fonts/Vazir/Vazir-Medium.woff") format("woff");
+    }
+
+    body {
+      background: #f2f3f5;
+      font-family: Vazir, serif;
+    }
+
+    .header-image {
+      background: rgb(146, 93, 255);
+      background: linear-gradient(180deg,
+      rgba(146, 93, 255, 1) 0%,
+      rgba(101, 58, 187, 1) 60%,
+      rgba(94, 53, 177, 1) 100%);
+      background-image: -webkit-linear-gradient(180deg,
+      rgba(146, 93, 255, 1) 0%,
+      rgba(101, 58, 187, 1) 60%,
+      rgba(94, 53, 177, 1) 100%);
+      background-image: -moz-linear-gradient(180deg,
+      rgba(146, 93, 255, 1) 0%,
+      rgba(101, 58, 187, 1) 60%,
+      rgba(94, 53, 177, 1) 100%);
+      background-image: -ms-linear-gradient(180deg,
+      rgba(146, 93, 255, 1) 0%,
+      rgba(101, 58, 187, 1) 60%,
+      rgba(94, 53, 177, 1) 100%);
+      background-image: -o-linear-gradient(180deg,
+      rgba(146, 93, 255, 1) 0%,
+      rgba(101, 58, 187, 1) 60%,
+      rgba(94, 53, 177, 1) 100%);
+    }
+
+    .container {
+      text-align: center;
+      margin: 0 auto;
+      max-width: 700px;
+      min-height: 400px;
+    }
+
+    .container-content {
+      border-top: 1px solid #f6ffff9c;
+      box-shadow: 0 0 1px 0 rgba(0, 0, 0, 0.2),
+      0 1px 6px 0 rgba(0, 0, 0, 0.19);
+      background: white;
+    }
+
+    .header {
+      margin-top: 3.48%;
+      text-align: center;
+    }
+
+    hr {
+      margin: 0;
+      border: 0;
+      height: 2px;
+      background: #e3e4e5;
+    }
+
+    #success-image {
+      width: 57px;
+    }
+
+    .content {
+      text-align: center;
+      font-size: 15px;
+      color: #000000b5;
+      margin-top: 0;
+      padding: 1.84% 13.83% 0 13.14%;
+      line-height: 20px;
+    }
+
+    section {
+      text-align: left;
+      font-size: 15px;
+      font-weight: bold;
+      padding: 20px 55px 30px;
+    }
+
+    section span {
+      display: block;
+    }
+
+    #social {
+      float: left;
+      padding-top: 10px;
+    }
+
+    .email-title {
+      font-size: 26px;
+      padding-top: 5px;
+      display: inline-block;
+    }
+
+    .footer {
+      background: #14151a;
+      height: 45px;
+      padding: 20px 55px 25px;
+    }
+
+    .anti_phishing_box {
+        background: #14151a;
+        color: white;
+        height: auto;
+        text-align: right;
+        padding: 20px 55px 25px;
+    }
+
+    #social img {
+      width: 19px;
+      height: 19px;
+      margin-right: 10px;
+    }
+
+    #footer-logo {
+      float: right;
+      color: #fff;
+      margin-top: 4px;
+    }
+
+    #footer-logo img {
+      width: 95px;
+      height: 35px;
+      margin-left: 5px;
+    }
+
+    #unsubscribe {
+      color: #14151a;
+      font-size: 12px;
+      padding: 25px 0 20px;
+    }
+
+    #unsubscribe p {
+      padding: 0 15px;
+      margin: 0;
+      line-height: 20px;
+    }
+
+    #info-links {
+      padding: 10px 0 20px;
+      font-size: 12px;
+    }
+
+    #otp {
+      color: #00aea4;
+      display: inline-block;
+      font-size: 26px;
+      font-weight: bold;
+    }
+
+    .text-right {
+      text-align: right;
+    }
+
+    .btn {
+      padding: 10px 30px;
+      border-radius: 3px;
+      background-color: #00aea4;
+      color: white;
+      text-decoration: none;
+    }
+
+    .btn-danger {
+      padding: 10px 30px;
+      border-radius: 3px;
+      background-color: #f04c4c;
+      color: white;
+      text-decoration: none;
+    }
+    /* Specific Styles */
+  </style>
+</head>
+
+<body style="background: #f8f9fb; direction: rtl; margin: 0">
+<div class="header-image" style="text-align: center; margin: 0 auto; max-width: 700px">
+  <img style="width: 87px; margin: 80px auto 25px" src="https://cdn.nobitex.ir/email/logo-white.png"
+       alt="نوبیتکس"/>
+</div>
+<div class="container">
+    {% if anti_phishing_code %}
+        <div class="anti_phishing_box">
+            کد آنتی‌فیشینگ شما:
+            <b>{{ anti_phishing_code }}</b>
+        </div>
+    {% endif %}
+  <div class="container-content">
+    {% block content %}{% endblock %}
+    <hr/>
+    <section>
+      <span style="margin-bottom: 10px">سپاس از همراهی شما</span>
+      <span>تیم نوبیتکس</span>
+    </section>
+  </div>
+  <div>
+    <div class="footer">
+      <div id="social">
+        <a target="_blank" href="https://www.instagram.com/nobitex_market/"><img
+          src="https://cdn.nobitex.ir/email/icon-instagram.png"/></a>
+        <a target="_blank" href="https://twitter.com/nobitexmarket"><img
+          src="https://cdn.nobitex.ir/email/icon-twitter.png"/></a>
+        <a target="_blank" href="https://t.me/nobitexmarket"><img
+          src="https://cdn.nobitex.ir/email/icon-telegram.png"/></a>
+      </div>
+      <div id="footer-logo">
+        <img src="https://cdn.nobitex.ir/email/logo-purple.png"/>
+      </div>
+    </div>
+    <div id="unsubscribe">
+      <p>
+        این یک پیام خودکار از تیم نوبیتکس است و نیازی به پاسخ‌دهی به آن
+        نمی‌باشد. در صورت وجود مشکل یا هرگونه سوال به پشتیبانی آنلاین
+        نوبیتکس مراجعه نمایید.
+      </p>
+    </div>
+    <div>
+      <a href="https://cafebazaar.ir/app/?id=market.nobitex" target="_blank" alt="دانلود از بازار"
+         title="دانلود از بازار" style="text-decoration: none">
+        <img style="width: 175px; height: 59px" src="https://cdn.nobitex.ir/email/android-bazar.png"/>
+      </a>
+      <a href="https://cdn.nobitex.ir/nobitex.apk" target="_blank" alt="دانلود مستقیم" title="دانلود مستقیم"
+         class="download-btn">
+        <img style="width: 175px" src="https://cdn.nobitex.ir/email/direct-link.png"/>
+      </a>
+    </div>
+    <div id="info-links">
+      <div>
+        <span style="color: #a3a5a8">Website:&nbsp;&nbsp;</span>
+        <a href="https://nobitex.ir/" target="_blank" rel="follow"
+           alt="نوبیتکس - بزرگترین مرجع خرید و فروش ارز دیجیتال"
+           title="نوبیتکس - بزرگترین مرجع خرید و فروش ارز دیجیتال"
+           style="color: #5e35b1; text-decoration: underline">https://nobitex.ir</a>
+      </div>
+      <div>
+        <span style="color: #a3a5a8">Email:&nbsp;</span>
+        <a href="mailto:support@nobitex.ir" target="_blank" alt="ایمیل نوبیتکس" title="ایمیل نوبیتکس"
+           style="color: #5e35b1; text-decoration: underline">support@nobitex.ir</a>
+      </div>
+    </div>
+  </div>
+</div>
+</body>
+</html>

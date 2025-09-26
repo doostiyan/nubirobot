@@ -1,0 +1,16 @@
+{% extends 'email_base.html' %}
+{% block content %}
+<div class="header">
+  <strong class="email-title">
+  </strong>
+</div>
+<div style="margin-top: 20px; margin-bottom: 50px">
+  <p class="content">
+    کاربر گرامی!
+    <br/>
+    دوره‌ی لغو {{platform}} شما پایان یافت و میزان {{amount}} {{currency}} به کیف پول معاملات شما منتقل شد.
+    <br/>
+    <br/>
+  </p>
+</div>
+{% endblock %}

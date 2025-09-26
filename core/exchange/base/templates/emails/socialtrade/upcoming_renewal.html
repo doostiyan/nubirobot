@@ -1,0 +1,18 @@
+{% extends 'email_base.html' %} {% load nobitex %} {% block content %}
+<div class="header">
+  <strong class="email-title"> {{email_title}} </strong>
+</div>
+<div style="margin-top: 20px; margin-bottom: 50px">
+  <p class="content">
+    کاربر گرامی,
+    <br />
+    <br />
+    اشتراک سوشال ترید شما در تاریخ {{expires_at}} تمدید خواهد شد.
+    <br />
+    <br />
+    تریدر: {{nickname}}
+    <br />
+    هزینه اشتراک: {{subscription_fee}}
+  </p>
+</div>
+{% endblock %}

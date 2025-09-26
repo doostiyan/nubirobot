@@ -1,0 +1,14 @@
+# mixed sell/buy stop-loss - same stop point - activate in turn  - no match
+LOAD base-full
+25 BUY 10 100 STOP 101
+26 SELL 10 MARKET STOP 101
+CHECK
+27 SELL 20 MARKET
+MATCH 27 <= 9 10 99
+MATCH 27 <= 12 10 99
+CHECK
+# 26 is activated now
+28 BUY 10 MARKET
+MATCH 28 <= 19 10 101
+CHECK
+# 25 is activated now

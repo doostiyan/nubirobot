@@ -1,0 +1,10 @@
+# Order price is in the range of orderbook so there should be any kind of expansion.
+1 SELL 10 100
+2 SELL 5 160
+3 BUY 5 90
+4 BUY 5 80
+ORDERBOOK 2
+5 BUY 15 100
+MATCH 5 <= 1 10 100
+EXPANSION buy 0 sell 0
+CHECK

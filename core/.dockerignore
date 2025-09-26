@@ -1,0 +1,76 @@
+# Python-related files and directories
+__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+*.pyc
+*.pyo
+*.pyd
+*.so
+*.egg
+*.egg-info
+dist/
+build/
+*.manifest
+*.spec
+
+# Virtual environments
+venv/
+.env/
+env/
+.venv/
+pip-wheel-metadata/
+*.whl
+
+# Distribution / packaging
+*.egg-info/
+*.egg/
+.eggs/
+lib/
+lib64/
+
+# Byte-compiled / optimized / DLL files
+*.py[cod]
+
+# Testing
+htmlcov/
+.tox/
+.nox/
+.coverage
+.coverage.*
+.cache
+nosetests.xml
+coverage.xml
+*.cover
+.hypothesis/
+.pytest_cache/
+.junit.xml
+
+# Documentation
+docs/_build/
+target/
+
+# Logs and databases
+*.log
+*.sql
+*.sqlite
+*.sqlite3
+*.db
+
+# OS-specific files
+.DS_Store
+*.AppleDouble
+.LSOverride
+Thumbs.db
+ehthumbs.db
+Desktop.ini
+$RECYCLE.BIN/
+
+# IDEs
+.vscode/
+.idea/
+.project
+.pydevproject
+
+# git
+.git

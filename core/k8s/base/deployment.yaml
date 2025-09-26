@@ -1,0 +1,31 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: exchange-internal
+  namespace: testnet-core
+  labels:
+    app: exchange-internal
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: exchange-internal
+  template:
+    metadata:
+      labels:
+        app: exchange-internal
+    spec:
+      containers:
+        - name: exchange-internal
+          image: h-reg.nxbo.ir/core/core:master
+          imagePullPolicy: IfNotPresent
+          ports:
+            - containerPort: 8000
+          env:
+            - name: ENV
+              valueFrom:
+                configMapKeyRef:
+                  name: exchange-configmap
+                  key: ENV
+      imagePullSecrets:
+        - name: registry-cred

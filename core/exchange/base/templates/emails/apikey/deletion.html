@@ -1,0 +1,22 @@
+{% extends 'email_base.html' %}
+{% load nobitex %}
+{% block content %}
+<style>
+    .content {
+      margin: 20px;
+      margin-bottom: 100px
+    }
+</style>
+<div class="header">
+  <div>
+    <img alt="success" id="success-image" src="https://cdn.nobitex.ir/email/tick-icon.png"/>
+  </div>
+  <strong class="email-title">کلید API شما حذف شد</strong>
+</div>
+<div dir="auto" class="content">
+  کاربر گرامی،
+  <br>
+  <br>
+  یکی از API Keyهای شما در تاریخ {{ now | shamsidateformat }} از حساب کاربری شما حذف شده است. در صورتی که این اقدام توسط شما انجام نشده است، سریعا رمز عبور خود را تغییر داده و با پشتیبانی تماس بگیرید.
+</div>
+{% endblock %}

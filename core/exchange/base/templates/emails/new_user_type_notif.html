@@ -1,0 +1,30 @@
+{% extends 'email_base.html' %}
+{% block content %}
+  <div class="header">
+    <strong class="email-title">
+      احراز هویت نوبیتکس
+      <br/>
+      سطح کاربری شما، به {{ level_label }} ارتقا یافت
+    </strong>
+  </div>
+  <div style="margin-top: 20px; margin-bottom: 50px">
+    <p class="content">
+      {{ user_full_name }} ‌عزیز، سطح کاربری شما با موفقیت به {{ level_label }} ارتقا یافت.
+      <br/>
+      <br/>
+      امکانات سطح کاربری جدید شما:
+      <br/>
+      {% for feature in features %}
+        {{ feature }}
+        <br/>
+      {% endfor %}
+
+      <br/>
+      <br/>
+      {% if has_more_level %}
+        برای افزایش امکانات و سقف‎های واریز و برداشت، می‌توانید از طریق بخش احراز هویت در پنل کاربری خود به ارتقای سطح
+        کاربری خود بپردازید.
+      {% endif %}
+    </p>
+  </div>
+{% endblock %}

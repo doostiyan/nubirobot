@@ -1,0 +1,3 @@
+LOAD base-bids-only
+25 SELL 10 99
+CHECK

@@ -1,0 +1,58 @@
+name: Post Delete Cleanup
+
+on:
+  workflow_dispatch:
+
+  pull_request:
+    branches:
+      - master
+      - release-*
+    types:
+      - closed
+
+permissions:
+  contents: read
+
+jobs:
+  drop-db:
+    runs-on: N-EU2-Nobitex-Core-TestNet
+    steps:
+      - name: Extract and slugify branch name (Django-Compatible)
+        id: slugify
+        run: |
+          if [ "${{ github.event_name }}" = "pull_request" ]; then
+            BRANCH_NAME="${{ github.head_ref }}"  # PR source branch
+          elif [ "${{ github.event_name }}" = "workflow_dispatch" ]; then
+            BRANCH_NAME="${{ github.ref_name }}"  # Use the default branch for manual runs
+          else
+            BRANCH_NAME="${GITHUB_REF#refs/heads/}"  # For push events
+          fi
+
+          # Django-compatible slugify:
+          # 1. Convert to lowercase
+          # 2. Remove all non-alphanumeric characters (including / and _)
+          # 3. Collapse consecutive non-alphanumeric characters into nothing
+          # 4. Remove leading/trailing hyphens (if any)
+          SLUGIFIED_BRANCH_NAME=$(echo "${BRANCH_NAME}" | tr '[:upper:]' '[:lower:]' | sed 's/[^a-z0-9]//g')
+
+          echo "SLUGIFIED_BRANCH_NAME=$SLUGIFIED_BRANCH_NAME" >> $GITHUB_ENV
+
+      - name: Drop the 3.8 database
+        run: |
+          PATTERN="test_nobitex\\_%\\_${SLUGIFIED_BRANCH_NAME}"
+          echo $PATTERN
+          PGPASSWORD=YxI8MWXFdYALSZlSHR6bdLpvR psql -h db.local -U test_nobitex -t -c "SELECT datname FROM pg_database WHERE datname LIKE '$PATTERN';" | while read -r dbname; do
+            if [ -n "$dbname" ]; then
+              PGPASSWORD=YxI8MWXFdYALSZlSHR6bdLpvR psql -h db.local -U test_nobitex -c "DROP DATABASE IF EXISTS \"$dbname\";"
+            fi
+          done
+
+      - name: Drop the 3.12 database
+        run: |
+          PATTERN="test_nobitex\\_%\\_312-${SLUGIFIED_BRANCH_NAME}"
+          echo $PATTERN
+          PGPASSWORD=YxI8MWXFdYALSZlSHR6bdLpvR psql -h db.local -U test_nobitex -t -c "SELECT datname FROM pg_database WHERE datname LIKE '$PATTERN';" | while read -r dbname; do
+            if [ -n "$dbname" ]; then
+              PGPASSWORD=YxI8MWXFdYALSZlSHR6bdLpvR psql -h db.local -U test_nobitex -c "DROP DATABASE IF EXISTS \"$dbname\";"
+            fi
+          done

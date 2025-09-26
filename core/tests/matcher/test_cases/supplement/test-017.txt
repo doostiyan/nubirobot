@@ -1,0 +1,4 @@
+LOAD base-full
+25 SELL 5 99
+MATCH 25 <= 9 5 99
+CHECK

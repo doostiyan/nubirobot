@@ -1,0 +1,21 @@
+{% extends 'email_base.html' %} {% load nobitex %} {% block content %}
+<div class="header">
+  <strong class="email-title"> {{email_title}} </strong>
+</div>
+<div style="margin-top: 20px; margin-bottom: 50px">
+  <p class="content">
+    کاربر گرامی:
+    <br />
+    <br />
+    اشتراک سوشال ترید شما به مدت یک ماه فعال شده و هزینه اشتراک از کیف پول شما
+    کسر شده است.
+    <br />
+    <br />
+    تریدر: {{nickname}}
+    <br />
+    هزینه اشتراک: {{subscription_fee}}
+    <br />
+    تاریخ پایان اشتراک: {{expires_at}}
+  </p>
+</div>
+{% endblock %}

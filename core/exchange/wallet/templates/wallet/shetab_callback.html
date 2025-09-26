@@ -1,0 +1,70 @@
+{% extends 'shetab_base.html' %}
+{% load nobitex %}
+{% block title %}
+واریز موفق
+{% endblock %}
+{% block payment %}
+linear-gradient(45deg, rgba(18, 186, 174, 1), rgba(18, 186, 174, 0.13), rgba(18, 186, 174, 0.59))
+{% endblock %}
+
+{% block content %}
+    <div class="payment">
+        <div class="payment-container">
+            <div class="payment-container__headers">
+                <img src="https://nobitex.ir/nobitex-cdn/images/successful.svg" width="72" height="72" class="payment-container__icon" alt="successful icon">
+                <div class="payment-container__state">
+                    <span>واریز موفق</span>
+                    <div class="payment-container__state--description">
+                        واریز شتابی با موفقیت انجام شد
+                    </div>
+                </div>
+            </div>
+            <div class="payment-container__info--box">
+                <div class="payment-container__deposit--id">
+                    <span class="payment-container__deposit--id--desc">شناسه‌ی پرداخت</span>
+                    <div class="payment-container__deposit--id--copy--box">
+                        <span class="ltr payment-container__deposit--id--desc">{{order_id}}</span>
+                        <button class="payment-container__deposit--id--desc__copy--icon" onclick="copyDepositId('{{order_id}}')"><img src="https://nobitex.ir/nobitex-cdn/images/copy-icon.svg" width="16" height="16" alt="copy icon"></button>
+                    </div>
+                </div>
+                <div class="payment-container__info">
+                    <div class="bold">
+                        <span>مبلغ واریزی</span>
+                        <span><span class="ltr">{{amount|moneycurrencyformat:2}}</span></span>
+                    </div>
+                    <div class="bold">
+                        <span>کارمزد واریز</span>
+                        <span><span class="ltr">{{fee|moneycurrencyformat:2}}</span></span>
+                    </div>
+                    <div class="bold">
+                        <span>مقدار نهایی واریز به کیف پول</span>
+                        <span><span class="ltr">{{net_amount|moneycurrencyformat:2}}</span></span>
+                    </div>
+                    {% if status_code == 102030 %}
+                    <div class="bold">
+                      <span>کارت جدید</span>
+                      <span class="ltr">{{card_number}}</span>
+                    </div>
+                    {% endif %}
+                </div>
+            </div>
+            {% if status_code == 102030 %}
+            <div class="payment-container__state--description">
+              کاربر گرامی، از آنجا که واریز وجه با کارتی به غیر از کارت های تعریف شده
+              شما در سیستم انجام پذیرفته است، لطفاً از طریق لینک زیر نسبت به اضافه کردن
+              کارت جدید اقدام نمایید. همچنین توجه داشته باشید که تا زمان تأیید نشدن کارت
+              جدید شما، مبلغ واریزی با این کارت برای شما قابل استفاده نخواهد بود.
+            </div>
+
+            <div class="payment-container__button">
+              <a class="payment-container__button__back-to-wallet" href="{{add_card_url}}">اضافه کردن کارت بانکی</a>
+            </div>
+            {% else %}
+
+            <div class="payment-container__button">
+                <a class="payment-container__button__back-to-wallet" href="{{redirect_url}}">بازگشت به کیف اسپات</a>
+            </div>
+           {% endif %}
+        </div>
+    </div>
+{% endblock %}

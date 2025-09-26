@@ -1,0 +1,38 @@
+{% extends 'shetab_base.html' %}
+{% block title %}واریز ناموفق{% endblock %}
+{% block payment %}linear-gradient(45deg, rgba(208, 77, 99, 1), rgba(208, 77, 99, 0.13), rgba(208, 77, 99, 0.59)){% endblock %}
+
+{% block content %}
+    <div class="payment">
+        <div class="payment-container">
+            <div class="payment-container__headers">
+                <img src="https://nobitex.ir/nobitex-cdn/images/fail.svg" width="72" height="72" class="payment-container__icon" alt="fail icon">
+                <div class="payment-container__state">
+                    <span>واریز ناموفق</span>
+                    <div class="payment-container__state--description">
+                        به‌دلیل مشکلات زیرساختی، فعلا واریز شتابی امکان‌پذیر نیست. لطفا کمی بعد، دوباره تلاش کنید. در صورت کسر از حساب شما، مبلغ تا ۳۰ دقیقه‌ی دیگر به حساب شما برمی‌گردد.
+                    </div>
+                </div>
+            </div>
+            <div class="payment-container__info--box--background">
+                <div class="payment-container__deposit--id--background">
+                    <span class="payment-container__deposit--id--desc">شناسه‌ی پرداخت</span>
+                    <div class="payment-container__deposit--id--copy--box">
+                        <span class="ltr payment-container__deposit--id--desc">{{order_id}}</span>
+                        <button class="payment-container__deposit--id--desc__copy--icon" onclick="copyDepositId('{{order_id}}')"><img src="https://nobitex.ir/nobitex-cdn/images/copy-icon.svg" width="16" height="16" alt="copy icon"></button>
+                    </div>
+                </div>
+                <div class="payment-container__deposit--id--background">
+                    <span class="payment-container__deposit--id--desc">شناسه‌ی تراکنش</span>
+                    <div class="payment-container__deposit--id--copy--box">
+                        <span class="ltr payment-container__deposit--id--desc">{{nextpay_id}}</span>
+                        <button class="payment-container__deposit--id--desc__copy--icon" onclick="copyDepositId('{{nextpay_id}}')"><img src="https://nobitex.ir/nobitex-cdn/images/copy-icon.svg" width="16" height="16" alt="copy icon"></button>
+                    </div>
+                </div>
+            </div>
+            <div class="payment-container__button">
+                <a class="payment-container__button__back-to-wallet" href="{{redirect_url}}">بازگشت به کیف اسپات</a>
+            </div>
+        </div>
+    </div>
+{% endblock %}

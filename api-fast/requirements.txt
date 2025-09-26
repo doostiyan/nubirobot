@@ -1,0 +1,7 @@
+flask<2
+flask-redis
+gunicorn
+MarkupSafe<2.1.0
+pip
+sentry-sdk[flask]
+urllib3<2

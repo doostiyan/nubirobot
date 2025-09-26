@@ -1,0 +1,34 @@
+{% extends 'email_base.html' %}
+{% load static %}
+{% block content %}
+<div class="header">
+  <strong class="email-title">
+   کد تایید برای ادغام دو حساب کاربری
+  </strong>
+</div>
+<div style="margin-top: 20px; margin-bottom: 50px">
+    <div style="margin: 20px;" dir="rtl">
+      کد امنیتی برای تایید ادغام {{merge_type}} شما با حساب زیر:
+    </div>
+    <div style="margin: 20px;" dir="ltr">
+      {{merge_account}}
+    </div>
+    <div style="margin-top: 20px; margin-bottom: 50px">
+      <table style="width: 100%; padding: 1.84% 20% 0 20%">
+        <tbody>
+        <tr>
+          <th style="padding: 0">
+            <p style="float: right">
+              کد تایید ادغام:
+            </p>
+          </th>
+          <td style="padding: 0">
+            <p id="otp" style="float: left">{{otp}}</p>
+          </td>
+        </tr>
+        </tbody>
+      </table>
+    </div>
+</div>
+{% endblock %}
+

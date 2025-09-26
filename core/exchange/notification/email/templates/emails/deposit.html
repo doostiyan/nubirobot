@@ -1,0 +1,26 @@
+{% extends 'email_base.html' %}
+{% load static %}
+{% block content %}
+<div class="header">
+  <div>
+    <img
+      id="success-image"
+      src="https://cdn.nobitex.ir/email/tick-icon.png"
+    />
+  </div>
+  <strong class="email-title">
+    واریز {% if isTestnet %} تستی {% endif %}
+    {% if currency == 'ریال' or currency == '﷼' %} وجه {% else %} رمزارز {% endif %}
+  </strong>
+</div>
+<div style="margin-top: 20px; margin-bottom: 100px">
+  <p class="content">
+    کاربر گرامی!
+    <br/>
+    <br/>
+    مقدار
+    <span id="price">{{currency}} {{amount}}</span>
+    با موفقیت به کیف پول نوبیتکس شما واریز گردید.
+  </p>
+</div>
+{% endblock %}

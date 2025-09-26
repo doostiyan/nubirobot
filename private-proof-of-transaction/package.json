@@ -1,0 +1,17 @@
+{
+  "name": "private-proof-of-transaction",
+  "version": "0.1",
+  "description": "private proof of transaction code and usecases ",
+  "author": "Hamid Bateni (hamid@europe.com) - Kayvan Kambaksh - Amirhossein Azarpour",
+  "workspaces": [
+    "application",
+    "contracts",
+    "circuits"
+  ],
+  "private": true,
+  "scripts": {
+    "build": "yarn build:circuits && yarn build:contracts",
+    "build:contracts": "yarn workspace contracts build",
+    "build:circuits": "yarn workspace circuits build"
+  }
+}

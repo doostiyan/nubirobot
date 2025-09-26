@@ -1,0 +1,20 @@
+{% extends 'email_base.html' %}
+{% load nobitex %}
+{% block content %}
+<div class="header">
+  <strong class="email-title">
+    افزایش ظرفیت مشارکت در استخر
+    {{ currency|currencyformat:True }}
+  </strong>
+</div>
+<div style="margin-top: 20px; margin-bottom: 50px">
+  <p class="content">
+    کاربر گرامی:
+    <br/>
+    <br/>
+    ظرفیت استخر
+  {{ currency|currencyformat:True }}
+  افزایش پیدا کرده است. جهت مشارکت، لطفا به پنل کاربری خود در نوبیتکس و بخش استخر مشارکت مراجعه فرمایید.
+  </p>
+</div>
+{% endblock %}

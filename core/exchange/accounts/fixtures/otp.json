@@ -1,0 +1,66 @@
+[
+  {
+    "model": "accounts.user",
+    "pk": 305,
+    "fields": {
+      "password": "!",
+      "last_login": null,
+      "is_superuser": false,
+      "username": "user-otp@example.com",
+      "first_name": "User",
+      "last_name": "OTP Sample",
+      "email": "user-otp@example.com",
+      "base_fee": null,
+      "is_staff": false,
+      "is_active": true,
+      "date_joined": "2017-01-01T00:00:00Z",
+      "groups": [],
+      "user_permissions": [],
+      "user_type": 40,
+      "otp": "474635",
+      "otp_expiry": "2050-09-26T00:00:00Z",
+      "otp_type": 1
+    }
+  },
+  {
+    "model": "accounts.userotp",
+    "pk": 54,
+    "fields": {
+      "user_id": 305,
+      "code": "474635",
+      "otp_type": 1,
+      "otp_usage": 6,
+      "otp_status": 1,
+      "is_sent": true,
+      "created_at": "2022-09-26T00:00:00Z",
+      "updated_at": "2022-09-26T00:00:00Z",
+      "expires_at": "2050-09-26T00:00:00Z",
+      "phone_number": null
+    }
+  },
+  {
+    "model": "accounts.userotp",
+    "pk": 55,
+    "fields": {
+      "user_id": 305,
+      "code": "353535",
+      "otp_type": 1,
+      "otp_usage": 6,
+      "otp_status": 1,
+      "is_sent": true,
+      "created_at": "2022-09-26T00:00:00Z",
+      "updated_at": "2022-09-26T00:00:00Z",
+      "expires_at": "2050-09-26T00:00:00Z",
+      "phone_number": null
+    }
+  },
+  {
+    "model": "authtoken.token",
+    "pk": 305,
+    "fields": {
+      "user_id": 305,
+      "key": "user305token",
+      "created": "2021-11-01T00:00:00Z"
+    }
+  }
+]

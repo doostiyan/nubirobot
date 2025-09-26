@@ -1,0 +1,16 @@
+{% extends 'email_base.html' %}
+{% load static %}
+{% block content %}
+<div class="header">
+  <strong class="email-title"> {{email_title}} </strong>
+</div>
+<div style="margin-top: 20px; margin-bottom: 50px">
+  <p class="content">
+    کاربر گرامی,
+    <br />
+    <br />
+قرارداد واریز مستقیم {{ bank_name }} شما تا تاریخ {{ expires_at }} و با سقف واریز روزانه {{ max_amount }} تومان در نوبیتکس ایجاد شد.
+    <br />
+  </p>
+</div>
+{% endblock %}

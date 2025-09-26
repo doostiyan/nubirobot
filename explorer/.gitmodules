@@ -1,0 +1,8 @@
+[submodule "exchange/blockchain"]
+	path = exchange/blockchain
+	url = git@github-blockchain:nobitex/app-blockchain.git
+	branch = master
+[submodule "exchange/base"]
+	path = exchange/base
+	url = git@github-base:nobitex/app-base.git
+	branch = master

@@ -1,0 +1,17 @@
+{% extends 'email_base.html' %}
+{% block content %}
+<div class="header">
+  <strong class="email-title">
+  </strong>
+</div>
+<div style="margin-top: 20px; margin-bottom: 50px">
+  <p class="content">
+    کاربر گرامی!
+    <br/>
+    طرح {{platform}} شما به میزان {{amount}} {{currency}} شروع شد.
+    جهت پیگیری وضعیت به صفحه‌ی طرح‌های من در پنل {{platform}} مراجعه کنید.
+    <br/>
+    <br/>
+  </p>
+</div>
+{% endblock %}

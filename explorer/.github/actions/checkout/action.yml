@@ -1,0 +1,69 @@
+name: "Setup Multiple SSH Keys for Submodules"
+description: "Configures multiple SSH keys and updates submodules"
+
+inputs:
+  explorer_ssh_key:
+    description: "Explorer repository SSH key"
+    required: true
+  app_blockchain_ssh_key:
+    description: "SSH key for submodule app-blockchain"
+    required: true
+  app_base_ssh_key:
+    description: "SSH key for submodule app-base"
+    required: true
+  app_config_ssh_key:
+    description: "SSH key for submodule app-config"
+    required: true
+
+runs:
+  using: "composite"
+  steps:
+    - name: Configure SSH Keys
+      shell: bash
+      run: |
+        mkdir -p ~/.ssh
+        echo "${{ inputs.app_blockchain_ssh_key }}" > ~/.ssh/id_rsa_blockchain
+        echo "${{ inputs.app_base_ssh_key }}" > ~/.ssh/id_rsa_base
+        echo "${{ inputs.app_config_ssh_key }}" > ~/.ssh/id_rsa_config
+        chmod 600 ~/.ssh/id*
+
+        # Configure SSH config file
+        cat >> ~/.ssh/config <<EOL
+        Host github-blockchain
+          HostName github.com
+          IdentityFile ~/.ssh/id_rsa_blockchain
+          User git
+        Host github-base
+          HostName github.com
+          IdentityFile ~/.ssh/id_rsa_base 
+          User git
+        Host github-config
+          HostName github.com
+          IdentityFile ~/.ssh/id_rsa_config
+          User git
+        EOL
+
+    - name: Update Submodule URLs
+      shell: bash
+      run: |
+        git submodule set-url exchange/blockchain git@github-blockchain:nobitex/app-blockchain.git
+        git submodule set-url exchange/base git@github-base:nobitex/app-base.git
+
+    - name: Initialize and Update Submodules
+      shell: bash
+      run: |
+        git submodule update --init --remote --recursive
+
+    - name: Configure Git for PIP
+      shell: bash
+      run: |
+        git config --global url."ssh://git@github-config/nobitex/app-config.git".insteadOf "ssh://git@github.com/nobitex/app-config.git"
+
+    - name: Blockchain Checkout to develop
+      shell: bash
+      run: |
+        echo "moving to master"
+        cd exchange/blockchain
+        git checkout master
+        git pull
+        cd ../..

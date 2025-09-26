@@ -1,0 +1,10 @@
+{% extends 'email_base.html' %}
+{% load static %}
+{% block content %}
+  <div class="header">
+          <strong class="email-title">{{title}}</strong>
+        </div>
+  <div style="margin-top: 20px; margin-bottom: 100px">
+    <p class="content">{{content}}</p>
+  </div>
+{% endblock %}

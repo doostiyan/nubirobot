@@ -1,0 +1,54 @@
+{% extends 'email_base.html' %}
+{% block content %}
+<div class="header">
+  <strong class="email-title">
+    یادآوری منقضی شدن موقعیت {{ position_side }}
+  </strong>
+</div>
+<div style="margin-top: 20px; margin-bottom: 50px" class="content">
+    کاربر گرامی!
+    <br/>
+    <br/>
+    موقعیت {{ position_side }} شما در بازار {{ market }} در تاریخ {{ expiration_date }} منقضی خواهد شد. لطفاً اقدامات لازم را جهت بستن موقعیت خود انجام دهید.
+    <br/>
+    جزئیات موقعیت شما:
+    <table style="width: 100%; padding: 1.84% 13.83% 0 13.14%">
+    <tbody>
+    <tr>
+      <th style="padding: 0">
+        <p class="text-right">نوع موقعیت </p>
+      </th>
+      <td style="padding: 0">
+        <p style="text-align: left">{{ position_side }} {{ leverage }}x</p>
+      </td>
+    </tr>
+    <tr>
+      <th style="padding: 0">
+        <p class="text-right">مقدار </p>
+      </th>
+      <td style="padding: 0">
+        <p style="text-align: left">{{ liability }}</p>
+      </td>
+    </tr>
+    <tr>
+      <th style="padding: 0">
+        <p class="text-right">تاریخ انقضاء </p>
+      </th>
+      <td style="padding: 0">
+        <p style="text-align: left">{{ expiration_date }}</p>
+      </td>
+    </tr>
+    </tbody>
+  </table>
+    <br/>
+    <br/>
+    لطفاً توجه داشته باشید که در صورت منقضی شدن، موقعیت شما به صورت سیستمی و با قیمت بازار بسته خواهد شد لذا برای جلوگیری از این مورد و مدیریت بهتر موقعیت‌های خود، می‌توانید به حساب کاربری خود در نوبیتکس مراجعه کنید.
+    <br/>
+    <a class="content" href="{{domain}}panel/exchange/position/{{ market }}" style="color: #5e35b1; text-decoration: underline">
+    ورود به حساب کاربری
+    </a>
+    <br/>
+    <br/>
+    در صورت نیاز به راهنمایی یا داشتن هرگونه سوال، تیم پشتیبانی ما همواره آماده پاسخگویی به شماست.
+</div>
+{% endblock %}

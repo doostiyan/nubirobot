@@ -1,0 +1,20 @@
+{% extends 'email_base.html' %} {% load nobitex %} {% block content %}
+<div class="header">
+  <strong class="email-title"> {{email_title}} </strong>
+</div>
+<div style="margin-top: 20px; margin-bottom: 50px">
+  <p class="content">
+    کاربر گرامی,
+    <br />
+    <br />
+    دوره فعلی اشتراک تریدر انتخابی شما در تاریخ {{expires_at}} به پایان میرسد و
+    به صورت خودکار برای دوره بعد تمدید خواهد شد. درصورت تمایل به تغییر در عملیات
+    تمدید به پنل کاربری خود مراجعه نمایید.
+    <br />
+    <br />
+    تریدر: {{nickname}}
+    <br />
+    هزینه اشتراک: {{fee}}
+  </p>
+</div>
+{% endblock %}

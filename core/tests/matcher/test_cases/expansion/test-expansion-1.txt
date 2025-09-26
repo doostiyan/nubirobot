@@ -1,0 +1,12 @@
+# Easy expand
+1 SELL 10 180
+2 SELL 10 100
+3 BUY 10 90
+# Generate orderbook based on the current orders, before having
+# any order to match.
+ORDERBOOK 1
+4 BUY 15 200
+MATCH 4 <= 2 10 100
+MATCH 4 <= 1 5 180
+EXPANSION buy 0 sell 1
+CHECK

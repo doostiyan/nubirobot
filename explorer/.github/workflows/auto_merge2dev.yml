@@ -1,0 +1,73 @@
+name: Auto Merge to Develop
+
+on:
+  push:
+    branches:
+      - tempmaster
+
+jobs:
+  merge-to-develop:
+    runs-on: explorer-actions-runner
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+        with:
+          submodules: 'recursive'
+          fetch-depth: 0
+          ssh-key: ${{ secrets.SSH_KEY }}
+
+
+      - name: Checkout submodules
+        uses: ./.github/actions/checkout
+        with:
+          app_base_ssh_key: ${{ secrets.BASE_PROD_SSH_KEY }}
+          app_blockchain_ssh_key: ${{ secrets.BLOCKCHAIN_PROD_SSH_KEY }}
+          app_config_ssh_key: ${{ secrets.CONFIG_PROD_SSH_KEY }}
+
+      - name: Fetch all branches
+        run: git fetch origin
+
+      - name: Checkout develop branch
+        run: git checkout develop
+
+      - name: Configure Git
+        run: |
+          git config user.name "github-actions"
+          git config user.email "github-actions@github.com"
+
+#
+      - name: Rebase master onto develop
+        run: |
+          git rebase master || echo "Rebase failed due to conflicts"
+
+#      - name: Resolve conflicts by keeping changes from master
+#        run: |
+#          # Automatically resolve conflicts by keeping changes from master
+#          git checkout --theirs .  # Keep changes from master in case of conflict
+#          git add .                # Stage resolved files
+#          git rebase --continue || echo "Rebase continue failed"
+#
+#      - name: Resolve additional conflicts (if needed)
+#        run: |
+#          # If the rebase still fails due to conflict, manually reset conflicted files
+#          git reset --hard HEAD
+#          git add .
+#          git rebase --continue || echo "Rebase continue failed after reset"
+#        id: rebase
+#
+#
+#      - name: Attempt to merge master into develop
+#        run: |
+#          git merge master --no-ff -m "Merge master into develop" || echo "Merge failed due to conflicts"
+#
+#        id: merge
+#
+#      - name: Set commit author for merge
+#        run: |
+#          git config --global user.name "${{ steps.author_info.outputs.author_name }}"
+#          git config --global user.email "${{ steps.author_info.outputs.author_email }}"
+#
+      - name: Push changes to develop
+        run: |
+          git push --force-with-lease

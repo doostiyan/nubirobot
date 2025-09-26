@@ -1,0 +1,78 @@
+# Project Structure
+media/
+data/
+static
+debug_templates
+Pipfile
+test-fuzzy.txt
+base-fuzzy.txt
+
+# OS
+.DS_Store
+
+# Python
+# https://github.com/github/gitignore/blob/main/Python.gitignore
+# Byte-compiled / optimized / DLL files
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Unit test / coverage reports
+htmlcov/
+.tox/
+.nox/
+.coverage
+.coverage.*
+.cache
+nosetests.xml
+coverage.xml
+*.cover
+*.py,cover
+.hypothesis/
+pytest.ini
+.pytest_cache/
+cover/
+pytest-coverage.txt
+pytest.xml
+
+# Translations
+*.mo
+*.pot
+
+# Django stuff:
+*.log
+local_settings.py
+*.sqlite3
+*.sqlite3-journal
+
+# Celery stuff
+celerybeat-schedule
+celerybeat.pid
+
+# Environments
+.env
+.venv
+env/
+venv/
+ENV/
+env.bak/
+venv.bak/
+.python-version
+
+# VSCode
+# https://github.com/github/gitignore/blob/main/Global/VisualStudioCode.gitignore
+.vscode/*
+!.vscode/settings.json
+!.vscode/tasks.json
+!.vscode/launch.json
+!.vscode/extensions.json
+!.vscode/*.code-snippets
+.history/
+*.vsix
+
+# PyCharm
+# https://github.com/github/gitignore/blob/main/Global/JetBrains.gitignore
+.idea/
+
+# Celery
+celerybeat*

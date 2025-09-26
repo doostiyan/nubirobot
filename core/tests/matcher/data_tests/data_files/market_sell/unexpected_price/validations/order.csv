@@ -1,0 +1,6 @@
+test,operation,obj_name,attribute,result
+1,Equal,sell,status,Order.STATUS.done
+2,Equal,market_sell,status,Order.STATUS.canceled
+3,Equal,buy_1,status,Order.STATUS.done
+4,Equal,buy_2,status,Order.STATUS.active
+5,Equal,buy_3,status,Order.STATUS.active

@@ -1,0 +1,284 @@
+[
+    {
+        "model": "accounts.user",
+        "pk": 101,
+        "fields": {
+            "password": "!",
+            "last_login": null,
+            "is_superuser": false,
+            "username": "bot-seller1",
+            "first_name": "Seller1",
+            "last_name": "Bot",
+            "email": "seller1-bot@internal.com",
+            "user_type": 101,
+            "base_fee": "0",
+            "logout_threshold": "5256000",
+            "telegram_conversation_id": "-1001216698242",
+            "is_staff": false,
+            "is_active": true,
+            "date_joined": "2017-01-01T00:00:00Z",
+            "groups": [],
+            "user_permissions": []
+        }
+    },
+    {
+      "model": "accounts.user",
+      "pk": 984,
+      "fields": {
+        "username": "system-abc-fee",
+        "first_name": "System",
+        "last_name": "ABC Fee",
+        "email": "system-abc-fee@internal.com",
+        "user_type": 100
+      }
+    },
+    {
+      "model": "accounts.user",
+      "pk": 985,
+          "fields": {
+              "username": "system-convert-small-assets",
+              "first_name": "System",
+              "last_name": "Small Assets Convert (aka: Xchange Small Assets)",
+              "email": "system-convert-small-assets@internal.com",
+              "user_type": 100
+          }
+      },
+      {
+      "model": "accounts.user",
+      "pk": 986,
+      "fields": {
+        "username": "liquidator-external-marketmaker",
+        "first_name": "Liquidator",
+        "last_name": "External Market Maker",
+        "email": "liquidator-external-marketmaker@internal.com",
+        "user_type": 100,
+        "base_fee": "0"
+      }
+    },
+    {
+      "model": "accounts.user",
+      "pk": 987,
+      "fields": {
+        "password": "!",
+        "last_login": null,
+        "is_superuser": false,
+        "username": "system-social-trade-subscription@nobitex.ir",
+        "first_name": "System",
+        "last_name": "Social Trade Subscription",
+        "email": "system-social-trade-subscription@internal.com",
+        "user_type": 100,
+        "is_staff": false,
+        "is_active": true,
+        "date_joined": "2023-07-17T00:00:00Z",
+        "groups": [],
+        "user_permissions": []
+      }
+    },
+    {
+      "model": "accounts.user",
+      "pk": 988,
+      "fields": {
+        "username": "system-pool-profit",
+        "first_name": "System",
+        "last_name": "Pool Profit Collector",
+        "email": "system-pool-profit@internal.com",
+        "user_type": 100,
+        "base_fee": "0"
+      }
+    },
+    {
+        "model": "accounts.user",
+        "pk": 989,
+        "fields": {
+            "username": "system-fix",
+            "first_name": "System",
+            "last_name": "Fix",
+            "email": "system-fix@internal.com",
+            "user_type": 100
+        }
+    },
+    {
+      "model": "accounts.user",
+      "pk": 990,
+      "fields": {
+        "username": "system-abc-insurance-fund",
+        "first_name": "System",
+        "last_name": " ABC Insurance Fund",
+        "email": "system-abc-insurance-fund@internal.com",
+        "user_type": 100
+      }
+    },
+    {
+    "model": "accounts.user",
+    "pk": 991,
+        "fields": {
+            "username": "system-convert",
+            "first_name": "System",
+            "last_name": "Convert (aka: Xchange)",
+            "email": "system-convert@internal.com",
+            "user_type": 100
+        }
+    },
+    {
+    "model": "accounts.user",
+    "pk": 992,
+        "fields": {
+            "username": "system-vip-credit",
+            "first_name": "System",
+            "last_name": "Vip Credit",
+            "email": "system-vip-credit@internal.com",
+            "user_type": 100
+        }
+    },
+    {
+    "model": "accounts.user",
+    "pk": 994,
+        "fields": {
+            "username": "system-staking-fee",
+            "first_name": "System",
+            "last_name": "Staking Fee Collector",
+            "email": "system-staking-fee@internal.com",
+            "user_type": 100
+        }
+    },
+    {
+      "model": "accounts.user",
+      "pk": 996,
+      "fields": {
+        "username": "system-position-fee",
+        "first_name": "System",
+        "last_name": "Position Fee Collector",
+        "email": "system-position-fee@internal.com",
+        "user_type": 100
+      }
+    },
+    {
+      "model": "accounts.user",
+      "pk": 997,
+      "fields": {
+        "password": "!",
+        "last_login": null,
+        "is_superuser": false,
+        "username": "system-gift@nobitex.ir",
+        "first_name": "System",
+        "last_name": "Gift",
+        "email": "system-gift@nobitex.ir",
+        "user_type": 100,
+        "is_staff": false,
+        "is_active": true,
+        "date_joined": "2017-03-03T00:00:00Z",
+        "groups": [],
+        "user_permissions": []
+      }
+    },
+    {
+      "model": "accounts.user",
+      "pk": 998,
+      "fields": {
+        "password": "!",
+        "last_login": null,
+        "is_superuser": false,
+        "username": "system-withdraw",
+        "first_name": "System",
+        "last_name": "Withdraw",
+        "email": "system-withdraw@internal.com",
+        "user_type": 100,
+        "is_staff": false,
+        "is_active": true,
+        "date_joined": "2017-01-01T00:00:00Z",
+        "groups": [],
+        "user_permissions": []
+      }
+    },
+    {
+        "model": "accounts.user",
+        "pk": 999,
+        "fields": {
+            "password": "!",
+            "last_login": null,
+            "is_superuser": false,
+            "username": "system-fee",
+            "first_name": "System",
+            "last_name": "Fee Collector",
+            "email": "system-fee@internal.com",
+            "user_type": 100,
+            "is_staff": false,
+            "is_active": true,
+            "date_joined": "2017-01-01T00:00:00Z",
+            "groups": [],
+            "user_permissions": [],
+            "base_fee": 0,
+            "base_fee_usdt": 0,
+            "base_maker_fee": 0,
+            "base_maker_fee_usdt": 0
+          }
+    },
+    {
+        "model": "accounts.user",
+        "pk": 1000,
+        "fields": {
+            "password": "!",
+            "last_login": null,
+            "is_superuser": false,
+            "username": "system-1000",
+            "first_name": "System",
+            "last_name": "1000",
+            "email": "system-1000@internal.com",
+            "user_type": 100,
+            "is_staff": false,
+            "is_active": true,
+            "date_joined": "2017-01-01T00:00:00Z",
+            "groups": [],
+            "user_permissions": []
+        }
+    },
+    {
+        "model": "accounts.user",
+        "pk": 200,
+        "fields": {
+            "password": "!",
+            "last_login": null,
+            "is_superuser": false,
+            "username": "gateway@internal.com",
+            "first_name": "Gateway",
+            "last_name": "Internal",
+            "email": "gateway@internal.com",
+            "user_type": 101,
+            "is_staff": false,
+            "is_active": true,
+            "date_joined": "2017-01-01T00:00:00Z",
+            "groups": [],
+            "user_permissions": []
+        }
+    },
+    {
+        "model": "accounts.user",
+        "pk": 201,
+        "fields": {
+            "password": "pbkdf2_sha256$120000$AYXtS1DMp2Kx$tny62RUEnAhDFrDVhr71HHZ3BVP9ixAqN650PUn2FaM=",
+            "last_login": null,
+            "is_superuser": false,
+            "username": "demo@nobitex.gateway",
+            "first_name": "Demo",
+            "last_name": "Gateway",
+            "email": "demo@nobitex.gateway",
+            "base_fee": null,
+            "is_staff": false,
+            "is_active": true,
+            "date_joined": "2017-01-01T00:00:00Z",
+            "groups": [],
+            "user_permissions": []
+        }
+    },
+    {
+      "model": "accounts.user",
+      "pk": 400,
+      "fields": {
+        "username": "nobitex-delegator",
+        "first_name": "Nobitex",
+        "last_name": "Pool Delegator",
+        "email": "nobitex-delegator@internal.com",
+        "user_type": 99
+      }
+    }
+]

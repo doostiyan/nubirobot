@@ -1,0 +1,30 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ .Release.Name }}
+  namespace: {{ .Release.Namespace }}
+  labels:
+    app: exchange-internal
+spec:
+  replicas: {{ .Values.core.replicaCount }}
+  selector:
+    matchLabels:
+      app: exchange-internal
+  template:
+    metadata:
+      labels:
+        app: exchange-internal
+    spec:
+      containers:
+        - name: {{ .Chart.Name }}
+          image: {{ .Values.common.image.repository }}:{{ .Values.common.image.tag }}
+          imagePullPolicy: {{ .Values.common.image.pullPolicy }}
+          ports:
+            - containerPort: 8000
+          env:
+            - name: ENV
+              value: {{ .Values.common.env}}
+      {{- with .Values.common.imagePullSecrets }}
+      imagePullSecrets:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
